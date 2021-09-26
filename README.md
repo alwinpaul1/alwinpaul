@@ -2,8 +2,8 @@
 My Website Portfolio
 
 ## Screenshots:
-### Computer View
-![alt text](https://github.com/alisolanki/Portfolio/blob/master/Portfolio.PNG)
+### Desktop View
+![alt text](https://github.com/nullpwn/alwinpaul/blob/master/Portfolio.jpg)
 
 ### Mobile View
 ![alt text](https://github.com/alisolanki/Portfolio/blob/master/Portfolio_mobile.PNG)
