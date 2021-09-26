@@ -3,10 +3,10 @@ My Website Portfolio
 
 ## Screenshots:
 ### Desktop View
-![alt text](https://github.com/nullpwn/alwinpaul/blob/main/Portfolio.jpg)
+![Portfolio.jpg](https://github.com/nullpwn/alwinpaul/blob/main/Portfolio.jpg)
 
 ### Mobile View
-![alt text](https://github.com/alisolanki/Portfolio/blob/master/Portfolio_mobile.PNG)
+![Portfolio_Mobile.jpg](https://github.com/nullpwn/alwinpaul/blob/main/Portfolio_Mobile.jpg)
 
 ## Author
 
