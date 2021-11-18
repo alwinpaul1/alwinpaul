@@ -14,7 +14,7 @@ My Website Portfolio
 
 # Author
 
-**[Alwin Paul](https://www.linkedin.com/in/alwin-paul/)**
+*[Alwin Paul](https://www.linkedin.com/in/alwin-paul/)*
 
 
 
