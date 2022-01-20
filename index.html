@@ -15,6 +15,8 @@
   </script>
   <!-- End Google Analytics -->
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
   <!--====== Required meta tags ======-->
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -412,7 +414,7 @@
           </div>
 
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <form action="https://formsubmit.co/alwin.paulpv@gmail.com" method="post" role="form" class="php-email-form">
+            <form action="" role="form" class="php-email-form" id="submit-form">
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="name">Your Name</label>
@@ -436,10 +438,6 @@
                 <div class="validate"></div>
               </div>
               <div class="mb-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>		 
               <div class="text-center"><button type="submit">Send Message</button></div>
             </form>
           </div>
@@ -479,6 +477,26 @@
   <script src="assets/vendor/aos/aos.js"></script>
 
   <script src="assets/js/main.js"></script>
+
+  <script>
+    $("#submit-form").submit((e)=>{
+        e.preventDefault()
+        $.ajax({
+            url:"https://script.google.com/a/nirmalacollege.ac.in/macros/s/AKfycbzGLAv51UMDchl29KjBqPiQxT7QTxwdPqgnzFel/exec",
+            data:$("#submit-form").serialize(),
+            method:"post",
+            success:function (response){
+                alert("Form submitted successfully")
+                window.location.reload()
+                //window.location.href="https://google.com"
+            },
+            error:function (err){
+                alert("Something Error")
+
+            }
+        })
+    })
+</script>
 
 </body>
 
