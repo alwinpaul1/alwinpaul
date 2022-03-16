@@ -3,39 +3,37 @@
 
 <head>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-L0ZB5ZEZMT"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-L0ZB5ZEZMT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-L0ZB5ZEZMT');
-</script>
+    gtag('config', 'G-L0ZB5ZEZMT');
+  </script>
 
-<!-- Recaptcha -->
-<script type="text/javascript">
-    var verifyCallback = function(response) {
+  <!-- Recaptcha -->
+  <script type="text/javascript">
+    var verifyCallback = function (response) {
       console.log(response.length)
       const button = document.getElementById("submitBtn");
-      if(response.length==0)
-      {
-        button.style.display="none";
+      if (response.length == 0) {
+        button.style.display = "none";
       }
-      else
-      {
-        button.style.display="block";
+      else {
+        button.style.display = "block";
       }
     };
-    var onloadCallback = function() {
-      if(document.body.classList.contains("dark-theme"))
+    var onloadCallback = function () {
+      if (document.body.classList.contains("dark-theme"))
         theme = "dark";
       else
         theme = "light"
       gcaptcha = grecaptcha.render('captcha', {
-        'sitekey' : '6Lf-C3QeAAAAAIn5IrfAyqfuNzYNec7jdqEYFXGh',
-        'callback' : verifyCallback,
-        'theme' : 'light'
+        'sitekey': '6Lf-C3QeAAAAAIn5IrfAyqfuNzYNec7jdqEYFXGh',
+        'callback': verifyCallback,
+        'theme': 'light'
       });
     };
   </script>
@@ -49,31 +47,39 @@
 
   <title>Alwin Paul - Cyber Security Analyst</title>
   <meta content="Alwin Paul | Ethical Hacker &amp; Cyber Security Analyst" name="description">
-  <meta content="Cyber security,ethical hacker,burpsuite,medium ,alwin paul,infosec,hacker,gautam,gautamkumawat,BUG,bug bounty,Vulnerability" name="keywords">
-  
+  <meta
+    content="Cyber security,ethical hacker,burpsuite,medium ,alwin paul,infosec,hacker,gautam,gautamkumawat,BUG,bug bounty,Vulnerability"
+    name="keywords">
+
   <meta name="google-site-verification" content="EKE7w4No1IPZE_tZ1NxO2ZVjJ_HD2ana0weOiQ9JoWs" />
   <meta name="msvalidate.01" content="BA1193CA5F5FA89A4BAD5A50B0D23EC8" />
 
-  <meta property="og:url" content="https://alwinpaul.me/"/>
-      <meta itemprop="url" content="https://alwinpaul.me/"/>
-      <meta name="twitter:url" content="https://alwinpaul.me/"/>
-      <meta name="description" content="Alwin Paul, Self-Learned Ethical Hacker and a Web App Security Analyst from Kerala, India." />
-      <meta property="og:site_name" content="Alwin Paul" />
-      <meta property="og:title" content="Alwin Paul"/>
-      <meta property="og:type" content="website"/>
-      <meta property="og:description" content="Alwin Paul, Self-Learned Ethical Hacker and a Web App Security Analyst from Kerala, India."/>
-      <meta itemprop="description" content="Alwin Paul, Self-Learned Ethical Hacker and a Web App Security Analyst from Kerala, India. "/>
-      <meta name="twitter:title" content="Alwin Paul"/>
-      <meta name="twitter:card" content="summary"/>
-      <meta name="twitter:description" content="Alwin Paul, Self-Learned Ethical Hacker and a Web App Security Analyst from Kerala, India."/>
+  <meta property="og:url" content="https://alwinpaul.me/" />
+  <meta itemprop="url" content="https://alwinpaul.me/" />
+  <meta name="twitter:url" content="https://alwinpaul.me/" />
+  <meta name="description"
+    content="Alwin Paul, Self-Learned Ethical Hacker and a Web App Security Analyst from Kerala, India." />
+  <meta property="og:site_name" content="Alwin Paul" />
+  <meta property="og:title" content="Alwin Paul" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description"
+    content="Alwin Paul, Self-Learned Ethical Hacker and a Web App Security Analyst from Kerala, India." />
+  <meta itemprop="description"
+    content="Alwin Paul, Self-Learned Ethical Hacker and a Web App Security Analyst from Kerala, India. " />
+  <meta name="twitter:title" content="Alwin Paul" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:description"
+    content="Alwin Paul, Self-Learned Ethical Hacker and a Web App Security Analyst from Kerala, India." />
 
   <!-- Favicons -->
   <link href="assets/img/favicon.jpg" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
@@ -84,7 +90,7 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-  </head>
+</head>
 
 <body>
 
@@ -101,9 +107,9 @@
         <div class="social-links mt-3 text-center">
           <a href="https://www.facebook.com/alwin.paulpv" class="facebook"><i class="bx bxl-facebook"></i></a>
           <a href="https://www.instagram.com/_alwin.paul_/" class="instagram"><i class="bx bxl-instagram"></i></a>
-          <a href="https://www.linkedin.com/in/alwin-paul/ class="linkedin"><i class="bx bxl-linkedin"></i></a>
-	  <a href="https://github.com/nullpwn" class="github"><i class="bx bxl-github"></i></a>
-	  <a href="https://twitter.com/_alwinpaul_" class="twitter"><i class="bx bxl-twitter"></i></a>
+          <a href="https://www.linkedin.com/in/alwin-paul/ class=" linkedin"><i class="bx bxl-linkedin"></i></a>
+          <a href="https://github.com/nullpwn" class="github"><i class="bx bxl-github"></i></a>
+          <a href="https://twitter.com/_alwinpaul_" class="twitter"><i class="bx bxl-twitter"></i></a>
         </div>
       </div>
 
@@ -149,7 +155,8 @@
           <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
             <h3>Developer &amp Web Application Penetration Tester</h3>
             <p class="font-italic">
-              Enthusiast in Information Security currently learning about different exploits who is seeking a better position in IT field.
+              Enthusiast in Information Security currently learning about different exploits who is seeking a better
+              position in IT field.
             </p>
             <div class="row">
               <div class="col-lg-6">
@@ -170,7 +177,9 @@
               </div>
             </div>
             <p>
-              I have showcased my talents and skills through various programs. Recently completed my Bachelor's in Computer Applications from Nirmala College, Muvattupuzha. Participated in Capture The Flag Challenges as well as Workshops to improve my skills.
+              I have showcased my talents and skills through various programs. Recently completed my Bachelor's in
+              Computer Applications from Nirmala College, Muvattupuzha. Participated in Capture The Flag Challenges as
+              well as Workshops to improve my skills.
             </p>
           </div>
         </div>
@@ -185,15 +194,19 @@
 
         <div class="section-title">
           <h2>Resume</h2>
-          <p>A starter and a self-motivated professional successful in seizing viable opportunities for expansion and innovation. Experienced in leading and supervising teams. Having top-notch technical as well as communication skills. Highly motivated and Information Security enthusiastic .</p>
+          <p>A starter and a self-motivated professional successful in seizing viable opportunities for expansion and
+            innovation. Experienced in leading and supervising teams. Having top-notch technical as well as
+            communication skills. Highly motivated and Information Security enthusiastic .</p>
         </div>
 
         <div class="row">
           <div class="col-lg-6" data-aos="fade-up">
             <h3 class="resume-title">Summary</h3>
             <div class="resume-item pb-0">
-              <h4><a href="https://drive.google.com/file/d/1x7wVvUPsJdYWbzDQfTFT62IVgblOQKbk/view?usp=sharing" style="color: black;">Alwin Paul</a></h4>
-              <p><em>Innovative and Self-learned Web App Pen-Tester with 1+ years of experience in TryHackMe Platform. </em></p>
+              <h4><a href="https://drive.google.com/file/d/1x7wVvUPsJdYWbzDQfTFT62IVgblOQKbk/view?usp=sharing"
+                  style="color: black;">Alwin Paul</a></h4>
+              <p><em>Innovative and Self-learned Web App Pen-Tester with 1+ years of experience in TryHackMe Platform.
+                </em></p>
               <ul>
                 <li>Ernakulam, Kerala</li>
                 <li>+91 7994961446</li>
@@ -203,13 +216,16 @@
 
             <h3 class="resume-title">Education</h3>
             <div class="resume-item">
-              <h4><a href="https://drive.google.com/file/d/1-WH_H55cVTXH35jFgZBYSJZI0q4u1gLf/view?usp=sharing" style="color: black;">Bachelor of Computer Applications</a></h4>
+              <h4><a href="https://drive.google.com/file/d/1-WH_H55cVTXH35jFgZBYSJZI0q4u1gLf/view?usp=sharing"
+                  style="color: black;">Bachelor of Computer Applications</a></h4>
               <h5>2018-2021</h5>
               <p><em>Nirmala College, Muvattupuzha</em></p>
-              <p>Had completed my Bachelor's in Computer Applications from Nirmala College, Muvattupuzha with excellent results and skills. Got many skills and ideas in programming from here. </p>
+              <p>Had completed my Bachelor's in Computer Applications from Nirmala College, Muvattupuzha with excellent
+                results and skills. Got many skills and ideas in programming from here. </p>
             </div>
             <div class="resume-item">
-              <h4><a href="https://drive.google.com/file/d/1o1ZAoP0lcOiJ5v4zW3qDyVvEovhvJqmF/view?usp=sharing" style="color: black;">Higher Secondary education</a></h4>
+              <h4><a href="https://drive.google.com/file/d/1o1ZAoP0lcOiJ5v4zW3qDyVvEovhvJqmF/view?usp=sharing"
+                  style="color: black;">Higher Secondary education</a></h4>
               <h5>2016-2018</h5>
               <p><em>MCMHSS, Pattimattom</em></p>
               <p>Completed my Higher Secondary education in Computer Science from MCMHSS, Pattimattom.</p>
@@ -218,7 +234,8 @@
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
             <h3 class="resume-title">Experience</h3>
             <div class="resume-item">
-              <h4><a href="https://www.qwiklabs.com/public_profiles/9fd098b2-e1b9-4550-881f-4f9e0d1e9e74" style="color: black;">Google Cloud Facilitator</a></h4>
+              <h4><a href="https://www.qwiklabs.com/public_profiles/9fd098b2-e1b9-4550-881f-4f9e0d1e9e74"
+                  style="color: black;">Google Cloud Facilitator</a></h4>
               <h5>2020 - 2021</h5>
               <ul>
                 <li>The #GoogleCloudReady Facilitator program will provide
@@ -229,24 +246,25 @@
                 <li>Along the way, I learned & practiced the concepts like
                   computing, application development, big data & machine
                   learning using cloud.
-                  </li>
-               
+                </li>
+
               </ul>
-              
+
             </div>
             <div class="resume-item">
-            <h4><a href="https://tryhackme.com/p/nullpwn" style="color: black;">Student Intern - TryHackMe</a></h4>
-            <h5>2020 - Present</h5>
-            <ul>
-              <li>TryHackMe is an online, cloud-based, cybersecurity
-                training platform used by individuals and academics alike.</li>
-               <li>This platform makes it a comfortable experience to learn
-                by designing prebuilt courses which include virtual
-                machines (VM) hosted in the cloud ready to be deployed. This avoids the hassle of downloading and configuring
-                VM's and is perfect for CTFs, Workshops, Assessments or
-                Training.
-                </li> 
-            </ul>
+              <h4><a href="https://tryhackme.com/p/nullpwn" style="color: black;">Student Intern - TryHackMe</a></h4>
+              <h5>2020 - Present</h5>
+              <ul>
+                <li>TryHackMe is an online, cloud-based, cybersecurity
+                  training platform used by individuals and academics alike.</li>
+                <li>This platform makes it a comfortable experience to learn
+                  by designing prebuilt courses which include virtual
+                  machines (VM) hosted in the cloud ready to be deployed. This avoids the hassle of downloading and
+                  configuring
+                  VM's and is perfect for CTFs, Workshops, Assessments or
+                  Training.
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -256,65 +274,78 @@
 
 
     <!-- ======= Portfolio Section =======-->
-<section id="portfolio" class="portfolio section-bg">
-  <div class="container">
+    <section id="portfolio" class="portfolio section-bg">
+      <div class="container">
 
-    <div class="section-title">
-      <h2>Portfolio</h2>
-      <p></p>
-    </div>
+        <div class="section-title">
+          <h2>Portfolio</h2>
+          <p></p>
+        </div>
 
-    <div class="row" data-aos="fade-up">
-      <div class="col-lg-12 d-flex justify-content-center">
-        <ul id="portfolio-flters">
-          <li data-filter="*" class="filter-active">All</li>
-          <li data-filter=".filter-app">Projects</li>
-       <li data-filter=".filter-card">Achievements</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
-
-      <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-        <div class="portfolio-wrap">
-          <img src="assets/img/portfolio/servicehub.png" class="img-fluid" alt="">
-          <div class="portfolio-links">
-            <a href="https://github.com/nullpwn/Service-Hub" title="More Details"><i class="bx bx-link"></i></a>
+        <div class="row" data-aos="fade-up">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-app">Projects</li>
+              <li data-filter=".filter-card">Achievements</li>
+            </ul>
           </div>
-<h3>Service Hub</h3>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-        <div class="portfolio-wrap">
-          <img src="assets/img/portfolio/qwik.png" class="img-fluid" alt="">
-          <div class="portfolio-links">
-            <a href="https://www.qwiklabs.com/public_profiles/9fd098b2-e1b9-4550-881f-4f9e0d1e9e74" title="More Details"><i class="bx bx-link"></i></a>
-          </div>
-<h3>Google Cloud Readiness Program</h3>
-        </div>
         </div>
 
-        <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/THM.png" class="img-fluid" alt="">
-            <script src="https://tryhackme.com/badge/20565"></script>
-            <div class="portfolio-links">
-              <a href="https://tryhackme.com/p/nullpwn" title="More Details"><i class="bx bx-link"></i></a>
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/servicehub.png" class="img-fluid" alt="">
+              <div class="portfolio-links">
+                <a href="https://github.com/nullpwn/Service-Hub" title="More Details"><i class="bx bx-link"></i></a>
+              </div>
+              <h3>Service Hub</h3>
             </div>
-  <h3>TryHackMe</h3>
           </div>
-      </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/qwik.png" class="img-fluid" alt="">
+              <div class="portfolio-links">
+                <a href="https://www.qwiklabs.com/public_profiles/9fd098b2-e1b9-4550-881f-4f9e0d1e9e74"
+                  title="More Details"><i class="bx bx-link"></i></a>
+              </div>
+              <h3>Google Cloud Readiness Program</h3>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/THM - Jr Penetration Tester.png" class="img-fluid" alt="">
+              <div class="portfolio-links">
+                <a href="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-TZIZIOWLWV.png"
+                  title="More Details"><i class="bx bx-link"></i></a>
+              </div>
+              <h3>Jr. Penetration Tester - THM</h3>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/THM.png" class="img-fluid" alt="">
+              <script src="https://tryhackme.com/badge/20565"></script>
+              <div class="portfolio-links">
+                <a href="https://tryhackme.com/p/nullpwn" title="More Details"><i class="bx bx-link"></i></a>
+              </div>
+              <h3>TryHackMe</h3>
+            </div>
+          </div>
     </section><!-- End Portfolio Section -->
 
-<!-- ======= Skills Section ======= -->
+    <!-- ======= Skills Section ======= -->
     <section id="skills" class="skills section-bg">
       <div class="container">
 
         <div class="section-title">
           <h2>Skills</h2>
-          <p>Have excellent talent in Information Security and Designing. Participated in Capture The Flag Challenges and Workshops. I have showcased my talents by partcipating in these programs.  
+          <p>Have excellent talent in Information Security and Designing. Participated in Capture The Flag Challenges
+            and Workshops. I have showcased my talents by partcipating in these programs.
           </p>
         </div>
 
@@ -325,21 +356,24 @@
             <div class="progress">
               <span class="skill">HTML <i class="val">80%</i></span>
               <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                </div>
               </div>
             </div>
 
             <div class="progress">
               <span class="skill">CSS <i class="val">70%</i></span>
               <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                </div>
               </div>
             </div>
 
-	<div class="progress">
+            <div class="progress">
               <span class="skill">Python <i class="val">20%</i></span>
               <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                </div>
               </div>
             </div>
 
@@ -347,25 +381,28 @@
 
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
 
-            
-		       <div class="progress">
-             <span class="skill">Linux<i class="val">80%</i></span>
-             <div class="progress-bar-wrap">
-             <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-             </div>
-           </div>
 
-           <div class="progress">
-            <span class="skill">C++ <i class="val">70%</i></span>
-            <div class="progress-bar-wrap">
-              <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress">
+              <span class="skill">Linux<i class="val">80%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                </div>
+              </div>
             </div>
-          </div>
-          
+
+            <div class="progress">
+              <span class="skill">C++ <i class="val">70%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                </div>
+              </div>
+            </div>
+
             <div class="progress">
               <span class="skill">GIT<i class="val">55%</i></span>
               <div class="progress-bar-wrap">
-              <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">
+                </div>
               </div>
             </div>
 
@@ -382,7 +419,8 @@
 
         <div class="section-title">
           <h2>Services</h2>
-          <p>I accept various projects through freelance sites and privately. These are the type of various stacks which I can handle,</p>
+          <p>I accept various projects through freelance sites and privately. These are the type of various stacks which
+            I can handle,</p>
         </div>
 
         <div class="row">
@@ -399,7 +437,8 @@
           <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200">
             <div class="icon"><i class="icofont-earth"></i></div>
             <h4 class="title"><a href="">Computer Service</a></h4>
-            <p class="description">Troubleshoots the technical issues bugging the computers, laptops and smartphones.</p>
+            <p class="description">Troubleshoots the technical issues bugging the computers, laptops and smartphones.
+            </p>
           </div>
           <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="300">
             <div class="icon"><i class="icofont-image"></i></div>
@@ -411,8 +450,8 @@
             <h4 class="title"><a href="">Software Development</a></h4>
             <p class="description">Accepts software development projects.</p>
           </div>
-         
-		
+
+
         </div>
 
       </div>
@@ -449,7 +488,9 @@
                 <p>7994961446</p>
               </div>
 
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.744839675633!2d76.39401331475695!3d9.955174992881927!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0874e8317dac7b%3A0x2974565ed46c3d4b!2sPanikkarupady!5e0!3m2!1sen!2sin!4v1630421867072!5m2!1sen!2sin" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.744839675633!2d76.39401331475695!3d9.955174992881927!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0874e8317dac7b%3A0x2974565ed46c3d4b!2sPanikkarupady!5e0!3m2!1sen!2sin!4v1630421867072!5m2!1sen!2sin"
+                width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
 
           </div>
@@ -459,29 +500,35 @@
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="name">Your Name</label>
-                  <input type="text" name="name" class="form-control" id="name" data-rule="minlen:3" data-msg="Please enter at least 3 chars" />
+                  <input type="text" name="name" class="form-control" id="name" data-rule="minlen:3"
+                    data-msg="Please enter at least 3 chars" />
                   <div class="validate"></div>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="name">Your Email</label>
-                  <input type="email" class="form-control" name="email" id="email" data-rule="email" data-msg="Please enter a valid email" />
+                  <input type="email" class="form-control" name="email" id="email" data-rule="email"
+                    data-msg="Please enter a valid email" />
                   <div class="validate"></div>
                 </div>
               </div>
               <div class="form-group">
                 <label for="name">Subject</label>
-                <input type="text" class="form-control" name="subject" id="subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-                <div class="validate"></div>
-              </div>     
-              <div class="form-group">
-                <label for="name">Message</label>
-                <textarea class="form-control" name="message" rows="10" data-rule="required" data-msg="Please write something for us"></textarea>
+                <input type="text" class="form-control" name="subject" id="subject" data-rule="minlen:4"
+                  data-msg="Please enter at least 8 chars of subject" />
                 <div class="validate"></div>
               </div>
-              <center><div id="captcha"></div></center>
+              <div class="form-group">
+                <label for="name">Message</label>
+                <textarea class="form-control" name="message" rows="10" data-rule="required"
+                  data-msg="Please write something for us"></textarea>
+                <div class="validate"></div>
+              </div>
+              <center>
+                <div id="captcha"></div>
+              </center>
               <div class="mb-3">
-              <br>  
-              <div class="text-center" id="submitBtn"><button type="submit">Send Message</button></div>
+                <br>
+                <div class="text-center" id="submitBtn"><button type="submit">Send Message</button></div>
               </div>
             </form>
           </div>
@@ -523,24 +570,24 @@
   <script src="assets/js/main.js"></script>
   <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
   <script>
-    $("#submit-form").submit((e)=>{
-        e.preventDefault()
-        $.ajax({
-            url:"https://script.google.com/a/nirmalacollege.ac.in/macros/s/AKfycbzGLAv51UMDchl29KjBqPiQxT7QTxwdPqgnzFel/exec",
-            data:$("#submit-form").serialize(),
-            method:"post",
-            success:function (response){
-                alert("Thanks for contacting Me🧑‍💻")
-                window.location.reload()
-                //window.location.href="https://google.com"
-            },
-            error:function (err){
-                alert("Something Error")
+    $("#submit-form").submit((e) => {
+      e.preventDefault()
+      $.ajax({
+        url: "https://script.google.com/a/nirmalacollege.ac.in/macros/s/AKfycbzGLAv51UMDchl29KjBqPiQxT7QTxwdPqgnzFel/exec",
+        data: $("#submit-form").serialize(),
+        method: "post",
+        success: function (response) {
+          alert("Thanks for contacting Me🧑‍💻")
+          window.location.reload()
+          //window.location.href="https://google.com"
+        },
+        error: function (err) {
+          alert("Something Error")
 
-            }
-        })
+        }
+      })
     })
-</script>
+  </script>
 
 </body>
 
