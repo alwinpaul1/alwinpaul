@@ -1,4 +1,0 @@
-This is a Brave Rewards publisher verification file.
-
-Domain: alwinpaul.me
-Token: 5c03782ad1faa9932f899ac39c8942c650d24d552c2d323ff5937c166305b242
