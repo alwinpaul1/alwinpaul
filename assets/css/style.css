@@ -134,17 +134,19 @@ h4 {
   margin: 15px auto;
   display: block;
   width: 120px;
-  border: 4px solid transparent;
-  background: var(--primary-gradient);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(30, 60, 114, 0.1);
   border-radius: 50%;
-  padding: 2px;
+  padding: 1px;
   transition: var(--transition-smooth);
   position: relative;
 }
 
 #header .profile img:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
+  border: 2px solid var(--accent-color);
+  background: var(--primary-gradient);
 }
 
 #header .profile h1 {
