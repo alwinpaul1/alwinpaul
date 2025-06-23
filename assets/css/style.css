@@ -1788,11 +1788,21 @@ section {
     font-size: 1.3rem;
   }
   
+  #header .profile .social-links {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    gap: 8px !important;
+    padding: 10px 0 !important;
+  }
+  
   #header .profile .social-links .social-icon {
-    width: 40px;
-    height: 40px;
-    font-size: 16px;
-    margin-right: 10px;
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+    margin-right: 0 !important;
+    flex-shrink: 0;
   }
 }
 
@@ -1821,5 +1831,15 @@ section {
   
   h3 {
     font-size: 1.25rem;
+  }
+  
+  #header .profile .social-links {
+    gap: 6px !important;
+  }
+  
+  #header .profile .social-links .social-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 13px;
   }
 }
