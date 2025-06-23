@@ -1041,6 +1041,8 @@ section {
   margin-bottom: 30px;
   height: 100%;
   transition: 0.3s;
+  position: relative;
+  z-index: 1;
 }
 
 .skill-category:hover {
@@ -1118,9 +1120,26 @@ section {
 }
 
 @media (max-width: 768px) {
+  /* Force mobile grid layout for skills */
+  #skills .row {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  #skills .col-lg-3,
+  #skills .col-md-6 {
+    width: 100% !important;
+    flex: none !important;
+    max-width: 100% !important;
+    margin-bottom: 20px;
+  }
+  
   .skill-category {
-    margin-bottom: 25px;
-    padding: 20px;
+    margin-bottom: 30px;
+    padding: 25px 20px;
+    min-height: auto;
+    height: auto !important;
   }
   
   .skill-category:hover {
@@ -1128,15 +1147,31 @@ section {
     box-shadow: 0 0 30px rgba(73, 78, 92, 0.15);
   }
   
+  .skill-category h4 {
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+  
+  .skill-list {
+    margin-bottom: 0;
+  }
+  
+  .skill-list li {
+    padding: 12px 0 12px 20px;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
   .language-skills, .research-interests {
     justify-content: center;
-    gap: 10px;
+    gap: 15px;
+    margin-top: 15px;
   }
   
   .language-item, .research-item {
     font-size: 12px;
-    padding: 8px 12px;
-    margin: 2px;
+    padding: 10px 15px;
+    margin: 3px;
   }
 }
 
@@ -1393,5 +1428,21 @@ section {
   
   .section-bg {
     margin: 10px 0;
+  }
+  
+  /* Additional skills section mobile fixes */
+  #skills {
+    padding: 30px 0 !important;
+  }
+  
+  #skills .container {
+    padding: 0 15px;
+  }
+  
+  /* Force single column layout */
+  #skills .row > div {
+    width: 100% !important;
+    float: none !important;
+    display: block !important;
   }
 }
