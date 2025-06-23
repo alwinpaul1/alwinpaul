@@ -167,25 +167,30 @@ h4 {
 
 #header .profile .social-links {
   padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 #header .profile .social-links .social-icon {
   font-size: 18px;
-  display: inline-block;
+  display: inline-flex;
   color: var(--text-gray);
   line-height: 1;
   padding: 8px 0;
-  margin-right: 15px;
+  margin-right: 0;
   border-radius: 50%;
   text-align: center;
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   transition: var(--transition-smooth);
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  display: inline-flex;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
 }
 
 #header .profile .social-links .social-icon:hover {
