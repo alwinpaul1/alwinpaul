@@ -13,30 +13,6 @@
     gtag('config', 'G-L0ZB5ZEZMT');
   </script>
 
-  <!-- Recaptcha -->
-  <script type="text/javascript">
-    var verifyCallback = function (response) {
-      console.log(response.length)
-      const button = document.getElementById("submitBtn");
-      if (response.length == 0) {
-        button.style.display = "none";
-      }
-      else {
-        button.style.display = "block";
-      }
-    };
-    var onloadCallback = function () {
-      if (document.body.classList.contains("dark-theme"))
-        theme = "dark";
-      else
-        theme = "light"
-      gcaptcha = grecaptcha.render('captcha', {
-        'sitekey': '6Lf-C3QeAAAAAIn5IrfAyqfuNzYNec7jdqEYFXGh',
-        'callback': verifyCallback,
-        'theme': 'light'
-      });
-    };
-  </script>
 
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -118,7 +94,7 @@
 
   <!-- Google Fonts -->
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&family=Source+Sans+Pro:wght@300;400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet">
 
   <!-- Vendor CSS Files -->
@@ -893,26 +869,6 @@
     });
   </script>
   
-  <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
-  <script>
-    $("#submit-form").submit((e) => {
-      e.preventDefault()
-      $.ajax({
-        url: "https://script.google.com/macros/s/AKfycbzsyS8QqRODT3pmIPER0RQdrSVfeErCKjhPqjDhZbt3iW2t_Heu9i1OlpmZ9MNFDTEwqw/exec",
-        data: $("#submit-form").serialize(),
-        method: "post",
-        success: function (response) {
-          alert("Thanks for contacting Me🧑‍💻")
-          window.location.reload()
-          //window.location.href="https://google.com"
-        },
-        error: function (err) {
-          alert("Something Error")
-
-        }
-      })
-    })
-  </script>
 
   <!-- Service Worker Registration -->
   <script>
@@ -932,7 +888,7 @@
   <script>
     // Preload critical resources
     const preloadLinks = [
-      { href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap', as: 'style' },
+      { href: 'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap', as: 'style' },
       { href: 'assets/css/style.css?v=4.0', as: 'style' }
     ];
     
