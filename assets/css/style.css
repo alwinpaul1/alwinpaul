@@ -560,6 +560,61 @@ h4 {
 }
 
 /*--------------------------------------------------------------
+# Profile Image Animation
+--------------------------------------------------------------*/
+.profile {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-img {
+  position: relative;
+  border-radius: 50% !important;
+  animation: profileFloat 6s ease-in-out infinite;
+  transition: transform 0.3s ease;
+  z-index: 1;
+}
+
+.profile-img::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: calc(100% + 8px);
+  height: calc(100% + 8px);
+  background: linear-gradient(45deg, #667eea, #764ba2, #ff6b9d, #c44569, #00d4ff, #667eea);
+  background-size: 400% 400%;
+  border-radius: 50%;
+  z-index: -1;
+  animation: gradientBorderShift 3s ease-in-out infinite;
+}
+
+.profile-img:hover {
+  transform: scale(1.05);
+}
+
+@keyframes gradientBorderShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes profileFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/*--------------------------------------------------------------
 # Sections General
 --------------------------------------------------------------*/
 section {
