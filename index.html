@@ -799,7 +799,12 @@
           "random": false,
           "straight": false,
           "out_mode": "out",
-          "bounce": false
+          "bounce": false,
+          "attract": {
+            "enable": true,
+            "rotateX": 600,
+            "rotateY": 1200
+          }
         }
       },
       "interactivity": {
@@ -807,7 +812,7 @@
         "events": {
           "onhover": {
             "enable": true,
-            "mode": "grab"
+            "mode": "repulse"
           },
           "onclick": {
             "enable": true,
@@ -816,11 +821,9 @@
           "resize": true
         },
         "modes": {
-          "grab": {
-            "distance": 140,
-            "line_linked": {
-              "opacity": 1
-            }
+          "repulse": {
+            "distance": 150,
+            "duration": 0.4
           },
           "push": {
             "particles_nb": 4
