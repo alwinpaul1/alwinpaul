@@ -364,7 +364,7 @@ h4 {
   font-size: 1.4rem;
   font-weight: 500;
   letter-spacing: 0.05em;
-  background: linear-gradient(45deg, #64b5f6, #81c784, #ffb74d, #f06292);
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3);
   background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -375,7 +375,7 @@ h4 {
 }
 
 #hero .hero-subtitle .typed {
-  background: linear-gradient(45deg, #ff5722, #e91e63, #9c27b0, #673ab7);
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3);
   background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
