@@ -288,24 +288,30 @@
   </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
-    <div id="particles-js"></div>
-    <div class="hero-container" data-aos="fade-in">
-      <h1 class="hero-title" itemscope itemtype="https://schema.org/Person">
-        <span itemprop="name">Alwin Paul</span>
-      </h1>
-                             <p class="hero-subtitle">I'm <span class="typed" data-typed-items="an AI Master's Student, an AI Engineer, a Security Researcher" itemprop="jobTitle"></span></p>
-      <div class="hero-cta">
-        <a href="CV_AlwinPaul.pdf" download="Alwin_Paul_Resume.pdf" class="cta-btn cta-primary">
-          <i class="bx bx-download"></i>
+  <section id="hero" class="d-flex flex-column justify-content-center align-items-center" role="banner" aria-label="Hero introduction">
+    <div id="particles-js" aria-hidden="true"></div>
+    <article class="hero-container" data-aos="fade-in" itemscope itemtype="https://schema.org/Person">
+      <header>
+        <h1 class="hero-title">
+          <span itemprop="name">Alwin Paul</span>
+        </h1>
+        <p class="hero-subtitle">I'm <span class="typed" data-typed-items="an AI Master's Student, an AI Engineer, a Security Researcher" itemprop="jobTitle"></span></p>
+      </header>
+      <nav class="hero-cta" aria-label="Primary actions">
+        <a href="CV_AlwinPaul.pdf" download="Alwin_Paul_Resume.pdf" class="cta-btn cta-primary" aria-describedby="cv-description">
+          <i class="bx bx-download" aria-hidden="true"></i>
           <span>Download CV</span>
         </a>
-        <a href="mailto:alwin.paulpv@gmail.com" class="cta-btn cta-secondary">
-          <i class="bx bx-envelope"></i>
+        <a href="mailto:alwin.paulpv@gmail.com" class="cta-btn cta-secondary" aria-describedby="contact-description">
+          <i class="bx bx-envelope" aria-hidden="true"></i>
           <span>Contact Me</span>
         </a>
+      </nav>
+      <div class="sr-only">
+        <span id="cv-description">Download Alwin Paul's CV in PDF format</span>
+        <span id="contact-description">Send an email to Alwin Paul</span>
       </div>
-    </div>
+    </article>
   </section><!-- End Hero -->
 
   <main id="main">
