@@ -213,6 +213,17 @@ h4 {
   box-shadow: var(--shadow-medium);
 }
 
+/* X Logo SVG Styling */
+.x-logo-svg {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  color: inherit;
+  transition: var(--transition-smooth);
+}
+
 #main {
   margin-left: 300px;
 }
