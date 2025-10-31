@@ -874,7 +874,7 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Portfolio
+# Portfolio - Neobrutalism
 --------------------------------------------------------------*/
 .portfolio .portfolio-item {
   margin-bottom: 30px;
@@ -886,91 +886,95 @@ section {
   list-style: none;
   text-align: center;
   background: #fff;
-  border-radius: 50px;
-  padding: 2px 15px;
+  border-radius: 0;
+  padding: 5px;
+  border: 4px solid #000;
+  box-shadow: 5px 5px 0 #000;
+  display: inline-block;
 }
 
 .portfolio #portfolio-flters li {
   cursor: pointer;
   display: inline-block;
-  padding: 10px 15px 8px 15px;
+  padding: 10px 20px;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1;
   text-transform: uppercase;
-  color: #272829;
-  margin-bottom: 5px;
-  transition: all 0.3s ease-in-out;
+  color: #000;
+  margin: 5px;
+  transition: all 0.2s ease;
+  border: 3px solid #000;
+  background: #fff;
 }
 
-.portfolio #portfolio-flters li:hover, .portfolio #portfolio-flters li.filter-active {
-  color: #149ddd;
+.portfolio #portfolio-flters li:hover {
+  background: #ffd93d;
+  transform: translate(2px, 2px);
 }
 
-.portfolio #portfolio-flters li:last-child {
-  margin-right: 0;
+.portfolio #portfolio-flters li.filter-active {
+  background: #4fc3f7;
+  color: #000;
 }
 
 .portfolio .portfolio-wrap {
-  transition: 0.3s;
+  transition: all 0.2s ease;
   position: relative;
   overflow: hidden;
   z-index: 1;
+  border: 4px solid #000;
+  box-shadow: 6px 6px 0 #000;
+  background: #fff;
+  padding: 20px;
+}
+
+.portfolio .portfolio-wrap:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px 0 #000;
 }
 
 .portfolio .portfolio-wrap::before {
-  content: "";
-  background: rgba(255, 255, 255, 0.5);
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  transition: all ease-in-out 0.3s;
-  z-index: 2;
-  opacity: 0;
+  display: none;
 }
 
 .portfolio .portfolio-wrap .portfolio-links {
   opacity: 1;
   left: 0;
   right: 0;
-  bottom: -60px;
+  bottom: 0;
   z-index: 3;
-  position: absolute;
-  transition: all ease-in-out 0.3s;
+  position: relative;
+  transition: all 0.2s ease;
   display: flex;
   justify-content: center;
+  margin-top: 15px;
 }
 
 .portfolio .portfolio-wrap .portfolio-links a {
-  color: #fff;
-  font-size: 28px;
+  color: #000;
+  font-size: 18px;
   text-align: center;
-  background: rgba(20, 157, 221, 0.75);
-  transition: 0.3s;
-  width: 50%;
+  background: #ff6b9d;
+  transition: all 0.2s ease;
+  padding: 10px 20px;
+  border: 3px solid #000;
+  font-weight: 700;
+  text-transform: uppercase;
+  box-shadow: 4px 4px 0 #000;
+  text-decoration: none;
 }
 
 .portfolio .portfolio-wrap .portfolio-links a:hover {
-  background: rgba(20, 157, 221, 0.95);
+  background: #ff9ff3;
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #000;
 }
 
-.portfolio .portfolio-wrap .portfolio-links a + a {
-  border-left: 1px solid #37b3ed;
-}
-
-.portfolio .portfolio-wrap:hover::before {
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  opacity: 1;
-}
-
-.portfolio .portfolio-wrap:hover .portfolio-links {
-  opacity: 1;
-  bottom: 0;
+.portfolio .portfolio-wrap h3 {
+  font-weight: 800;
+  margin-top: 15px;
+  color: #000;
 }
 
 /*--------------------------------------------------------------
@@ -1417,36 +1421,39 @@ section {
   }
 }
 
-/* Custom Skills Section Styles */
+/* Custom Skills Section Styles - Neobrutalism */
 .skill-category {
   background: #fff;
   padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 0 30px rgba(73, 78, 92, 0.15);
+  border-radius: 0;
+  box-shadow: 6px 6px 0 #000;
+  border: 4px solid #000;
   margin-bottom: 30px;
   height: 100%;
-  transition: 0.3s;
+  transition: all 0.2s ease;
   position: relative;
   z-index: 1;
 }
 
 .skill-category:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 35px rgba(73, 78, 92, 0.25);
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px 0 #000;
 }
 
 .skill-category h4 {
-  color: #149ddd;
+  color: #000;
   margin-bottom: 20px;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 800;
   display: flex;
   align-items: center;
+  text-transform: uppercase;
 }
 
 .skill-category h4 i {
   margin-right: 10px;
   font-size: 24px;
+  color: #4fc3f7;
 }
 
 .skill-list {
@@ -1457,10 +1464,10 @@ section {
 
 .skill-list li {
   padding: 8px 0;
-  border-bottom: 1px solid #eee;
-  color: #444;
+  border-bottom: 2px solid #000;
+  color: #000;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   position: relative;
   padding-left: 20px;
 }
@@ -1469,8 +1476,9 @@ section {
   content: "▸";
   position: absolute;
   left: 0;
-  color: #149ddd;
+  color: #ff6b9d;
   font-weight: bold;
+  font-size: 16px;
 }
 
 .skill-list li:last-child {
@@ -1484,24 +1492,27 @@ section {
 }
 
 .language-item, .research-item {
-  background: #f8f9fa;
+  background: #ffd93d;
   padding: 10px 15px;
-  border-radius: 25px;
-  border: 2px solid #149ddd;
-  color: #149ddd;
-  font-weight: 500;
+  border-radius: 0;
+  border: 3px solid #000;
+  color: #000;
+  font-weight: 700;
   font-size: 14px;
-  transition: 0.3s;
+  transition: all 0.2s ease;
+  box-shadow: 3px 3px 0 #000;
 }
 
 .language-item:hover, .research-item:hover {
-  background: #149ddd;
-  color: #fff;
+  background: #96ceb4;
+  color: #000;
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 #000;
 }
 
 .language-item small {
-  font-weight: 400;
-  opacity: 0.8;
+  font-weight: 600;
+  opacity: 1;
 }
 
 @media (max-width: 768px) {
