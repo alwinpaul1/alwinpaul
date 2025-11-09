@@ -1,0 +1,22 @@
+/**
+ * Font Display Optimization
+ * Adds font-display: swap to improve perceived performance
+ */
+
+/* Override for IcoFont */
+@font-face {
+  font-family: 'IcoFont';
+  font-display: swap;
+  src: url('../vendor/icofont/fonts/icofont.woff2') format('woff2'),
+       url('../vendor/icofont/fonts/icofont.woff') format('woff');
+}
+
+/* Override for Boxicons */
+@font-face {
+  font-family: 'boxicons';
+  font-display: swap;
+  src: url('../vendor/boxicons/fonts/boxicons.woff2') format('woff2'),
+       url('../vendor/boxicons/fonts/boxicons.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}

@@ -3,6 +3,12 @@
 
 <head>
 
+  <!-- DNS Prefetch and Preconnect for Performance -->
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://tryhackme.com">
+  <link rel="dns-prefetch" href="https://assets.tryhackme.com">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-L0ZB5ZEZMT"></script>
   <script>
@@ -12,10 +18,6 @@
 
     gtag('config', 'G-L0ZB5ZEZMT');
   </script>
-
-
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   <!--====== Required meta tags ======-->
   <meta charset="utf-8">
@@ -92,21 +94,58 @@
   <link href="assets/img/favicon.jpg" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-  <!-- Google Fonts -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet">
+  <!-- Google Fonts - Load completely asynchronously with preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
-  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <!-- Inline Critical CSS for above-the-fold content -->
+  <style>
+    :root{--primary-gradient:linear-gradient(135deg,#1e3c72 0%,#2a5298 100%);--accent-color:#00d4ff;--bg-dark:#0f172a;--bg-dark-secondary:#1e293b;--text-light:#f8fafc;--text-gray:#94a3b8;--text-dark:#272829;--transition-smooth:all .3s cubic-bezier(.4,0,.2,1);--font-stack:"Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+    body{font-family:var(--font-stack);color:#272829;margin:0;padding:0;font-weight:400;line-height:1.7;letter-spacing:.025em;scroll-behavior:smooth}
+    h1{font-size:3.5rem;font-weight:800;background:var(--primary-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-.05em;margin-bottom:1rem;line-height:1.2;font-family:var(--font-stack)}
+    #header{position:fixed;top:0;left:0;bottom:0;width:300px;transition:all ease-in-out .5s;z-index:9997;background:#040b14;overflow-y:auto}
+    #hero{width:100%;height:100vh;background:linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#0f172a 100%);background-attachment:fixed;background-size:cover;position:relative;overflow:hidden}
+    #hero::before{content:"";background:linear-gradient(135deg,rgba(30,60,114,.1) 0%,rgba(42,82,152,.1) 50%,rgba(15,23,42,.1) 100%);position:absolute;bottom:0;top:0;left:0;right:0;z-index:1}
+    #hero .hero-container{position:relative;z-index:2;text-align:center;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:0 20px;width:100%;max-width:100vw;box-sizing:border-box}
+    #hero .hero-title{margin:0;font-size:4rem;font-weight:800;color:var(--text-light);background:linear-gradient(45deg,#ff6b6b,#4ecdc4,#45b7d1,#96ceb4,#feca57,#ff9ff3);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-shadow:0 0 30px rgba(255,107,107,.3);animation:fadeInUp 1s ease-out,gradientShift 4s ease-in-out infinite;text-align:center;width:100%}
+    #hero .hero-subtitle{margin-bottom:15px;font-size:1.4rem;font-weight:500;letter-spacing:.05em;background:linear-gradient(45deg,#ff6b6b,#4ecdc4,#45b7d1,#96ceb4,#feca57,#ff9ff3);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:fadeInUp 1s ease-out .2s both,gradientShift 3s ease-in-out infinite reverse;text-align:center;width:100%}
+    @keyframes fadeInUp{0%{opacity:0;transform:translateY(30px)}100%{opacity:1;transform:translateY(0)}}
+    @keyframes gradientShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+    .d-flex{display:flex!important}.flex-column{flex-direction:column!important}.justify-content-center{justify-content:center!important}.align-items-center{align-items:center!important}.d-xl-none{display:block!important}.text-center{text-align:center!important}.text-light{color:#f8f9fa!important}.mt-3{margin-top:1rem!important}.img-fluid{max-width:100%;height:auto}.rounded-circle{border-radius:50%!important}
+    @media(min-width:1200px){.d-xl-none{display:none!important}}
+    @media(max-width:768px){body{padding-left:0}#header{width:0}#hero .hero-title{font-size:2.5rem}#hero .hero-subtitle{font-size:1.2rem}}
+    @media(max-width:480px){#hero .hero-title{font-size:2rem}#hero .hero-subtitle{font-size:1rem}}
+  </style>
 
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css?v=4.0" rel="stylesheet">
+  <!-- Bootstrap CSS - load asynchronously (critical classes are inlined above) -->
+  <link rel="preload" href="assets/vendor/bootstrap/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"></noscript>
+
+  <!-- Critical CSS - load synchronously for immediate render -->
+  <link href="assets/css/style.css?v=4.1" rel="stylesheet">
+
+  <!-- Preload critical fonts -->
+  <link rel="preload" href="assets/vendor/icofont/fonts/icofont.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/vendor/boxicons/fonts/boxicons.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Non-critical CSS - load asynchronously -->
+  <link rel="preload" href="assets/vendor/icofont/icofont.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="assets/vendor/boxicons/css/boxicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="assets/vendor/venobox/venobox.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="assets/vendor/aos/aos.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="assets/css/font-display-fix.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+  <noscript>
+    <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+    <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/css/font-display-fix.css" rel="stylesheet">
+  </noscript>
 
   <!-- Enhanced Structured Data for SEO -->
   <script type="application/ld+json">
@@ -236,7 +275,7 @@
     <div class="d-flex flex-column">
 
       <div class="profile">
-        <img src="assets/img/alwin.jfif" alt="Alwin Paul - AI Engineer and Machine Learning Expert Profile Photo" class="img-fluid rounded-circle profile-img" loading="lazy">
+        <img src="assets/img/alwin.jfif" alt="Alwin Paul - AI Engineer and Machine Learning Expert Profile Photo" class="img-fluid rounded-circle profile-img" loading="eager" fetchpriority="high">
         <h1 class="text-light"><a href="index.html">Alwin Paul</a></h1>
         <div class="social-links mt-3 text-center">
           <a href="https://www.facebook.com/alwin.paulpv" class="facebook social-icon"><i class="bx bxl-facebook"></i></a>
@@ -270,7 +309,7 @@
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex flex-column justify-content-center align-items-center" role="banner" aria-label="Hero introduction">
     <div id="particles-js"></div>
-    <article class="hero-container" data-aos="fade-in" itemscope itemtype="https://schema.org/Person">
+    <article class="hero-container" itemscope itemtype="https://schema.org/Person">
       <header>
         <h1 class="hero-title">
           <span itemprop="name">Alwin Paul</span>
@@ -532,7 +571,7 @@
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-card">
             <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/qwik.png" class="img-fluid" alt="">
+              <img src="assets/img/portfolio/qwik.png" class="img-fluid" alt="Google Cloud Readiness Program Badge" loading="lazy">
               <div class="portfolio-links">
                 <a href="https://www.cloudskillsboost.google/public_profiles/9fd098b2-e1b9-4550-881f-4f9e0d1e9e74"
                   title="More Details"><i class="bx bx-link"></i></a>
@@ -555,7 +594,7 @@
           
           <div class="col-lg-4 col-md-6 portfolio-item filter-card">
             <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/Cybersecurity Engineer Intern - Virtually Testing Foundation.png" class="img-fluid" alt="">
+              <img src="assets/img/portfolio/Cybersecurity Engineer Intern - Virtually Testing Foundation.png" class="img-fluid" alt="Cybersecurity Engineer Internship Certificate" loading="lazy" width="334" height="258">
               <div class="portfolio-links">
                 <a href="https://verification.givemycertificate.com/v/7e4772f6-5b5e-41ea-89d9-8e171053c153"
                   title="More Details"><i class="bx bx-link"></i></a>
@@ -758,27 +797,31 @@
 
   <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 
-  <!-- Particles.js -->
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/jquery/jquery.min.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
-  <script src="assets/vendor/counterup/counterup.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/venobox/venobox.min.js"></script>
-  <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-  <script src="assets/vendor/typed.js/typed.min.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
+  <!-- Particles.js - deferred -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
 
-  <script src="assets/js/main.js"></script>
+  <!-- Vendor JS Files - deferred for better performance -->
+  <script src="assets/vendor/jquery/jquery.min.js" defer></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js" defer></script>
+  <script src="assets/vendor/jquery.easing/jquery.easing.min.js" defer></script>
+  <script src="assets/vendor/php-email-form/validate.js" defer></script>
+  <script src="assets/vendor/waypoints/jquery.waypoints.min.js" defer></script>
+  <script src="assets/vendor/counterup/counterup.min.js" defer></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js" defer></script>
+  <script src="assets/vendor/venobox/venobox.min.js" defer></script>
+  <script src="assets/vendor/owl.carousel/owl.carousel.min.js" defer></script>
+  <script src="assets/vendor/typed.js/typed.min.js" defer></script>
+  <script src="assets/vendor/aos/aos.js" defer></script>
+
+  <script src="assets/js/main.js" defer></script>
   
-  <!-- Particles.js Configuration -->
+  <!-- Particles.js Configuration - Load after page is fully loaded -->
   <script>
-    particlesJS("particles-js", {
+    window.addEventListener('load', function() {
+      // Delay particles initialization to not block rendering
+      setTimeout(function() {
+        if (typeof particlesJS !== 'undefined') {
+          particlesJS("particles-js", {
       "particles": {
         "number": {
           "value": 80,
@@ -882,6 +925,9 @@
         }
       },
       "retina_detect": true
+          });
+        }
+      }, 100); // Small delay to ensure page is painted first
     });
   </script>
   
@@ -900,40 +946,6 @@
     }
   </script>
 
-  <!-- Performance Optimizations -->
-  <script>
-    // Preload critical resources
-    const preloadLinks = [
-      { href: 'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap', as: 'style' },
-      { href: 'assets/css/style.css?v=4.0', as: 'style' }
-    ];
-    
-    preloadLinks.forEach(link => {
-      const preload = document.createElement('link');
-      preload.rel = 'preload';
-      preload.href = link.href;
-      preload.as = link.as;
-      document.head.appendChild(preload);
-    });
-
-    // Lazy load images
-    if ('IntersectionObserver' in window) {
-      const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const img = entry.target;
-            img.src = img.dataset.src;
-            img.classList.remove('lazy');
-            imageObserver.unobserve(img);
-          }
-        });
-      });
-
-      document.querySelectorAll('img[data-src]').forEach(img => {
-        imageObserver.observe(img);
-      });
-    }
-  </script>
 
 </body>
 
