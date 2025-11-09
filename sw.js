@@ -27,6 +27,12 @@ self.addEventListener('install', event => {
 
 // Fetch event - serve from cache, fallback to network
 self.addEventListener('fetch', event => {
+  // Skip caching for chrome-extension, chrome, and other non-http(s) schemes
+  const url = new URL(event.request.url);
+  if (!url.protocol.startsWith('http')) {
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request)
       .then(response => {
@@ -47,12 +53,21 @@ self.addEventListener('fetch', event => {
           // Clone the response
           const responseToCache = response.clone();
           
-          caches.open(CACHE_NAME)
-            .then(cache => {
-              cache.put(event.request, responseToCache);
-            });
+          // Only cache http(s) requests
+          if (url.protocol.startsWith('http')) {
+            caches.open(CACHE_NAME)
+              .then(cache => {
+                cache.put(event.request, responseToCache);
+              })
+              .catch(err => {
+                console.log('Cache put error:', err);
+              });
+          }
           
           return response;
+        }).catch(err => {
+          console.log('Fetch error:', err);
+          return caches.match('/index.html');
         });
       })
   );
