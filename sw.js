@@ -1,4 +1,4 @@
-const CACHE_NAME = 'alwin-portfolio-v4.0';
+const CACHE_NAME = 'alwin-portfolio-v4.1';
 const urlsToCache = [
   '/',
   '/index.html',
