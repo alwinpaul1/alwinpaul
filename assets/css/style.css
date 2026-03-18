@@ -1908,6 +1908,21 @@ section {
   }
 }
 
+/* Portfolio mobile overlap fix */
+@media (max-width: 768px) {
+  .portfolio .portfolio-item {
+    margin-bottom: 40px;
+  }
+
+  .portfolio .portfolio-wrap {
+    box-shadow: 4px 4px 0 #000;
+  }
+
+  .portfolio .portfolio-wrap .portfolio-links a {
+    box-shadow: 3px 3px 0 #000;
+  }
+}
+
 @media (max-width: 480px) {
   #hero .hero-title {
     font-size: 2rem;
