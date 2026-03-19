@@ -1226,9 +1226,20 @@ section {
   background: var(--info-bg);
   width: 100%;
   box-shadow: var(--info-shadow);
+  border-radius: 12px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
+}
+
+.contact .info .address,
+.contact .info .email,
+.contact .info .phone {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 16px;
+  align-items: center;
 }
 
 .contact .info .icon-link i {
@@ -1236,7 +1247,6 @@ section {
 }
 
 .contact .info h4 {
-  padding: 0 0 0 60px;
   font-size: 22px;
   font-weight: 600;
   margin-bottom: 5px;
@@ -1244,18 +1254,13 @@ section {
 }
 
 .contact .info p {
-  padding: 0 0 10px 60px;
-  margin-bottom: 20px;
+  margin-bottom: 0;
   font-size: 14px;
   color: var(--heading-color);
 }
 
-.contact .info .email p {
-  padding-top: 5px;
-}
-
 .contact .info .social-links {
-  padding-left: 60px;
+  padding-left: 0;
 }
 
 .contact .info .social-links a {
@@ -1289,7 +1294,7 @@ section {
   color: #149ddd;
   cursor: pointer;
   transition: all 0.3s ease;
-  float: left;
+  grid-row: 1 / -1;
 }
 
 .contact .info .icon-link:hover {
@@ -1878,12 +1883,7 @@ section {
   }
 
   .contact .info h4 {
-    padding-left: 60px;
     font-size: 18px;
-  }
-
-  .contact .info p {
-    padding-left: 60px;
   }
 
   /* Hero Mobile Optimizations */
