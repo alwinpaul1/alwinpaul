@@ -421,7 +421,7 @@
 
       <nav class="nav-menu">
         <ul>
-          <li class="active"><a href="index.html"><i class="bx bx-home"></i> <span>Home</span></a></li>
+          <li class="active"><a href="#hero"><i class="bx bx-home"></i> <span>Home</span></a></li>
           <li><a href="#about"><i class="bx bx-user"></i> <span>About</span></a></li>
           <li><a href="#resume"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
           <li><a href="#portfolio"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
@@ -917,8 +917,49 @@
                   var data = Object.values(contributions);
                   
                   var ctx = document.getElementById('contributionGraph').getContext('2d');
+                  var progressReveal = {
+                    id: 'progressReveal',
+                    beforeDraw: function(chart) {
+                      if (chart._progressRevealDone) return;
+                      var meta = chart.getDatasetMeta(0);
+                      if (!meta || !meta.data || meta.data.length < 2) return;
+                      var firstX = meta.data[0].x;
+                      var lastX = meta.data[meta.data.length - 1].x;
+                      var totalWidth = lastX - firstX;
+                      var progress = chart._progressReveal || 0;
+                      var clipX = firstX + totalWidth * progress;
+                      var area = chart.chartArea;
+                      chart.ctx.save();
+                      chart.ctx.beginPath();
+                      chart.ctx.rect(area.left, area.top, clipX - area.left + 5, area.bottom - area.top);
+                      chart.ctx.clip();
+                    },
+                    afterDraw: function(chart) {
+                      if (chart._progressRevealDone) return;
+                      chart.ctx.restore();
+                    },
+                    afterRender: function(chart) {
+                      if (chart._progressRevealDone) return;
+                      chart._progressReveal = 0;
+                      var duration = 2000;
+                      var start = performance.now();
+                      function animate(now) {
+                        var elapsed = now - start;
+                        chart._progressReveal = Math.min(elapsed / duration, 1);
+                        chart.draw();
+                        if (chart._progressReveal < 1) {
+                          requestAnimationFrame(animate);
+                        } else {
+                          chart._progressRevealDone = true;
+                          chart.draw();
+                        }
+                      }
+                      requestAnimationFrame(animate);
+                    }
+                  };
                   new Chart(ctx, {
                     type: 'line',
+                    plugins: [progressReveal],
                     data: {
                       labels: labels,
                       datasets: [{
@@ -977,6 +1018,7 @@
                           }
                         }
                       },
+                      animation: false,
                       scales: {
                         x: {
                           ticks: {
@@ -1275,16 +1317,18 @@
     });
   </script>
 
-  <!-- Service Worker Registration -->
+  <!-- Unregister old Service Worker and clear caches -->
   <script>
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js')
-          .then(function(registration) {
-            console.log('ServiceWorker registration successful with scope: ', registration.scope);
-          }, function(err) {
-            console.log('ServiceWorker registration failed: ', err);
-          });
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        registrations.forEach(function(registration) {
+          registration.unregister();
+        });
+      });
+      caches.keys().then(function(names) {
+        names.forEach(function(name) {
+          caches.delete(name);
+        });
       });
     }
   </script>
