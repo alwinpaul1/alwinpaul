@@ -540,6 +540,17 @@
               </ul>
             </div>
 
+            <h3 class="resume-title">Achievements</h3>
+            <div class="resume-item clickable-item">
+              <h4><a href="https://www.cloudskillsboost.google/public_profiles/9fd098b2-e1b9-4550-881f-4f9e0d1e9e74" target="_blank" class="project-link">Google Cloud Skills Program – Silver League</a></h4>
+              <h5>August 2020 - October 2021</h5>
+              <ul>
+                <li>Earned 43 skill badges (12,800+ points) with focus on BigQuery ML, Machine Learning APIs, and ML data pipelines on GCP.</li>
+                <li>Demonstrated proficiency in CI/CD workflows, Kubernetes deployments, and Cloud Observability (Monitoring/Logging) on GCP.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
             <h3 class="resume-title">Education</h3>
             <div class="resume-item">
               <h4>Master of Science in Artificial Intelligence</h4>
@@ -552,55 +563,6 @@
               <p class="resume-company">Mahatma Gandhi University | Kottayam, India</p>
               <h5>2018 - 2021</h5>
               <p>Key subjects: Data Structures, Database Management Systems, Design and Analysis of Algorithms, Software Engineering, Computer Networks.</p>
-            </div>
-
-            <h3 class="resume-title">Achievements</h3>
-            <div class="resume-item clickable-item">
-              <h4><a href="https://www.cloudskillsboost.google/public_profiles/9fd098b2-e1b9-4550-881f-4f9e0d1e9e74" target="_blank" class="project-link">Google Cloud Skills Program – Silver League</a></h4>
-              <h5>August 2020 - October 2021</h5>
-              <ul>
-                <li>Earned 43 skill badges (12,800+ points) with focus on BigQuery ML, Machine Learning APIs, and ML data pipelines on GCP.</li>
-                <li>Demonstrated proficiency in CI/CD workflows, Kubernetes deployments, and Cloud Observability (Monitoring/Logging) on GCP.</li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="resume-title">Key Projects</h3>
-            <div class="resume-item clickable-item">
-              <h4><a href="https://github.com/alwinpaul1/SmartTuner" target="_blank" class="project-link">SmartTuner: GRPO Reinforcement Learning System for Small Language Models</a></h4>
-              <ul>
-                <li>Implemented Group Relative Policy Optimization (GRPO) algorithm for training small language models (135M-600M parameters) to perform logical reasoning tasks.</li>
-                <li>Developed complete RL pipeline with experience collection, advantage calculation, and PPO clipped surrogate loss implementation achieving 46% → 60%+ accuracy improvements.</li>
-                <li>Built supervised fine-tuning (SFT) system with LoRA adapters for parameter-efficient training, generating synthetic reasoning data via OpenAI API integration.</li>
-                <li>Created comprehensive visualization suite with real-time training monitoring and engineered modular CLI system with configurable hyperparameters.</li>
-              </ul>
-            </div>
-            <div class="resume-item clickable-item">
-              <h4><a href="https://github.com/alwinpaul1/AI-ML-Football-Analysis-System" target="_blank" class="project-link">AI/ML Football Analysis System</a></h4>
-              <ul>
-                <li>Implemented YOLO object detection with ByteTrack for multi-player tracking across video frames, applying computer vision to sports analytics.</li>
-                <li>Utilized K-Means clustering for team segmentation and Optical Flow for movement analysis.</li>
-                <li>Developed ball possession tracking logic computing team ball control percentages with interpolation handling for missing detections to ensure temporal consistency.</li>
-                <li>Applied perspective transformation and camera motion compensation to convert pixel coordinates to real-world measurements, enabling accurate speed and distance calculations.</li>
-              </ul>
-            </div>
-            <div class="resume-item clickable-item">
-              <h4><a href="https://github.com/alwinpaul1/Financial_Crew" target="_blank" class="project-link">Financial Analysis AI System</a></h4>
-              <ul>
-                <li>Designed 4-agent CrewAI system (Query Parser, Code Writer, Code Executor, Code Reviewer) for automated financial analysis workflows.</li>
-                <li>Integrated FastMCP server for Cursor AI assistant interoperability, creating extensible tools following industry-standard MCP protocol.</li>
-                <li>Developed NLP pipeline using Ollama's deepseek-r1:7b to parse stock queries and generate production-ready Python analytics code.</li>
-                <li>Leveraged yfinance API and Matplotlib to build real-time stock analysis and visualization capabilities.</li>
-              </ul>
-            </div>
-            <div class="resume-item clickable-item">
-              <h4><a href="https://github.com/alwinpaul1/Job-Search-TG" target="_blank" class="project-link">Job Search Automation System</a></h4>
-              <ul>
-                <li>Built Telegram bot with LinkedIn scraping using BeautifulSoup and Requests for automated job data extraction and parsing.</li>
-                <li>Implemented AI-powered relevance scoring using JobBERT sentence transformers and TF-IDF classifiers for semantic job matching.</li>
-                <li>Developed automated alert system with APScheduler for background monitoring (30-min intervals) and instant Telegram notifications.</li>
-                <li>Designed SQLite persistence layer with connection pooling for user preferences, alert management, and search history tracking.</li>
-              </ul>
             </div>
           </div>
         </div>
@@ -917,22 +879,36 @@
                       chart.ctx.restore();
                     },
                     afterRender: function(chart) {
-                      if (chart._progressRevealDone) return;
+                      if (chart._observerSet) return;
+                      chart._observerSet = true;
                       chart._progressReveal = 0;
-                      var duration = 2000;
-                      var start = performance.now();
-                      function animate(now) {
-                        var elapsed = now - start;
-                        chart._progressReveal = Math.min(elapsed / duration, 1);
-                        chart.draw();
-                        if (chart._progressReveal < 1) {
-                          requestAnimationFrame(animate);
-                        } else {
-                          chart._progressRevealDone = true;
-                          chart.draw();
-                        }
-                      }
-                      requestAnimationFrame(animate);
+                      chart._animating = false;
+                      var section = document.getElementById('github-activity');
+                      var observer = new IntersectionObserver(function(entries) {
+                        entries.forEach(function(entry) {
+                          if (entry.isIntersecting && !chart._animating) {
+                            chart._animating = true;
+                            chart._progressRevealDone = false;
+                            chart._progressReveal = 0;
+                            var duration = 2000;
+                            var start = performance.now();
+                            function animate(now) {
+                              var elapsed = now - start;
+                              chart._progressReveal = Math.min(elapsed / duration, 1);
+                              chart.draw();
+                              if (chart._progressReveal < 1) {
+                                requestAnimationFrame(animate);
+                              } else {
+                                chart._progressRevealDone = true;
+                                chart._animating = false;
+                                chart.draw();
+                              }
+                            }
+                            requestAnimationFrame(animate);
+                          }
+                        });
+                      }, { threshold: 0.3 });
+                      observer.observe(section);
                     }
                   };
                   new Chart(ctx, {
@@ -1063,21 +1039,21 @@
           <div class="col-lg-5 d-flex align-items-stretch">
             <div class="info">
               <div class="address">
-                <i class="icofont-google-map"></i>
+                <a href="https://maps.app.goo.gl/L8huPsuS6jdHjp8fA" target="_blank" rel="noopener noreferrer" class="icon-link"><i class="icofont-google-map"></i></a>
                 <h4>Location:</h4>
-                <p><a href="https://www.google.com/maps/search/?api=1&query=Cottbus,+Germany" target="_blank" rel="noopener noreferrer">Cottbus, Germany</a></p>
+                <p>Cottbus, Germany</p>
               </div>
 
               <div class="email">
-                <i class="icofont-envelope"></i>
+                <a href="mailto:alwin.paulpv@gmail.com" class="icon-link"><i class="icofont-envelope"></i></a>
                 <h4>Email:</h4>
-                <p><a href="mailto:alwin.paulpv@gmail.com">alwin.paulpv@gmail.com</a></p>
+                <p>alwin.paulpv@gmail.com</p>
               </div>
 
               <div class="phone">
-                <i class="icofont-phone"></i>
+                <a href="tel:+4917677354827" class="icon-link"><i class="icofont-phone"></i></a>
                 <h4>Call:</h4>
-                <p><a href="tel:+4917677354827">+4917677354827</a></p>
+                <p>+4917677354827</p>
               </div>
 
               <!-- <iframe

@@ -1206,16 +1206,6 @@ section {
 
 .contact .info i {
   font-size: 20px;
-  color: #149ddd;
-  float: left;
-  width: 44px;
-  height: 44px;
-  background: #dff3fc;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50px;
-  transition: all 0.3s ease-in-out;
 }
 
 .contact .info h4 {
@@ -1261,10 +1251,6 @@ section {
   color: #fff;
 }
 
-.contact .info .email:hover i, .contact .info .address:hover i, .contact .info .phone:hover i {
-  background: #149ddd;
-  color: #fff;
-}
 
 /* Contact Info Links Styling */
 .contact .info p a {
@@ -1279,16 +1265,33 @@ section {
   text-decoration: none;
 }
 
-.contact .info .address p a:hover {
+.contact .info .icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #dff3fc;
   color: #149ddd;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  float: left;
 }
 
-.contact .info .email p a:hover {
-  color: #149ddd;
+.contact .info .icon-link:hover {
+  background: #149ddd;
+  color: #fff;
 }
 
-.contact .info .phone p a:hover {
-  color: #149ddd;
+[data-theme="dark"] .contact .info .icon-link {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+}
+
+[data-theme="dark"] .contact .info .icon-link:hover {
+  background: #38bdf8;
+  color: #0f172a;
 }
 
 .contact .php-email-form {
@@ -1993,17 +1996,6 @@ section {
   transition: background 0.4s ease;
 }
 
-[data-theme="dark"] .contact .info i {
-  background: rgba(56, 189, 248, 0.15);
-  color: #38bdf8;
-}
-
-[data-theme="dark"] .contact .info .email:hover i,
-[data-theme="dark"] .contact .info .address:hover i,
-[data-theme="dark"] .contact .info .phone:hover i {
-  background: #38bdf8;
-  color: #0f172a;
-}
 
 [data-theme="dark"] .resume .resume-item ul li,
 [data-theme="dark"] .about .content ul li {
