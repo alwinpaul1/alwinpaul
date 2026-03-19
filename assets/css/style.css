@@ -110,19 +110,19 @@
 @property --border-angle {
   syntax: '<angle>';
   initial-value: 20deg;
-  inherits: true;
+  inherits: false;
 }
 
 @property --border-color-1 {
   syntax: '<color>';
   initial-value: hsla(340, 75%, 60%, 0.2);
-  inherits: true;
+  inherits: false;
 }
 
 @property --border-color-2 {
   syntax: '<color>';
   initial-value: hsla(340, 75%, 40%, 0.75);
-  inherits: true;
+  inherits: false;
 }
 
 @property --stop-1 {
@@ -736,23 +736,23 @@ h4 {
   gap: 0.5rem;
   padding: 0.875rem 1.75rem;
   border-radius: 50px;
+  border: none;
   text-decoration: none;
   font-family: "Poppins", sans-serif;
   font-weight: 700;
   font-size: 0.95rem;
   letter-spacing: 0.025em;
-  transition: all 0.3s ease;
   position: relative;
   min-width: 160px;
   justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.15);
   text-transform: uppercase;
 }
 
-.cta-primary {
-  appearance: none;
+/* Shared gradient button base */
+.cta-primary,
+.cta-secondary,
+.resume-download-btn {
   color: #fff;
-  border: none;
   background: radial-gradient(
     var(--spread-x) var(--spread-y) at var(--pos-x) var(--pos-y),
     var(--color-1) var(--stop-1),
@@ -771,7 +771,8 @@ h4 {
     transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.cta-primary:hover {
+.cta-primary:hover,
+.resume-download-btn:hover {
   --pos-x: 0%;
   --pos-y: 91.51%;
   --spread-x: 120.24%;
@@ -794,13 +795,16 @@ h4 {
   color: #fff;
 }
 
-.cta-primary:active {
+.cta-primary:active,
+.cta-secondary:active,
+.resume-download-btn:active {
   transform: translateY(-1px);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 .cta-primary::before,
-.cta-secondary::before {
+.cta-secondary::before,
+.resume-download-btn::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -818,10 +822,8 @@ h4 {
   pointer-events: none;
 }
 
+/* Variant colorway for secondary CTA */
 .cta-secondary {
-  appearance: none;
-  color: #fff;
-  border: none;
   --color-1: #000022;
   --color-2: #1f3f6d;
   --color-3: #469396;
@@ -829,22 +831,6 @@ h4 {
   --border-angle: 200deg;
   --border-color-1: hsla(320, 75%, 90%, 0.6);
   --border-color-2: hsla(320, 50%, 90%, 0.15);
-  background: radial-gradient(
-    var(--spread-x) var(--spread-y) at var(--pos-x) var(--pos-y),
-    var(--color-1) var(--stop-1),
-    var(--color-2) var(--stop-2),
-    var(--color-3) var(--stop-3),
-    var(--color-4) var(--stop-4),
-    var(--color-5) var(--stop-5)
-  );
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  transition:
-    --pos-x 0.5s, --pos-y 0.5s,
-    --spread-x 0.5s, --spread-y 0.5s,
-    --color-1 0.5s, --color-2 0.5s, --color-3 0.5s, --color-4 0.5s, --color-5 0.5s,
-    --border-angle 0.5s, --border-color-1 0.5s, --border-color-2 0.5s,
-    --stop-1 0.5s, --stop-2 0.5s, --stop-3 0.5s, --stop-4 0.5s, --stop-5 0.5s,
-    transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .cta-secondary:hover {
@@ -870,11 +856,6 @@ h4 {
   color: #fff;
 }
 
-.cta-secondary:active {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-}
-
 .cta-btn i {
   font-size: 1.2rem;
   transition: transform 0.3s ease;
@@ -885,15 +866,6 @@ h4 {
 }
 
 /* Button Animations */
-@keyframes buttonFloat {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-3px);
-  }
-}
-
 @keyframes bounce {
   0%, 20%, 50%, 80%, 100% {
     transform: scale(1.2) translateY(0);
@@ -2238,61 +2210,24 @@ section {
   margin: 30px 0;
 }
 
+/* Resume download button — layout only; gradient styles shared above */
 .resume-download-btn {
   display: inline-block;
   position: relative;
-  appearance: none;
-  color: #fff;
   padding: 14px 32px;
   border-radius: 50px;
+  border: none;
   text-decoration: none;
   font-weight: 600;
   font-size: 15px;
-  border: none;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  background: radial-gradient(
-    var(--spread-x) var(--spread-y) at var(--pos-x) var(--pos-y),
-    var(--color-1) var(--stop-1),
-    var(--color-2) var(--stop-2),
-    var(--color-3) var(--stop-3),
-    var(--color-4) var(--stop-4),
-    var(--color-5) var(--stop-5)
-  );
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   overflow: visible;
   z-index: 1;
-  transition:
-    --pos-x 0.5s, --pos-y 0.5s,
-    --spread-x 0.5s, --spread-y 0.5s,
-    --color-1 0.5s, --color-2 0.5s, --color-3 0.5s, --color-4 0.5s, --color-5 0.5s,
-    --border-angle 0.5s, --border-color-1 0.5s, --border-color-2 0.5s,
-    --stop-1 0.5s, --stop-2 0.5s, --stop-3 0.5s, --stop-4 0.5s, --stop-5 0.5s,
-    transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .resume-download-btn:hover {
-  --pos-x: 0%;
-  --pos-y: 91.51%;
-  --spread-x: 120.24%;
-  --spread-y: 103.18%;
-  --color-1: #c96287;
-  --color-2: #c66c64;
-  --color-3: #cc7d23;
-  --color-4: #37140a;
-  --color-5: #000;
-  --border-angle: 190deg;
-  --border-color-1: hsla(340, 78%, 90%, 0.1);
-  --border-color-2: hsla(340, 75%, 90%, 0.6);
-  --stop-1: 0%;
-  --stop-2: 8.8%;
-  --stop-3: 21.44%;
-  --stop-4: 71.34%;
-  --stop-5: 85.76%;
-  color: #fff;
   text-decoration: none;
-  transform: translateY(-3px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
 }
 
 .resume-download-btn i {
@@ -2303,31 +2238,6 @@ section {
 .resume-download-btn span {
   position: relative;
   z-index: 2;
-}
-
-.resume-download-btn:active {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-}
-
-/* Gradient border for resume download button */
-.resume-download-btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(
-    var(--border-angle),
-    var(--border-color-1),
-    var(--border-color-2)
-  );
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-  z-index: 0;
 }
 
 @media (max-width: 768px) {
