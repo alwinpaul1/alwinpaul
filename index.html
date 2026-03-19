@@ -7,6 +7,7 @@
 
   <!-- DNS Prefetch and Preconnect for Performance -->
   <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://esm.sh">
   <link rel="dns-prefetch" href="https://tryhackme.com">
   <link rel="dns-prefetch" href="https://assets.tryhackme.com">
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
@@ -130,8 +131,8 @@
     body{font-family:var(--font-stack);color:var(--body-color);background:var(--body-bg);margin:0;padding:0;font-weight:400;line-height:1.7;letter-spacing:.025em;scroll-behavior:smooth;transition:background .4s ease,color .4s ease}
     h1{font-size:3.5rem;font-weight:800;background:var(--primary-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-.05em;margin-bottom:1rem;line-height:1.2;font-family:var(--font-stack)}
     #header{position:fixed;top:0;left:0;bottom:0;width:300px;transition:all ease-in-out .5s;z-index:9997;background:#040b14;overflow-y:auto}
-    #hero{width:100%;height:100vh;background:linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#0f172a 100%);background-attachment:fixed;background-size:cover;position:relative;overflow:hidden}
-    #hero::before{content:"";background:linear-gradient(135deg,rgba(30,60,114,.1) 0%,rgba(42,82,152,.1) 50%,rgba(15,23,42,.1) 100%);position:absolute;bottom:0;top:0;left:0;right:0;z-index:1}
+    #hero{width:100%;height:100vh;background:var(--body-bg);position:relative;overflow:hidden}
+    #hero::before{display:none}
     #hero .hero-container{position:relative;z-index:2;text-align:center;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:0 20px;width:100%;max-width:100vw;box-sizing:border-box}
     #hero .hero-title{margin:0;font-size:4rem;font-weight:800;color:var(--text-light);background:linear-gradient(45deg,#ff6b6b,#4ecdc4,#45b7d1,#96ceb4,#feca57,#ff9ff3);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-shadow:0 0 30px rgba(255,107,107,.3);animation:fadeInUp 1s ease-out,gradientShift 4s ease-in-out infinite;text-align:center;width:100%}
     #hero .hero-subtitle{margin-bottom:15px;font-size:1.4rem;font-weight:500;letter-spacing:.05em;background:linear-gradient(45deg,#ff6b6b,#4ecdc4,#45b7d1,#96ceb4,#feca57,#ff9ff3);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:fadeInUp 1s ease-out .2s both,gradientShift 3s ease-in-out infinite reverse;text-align:center;width:100%}
@@ -440,7 +441,7 @@
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex flex-column justify-content-center align-items-center" role="banner" aria-label="Hero introduction">
-    <div id="particles-js"></div>
+    <div id="dithering-bg"></div>
     <article class="hero-container" itemscope itemtype="https://schema.org/Person">
       <header>
         <h1 class="hero-title">
@@ -1111,9 +1112,6 @@
 
   <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 
-  <!-- Particles.js - deferred -->
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
-
   <!-- Vendor JS Files - deferred for better performance -->
   <script src="assets/vendor/jquery/jquery.min.js" defer></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js" defer></script>
@@ -1129,120 +1127,48 @@
 
   <script src="assets/js/main.js" defer></script>
   
-  <!-- Particles.js Configuration - Load after page is fully loaded -->
-  <script>
-    window.addEventListener('load', function() {
-      // Delay particles initialization to not block rendering
-      setTimeout(function() {
-        if (typeof particlesJS !== 'undefined') {
-          particlesJS("particles-js", {
-      "particles": {
-        "number": {
-          "value": 80,
-          "density": {
-            "enable": true,
-            "value_area": 800
-          }
-        },
-        "color": {
-          "value": "#4fc3f7"
-        },
-        "shape": {
-          "type": "circle",
-          "stroke": {
-            "width": 0,
-            "color": "#000000"
-          },
-          "polygon": {
-            "nb_sides": 5
-          }
-        },
-        "opacity": {
-          "value": 0.5,
-          "random": false,
-          "anim": {
-            "enable": false,
-            "speed": 1,
-            "opacity_min": 0.1,
-            "sync": false
-          }
-        },
-        "size": {
-          "value": 3,
-          "random": true,
-          "anim": {
-            "enable": false,
-            "speed": 40,
-            "size_min": 0.1,
-            "sync": false
-          }
-        },
-        "line_linked": {
-          "enable": true,
-          "distance": 150,
-          "color": "#4fc3f7",
-          "opacity": 0.4,
-          "width": 1
-        },
-        "move": {
-          "enable": true,
-          "speed": 6,
-          "direction": "none",
-          "random": false,
-          "straight": false,
-          "out_mode": "out",
-          "bounce": false,
-          "attract": {
-            "enable": false,
-            "rotateX": 600,
-            "rotateY": 1200
-          }
-        }
-      },
-      "interactivity": {
-        "detect_on": "canvas",
-        "events": {
-          "onhover": {
-            "enable": true,
-            "mode": "repulse"
-          },
-          "onclick": {
-            "enable": true,
-            "mode": "push"
-          },
-          "resize": true
-        },
-        "modes": {
-          "grab": {
-            "distance": 140,
-            "line_linked": {
-              "opacity": 1
-            }
-          },
-          "bubble": {
-            "distance": 400,
-            "size": 40,
-            "duration": 2,
-            "opacity": 8,
-            "speed": 3
-          },
-          "repulse": {
-            "distance": 100,
-            "duration": 0.2
-          },
-          "push": {
-            "particles_nb": 4
-          },
-          "remove": {
-            "particles_nb": 2
-          }
-        }
-      },
-      "retina_detect": true
-          });
-        }
-      }, 100); // Small delay to ensure page is painted first
-    });
+  <!-- Dithering Shader Background -->
+  <script type="module">
+    import { ShaderMount, ditheringFragmentShader } from 'https://esm.sh/@paper-design/shaders@0.0.72';
+
+    var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+
+    function getColors(dark) {
+      return dark
+        ? { u_colorFront: [1.0, 0.4, 0.8, 1.0], u_colorBack: [0, 0, 0, 1] }
+        : { u_colorFront: [0.4, 0.6, 1.0, 1.0], u_colorBack: [0.96, 0.97, 0.99, 1] };
+    }
+
+    var colors = getColors(isDark);
+    var el = document.getElementById('dithering-bg');
+
+    if (el) {
+      var shaderMount = new ShaderMount(
+        el,
+        ditheringFragmentShader,
+        Object.assign({
+          u_pxSize: 3,
+          u_shape: 6,
+          u_type: 3,
+          u_scale: 1,
+          u_rotation: 0,
+          u_offsetX: 0,
+          u_offsetY: 0,
+          u_originX: 0.5,
+          u_originY: 0.5,
+          u_worldWidth: 0,
+          u_worldHeight: 0,
+          u_fit: 0
+        }, colors),
+        undefined,
+        0.1
+      );
+
+      new MutationObserver(function() {
+        var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+        shaderMount.setUniforms(getColors(dark));
+      }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    }
   </script>
   
 
