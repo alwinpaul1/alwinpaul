@@ -199,7 +199,6 @@ body {
   .theme-toggle,
   .mobile-nav-toggle {
     opacity: 0.6;
-    transition: opacity 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
 
   .theme-toggle:hover,
@@ -1863,16 +1862,6 @@ section {
 /*--------------------------------------------------------------
 # Responsive Design Optimizations
 --------------------------------------------------------------*/
-@media (max-width: 1199px) {
-  #header {
-    left: -300px;
-  }
-  
-  #main {
-    margin-left: 0;
-  }
-}
-
 @media (max-width: 768px) {
   /* GitHub Activity mobile padding */
   .github-activity {
@@ -1880,17 +1869,21 @@ section {
   }
 
   /* Contact mobile adjustments */
+  .contact {
+    padding-bottom: 40px;
+  }
+
   .contact .info {
     grid-template-columns: 1fr;
   }
 
   .contact .info h4 {
-    padding-left: 55px;
+    padding-left: 60px;
     font-size: 18px;
   }
 
   .contact .info p {
-    padding-left: 55px;
+    padding-left: 60px;
   }
 
   /* Hero Mobile Optimizations */
