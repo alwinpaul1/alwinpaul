@@ -446,7 +446,7 @@
         <h1 class="hero-title">
           <span itemprop="name">Alwin Paul</span>
         </h1>
-        <p class="hero-subtitle">I'm <span class="typed" data-typed-items="an AI Engineer in Germany, a Machine Learning Engineer, a Deep Learning Specialist, a Generative AI Expert" itemprop="jobTitle"></span></p>
+        <p class="hero-subtitle">I'm <span class="typed" data-typed-items="an AI Engineer & Machine Learning Specialist in Germany, a Deep Learning Specialist, a Generative AI Expert" itemprop="jobTitle"></span></p>
       </header>
       <nav class="hero-cta" aria-label="Primary actions">
         <a href="AlwinPaul_Resume.pdf" download="Alwin_Paul_Resume.pdf" class="cta-btn cta-primary" aria-describedby="cv-description">
@@ -862,7 +862,11 @@
                     beforeDraw: function(chart) {
                       if (chart._progressRevealDone) return;
                       var meta = chart.getDatasetMeta(0);
-                      if (!meta || !meta.data || meta.data.length < 2) return;
+                      if (!meta || !meta.data || meta.data.length < 2) {
+                        chart._skipRestore = true;
+                        return;
+                      }
+                      chart._skipRestore = false;
                       var firstX = meta.data[0].x;
                       var lastX = meta.data[meta.data.length - 1].x;
                       var totalWidth = lastX - firstX;
@@ -875,14 +879,12 @@
                       chart.ctx.clip();
                     },
                     afterDraw: function(chart) {
-                      if (chart._progressRevealDone) return;
+                      if (chart._progressRevealDone || chart._skipRestore) return;
                       chart.ctx.restore();
                     },
                     afterRender: function(chart) {
                       if (chart._observerSet) return;
                       chart._observerSet = true;
-                      chart._progressReveal = 0;
-                      chart._animating = false;
                       var section = document.getElementById('github-activity');
                       var observer = new IntersectionObserver(function(entries) {
                         entries.forEach(function(entry) {

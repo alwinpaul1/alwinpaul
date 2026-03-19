@@ -1204,7 +1204,7 @@ section {
   box-shadow: var(--info-shadow);
 }
 
-.contact .info i {
+.contact .info .icon-link i {
   font-size: 20px;
 }
 
@@ -1249,20 +1249,6 @@ section {
 .contact .info .social-links a:hover {
   background: #149ddd;
   color: #fff;
-}
-
-
-/* Contact Info Links Styling */
-.contact .info p a {
-  color: var(--muted-text);
-  text-decoration: none;
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.contact .info p a:hover {
-  color: #149ddd;
-  text-decoration: none;
 }
 
 .contact .info .icon-link {
