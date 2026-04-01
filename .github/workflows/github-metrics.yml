@@ -36,7 +36,8 @@ jobs:
           committer_branch: main
           committer_message: "chore: update github metrics [skip ci]"
           config_timezone: Europe/Berlin
-          base: header, activity, community, repositories
+          base: header, activity
+          base_indepth: yes
           extras_css: |
             svg {
               background: #0f172a;
@@ -86,10 +87,11 @@ jobs:
           config_timezone: Europe/Berlin
           base: ""
           plugin_languages: yes
-          plugin_languages_limit: 6
+          plugin_languages_limit: 8
           plugin_languages_sections: most-used
-          plugin_languages_details: percentage
+          plugin_languages_details: percentage, bytes-size
           plugin_languages_colors: github
+          plugin_languages_indepth: yes
           extras_css: |
             svg {
               background: #0f172a;
