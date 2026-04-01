@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="495" height="220" viewBox="0 0 495 220" role="img" aria-labelledby="title desc">
+  <title id="title">GitHub stats placeholder</title>
+  <desc id="desc">Temporary fallback card until the GitHub Actions workflow generates live GitHub stats.</desc>
+  <defs>
+    <linearGradient id="stats-accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#00d4ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="495" height="220" rx="18" fill="#0f172a"/>
+  <rect x="1" y="1" width="493" height="218" rx="17" fill="none" stroke="#38bdf8" stroke-opacity="0.28"/>
+  <circle cx="42" cy="42" r="14" fill="url(#stats-accent)"/>
+  <text x="70" y="37" fill="#f8fafc" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">GitHub Stats</text>
+  <text x="70" y="60" fill="#38bdf8" font-family="Segoe UI, Arial, sans-serif" font-size="14">@alwinpaul1</text>
+  <text x="28" y="100" fill="#94a3b8" font-family="Segoe UI, Arial, sans-serif" font-size="15">Static SVG fallback is active.</text>
+  <text x="28" y="128" fill="#94a3b8" font-family="Segoe UI, Arial, sans-serif" font-size="15">GitHub Actions will replace this card with live metrics.</text>
+  <text x="28" y="156" fill="#94a3b8" font-family="Segoe UI, Arial, sans-serif" font-size="15">This avoids shared Vercel rate-limit failures.</text>
+  <rect x="28" y="178" width="204" height="22" rx="11" fill="#38bdf8" fill-opacity="0.16"/>
+  <text x="40" y="193" fill="#38bdf8" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="600">Workflow: GitHub Metrics</text>
+</svg>

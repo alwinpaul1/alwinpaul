@@ -1,0 +1,126 @@
+name: GitHub Metrics
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 3 * * 1"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/github-metrics.yml"
+      - "index.html"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: github-metrics
+  cancel-in-progress: false
+
+jobs:
+  generate-metrics:
+    runs-on: ubuntu-latest
+    steps:
+      # For public portfolio cards, github.token is enough. Add a METRICS_TOKEN secret
+      # if you later want higher API quotas or private data in these SVGs.
+      - name: Generate GitHub stats card
+        uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.METRICS_TOKEN || github.token }}
+          committer_token: ${{ github.token }}
+          user: alwinpaul1
+          template: classic
+          filename: assets/img/github/github-metrics.svg
+          output_action: commit
+          committer_branch: main
+          committer_message: "chore: update github metrics [skip ci]"
+          config_timezone: Europe/Berlin
+          base: header, activity, community, repositories
+          extras_css: |
+            svg {
+              background: #0f172a;
+              color: #94a3b8;
+            }
+            h1, h2, h3 {
+              color: #38bdf8;
+            }
+            a, .blue {
+              color: #38bdf8;
+            }
+            .field svg {
+              fill: #38bdf8;
+            }
+            .field.language.details small,
+            footer {
+              color: #94a3b8;
+            }
+            .label {
+              background-color: rgba(56, 189, 248, 0.18);
+              color: #38bdf8;
+            }
+            code,
+            span.code {
+              background-color: rgba(148, 163, 184, 0.12);
+              color: #f8fafc;
+            }
+            :root {
+              --color-calendar-graph-day-bg: #0b1220;
+              --color-calendar-graph-day-L1-bg: #0ea5e9;
+              --color-calendar-graph-day-L2-bg: #38bdf8;
+              --color-calendar-graph-day-L3-bg: #7dd3fc;
+              --color-calendar-graph-day-L4-bg: #bae6fd;
+            }
+
+      - name: Generate top languages card
+        uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.METRICS_TOKEN || github.token }}
+          committer_token: ${{ github.token }}
+          user: alwinpaul1
+          template: classic
+          filename: assets/img/github/github-languages.svg
+          output_action: commit
+          committer_branch: main
+          committer_message: "chore: update github metrics [skip ci]"
+          config_timezone: Europe/Berlin
+          base: ""
+          plugin_languages: yes
+          plugin_languages_limit: 6
+          plugin_languages_sections: most-used
+          plugin_languages_details: percentage
+          plugin_languages_colors: github
+          extras_css: |
+            svg {
+              background: #0f172a;
+              color: #94a3b8;
+            }
+            h1, h2, h3 {
+              color: #38bdf8;
+            }
+            a, .blue {
+              color: #38bdf8;
+            }
+            .field svg {
+              fill: #38bdf8;
+            }
+            .field.language.details small,
+            footer {
+              color: #94a3b8;
+            }
+            .label {
+              background-color: rgba(56, 189, 248, 0.18);
+              color: #38bdf8;
+            }
+            code,
+            span.code {
+              background-color: rgba(148, 163, 184, 0.12);
+              color: #f8fafc;
+            }
+            :root {
+              --color-calendar-graph-day-bg: #0b1220;
+              --color-calendar-graph-day-L1-bg: #0ea5e9;
+              --color-calendar-graph-day-L2-bg: #38bdf8;
+              --color-calendar-graph-day-L3-bg: #7dd3fc;
+              --color-calendar-graph-day-L4-bg: #bae6fd;
+            }
