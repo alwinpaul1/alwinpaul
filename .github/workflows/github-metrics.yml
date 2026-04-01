@@ -36,17 +36,8 @@ jobs:
           committer_branch: main
           committer_message: "chore: update github metrics [skip ci]"
           config_timezone: Europe/Berlin
-          base: header, activity, repositories
+          base: header, activity
           base_indepth: no
-          plugin_notable: no
-          plugin_lines: yes
-          plugin_lines_sections: base
-          plugin_habits: yes
-          plugin_habits_from: 200
-          plugin_habits_days: 30
-          plugin_habits_charts: yes
-          plugin_habits_charts_type: classic
-          plugin_habits_trim: yes
           extras_css: |
             svg {
               background: #0f172a;
