@@ -53,14 +53,14 @@ span.code {
                         <rect x="0" y="0" width="460" height="8" fill="white" rx="5"/>
                     </mask>
                     <rect mask="url(#languages-bar)" x="0" y="0" width="0" height="8" fill="#d1d5da"/>
-                    <rect mask="url(#languages-bar)" x="0" y="0" width="255.7876755160785" height="8" fill="#3572A5"/>
-                    <rect mask="url(#languages-bar)" x="255.7876755160785" y="0" width="104.99276879429405" height="8" fill="#DA5B0B"/>
-                    <rect mask="url(#languages-bar)" x="360.78044431037256" y="0" width="28.142218828898393" height="8" fill="#f1e05a"/>
-                    <rect mask="url(#languages-bar)" x="388.922663139271" y="0" width="21.837648586761453" height="8" fill="#3178c6"/>
-                    <rect mask="url(#languages-bar)" x="410.7603117260324" y="0" width="15.226077456324116" height="8" fill="#e34c26"/>
-                    <rect mask="url(#languages-bar)" x="425.98638918235656" y="0" width="12.754720305505927" height="8" fill="#89e051"/>
-                    <rect mask="url(#languages-bar)" x="438.74110948786245" y="0" width="12.567756764530987" height="8" fill="#663399"/>
-                    <rect mask="url(#languages-bar)" x="451.30886625239344" y="0" width="8.691133747606562" height="8" fill="#ededed"/>
+                    <rect mask="url(#languages-bar)" x="0" y="0" width="260.60038208503676" height="8" fill="#3572A5"/>
+                    <rect mask="url(#languages-bar)" x="260.60038208503676" y="0" width="102.57464024672522" height="8" fill="#DA5B0B"/>
+                    <rect mask="url(#languages-bar)" x="363.1750223317619" y="0" width="27.381710775971676" height="8" fill="#f1e05a"/>
+                    <rect mask="url(#languages-bar)" x="390.55673310773363" y="0" width="21.334697363874056" height="8" fill="#3178c6"/>
+                    <rect mask="url(#languages-bar)" x="411.8914304716077" y="0" width="14.398570767234578" height="8" fill="#e34c26"/>
+                    <rect mask="url(#languages-bar)" x="426.29000123884225" y="0" width="12.652316961054712" height="8" fill="#663399"/>
+                    <rect mask="url(#languages-bar)" x="438.942318199897" y="0" width="12.56665688633296" height="8" fill="#89e051"/>
+                    <rect mask="url(#languages-bar)" x="451.5089750862299" y="0" width="8.491024913770058" height="8" fill="#ededed"/>
                 </svg>
                 <div class="row fill-width">
                     <section>
@@ -72,7 +72,7 @@ span.code {
                                 Python
                             </div>
                             <small>
-                                <div>55.61%</div>
+                                <div>56.65%</div>
                             </small>
                         </div>
                         <div class="field language details">
@@ -83,7 +83,7 @@ span.code {
                                 JavaScript
                             </div>
                             <small>
-                                <div>6.12%</div>
+                                <div>5.95%</div>
                             </small>
                         </div>
                         <div class="field language details">
@@ -94,15 +94,15 @@ span.code {
                                 HTML
                             </div>
                             <small>
-                                <div>3.31%</div>
+                                <div>3.13%</div>
                             </small>
                         </div>
                         <div class="field language details">
                             <div class="field">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
-                                    <path fill="#663399" fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"/>
+                                    <path fill="#89e051" fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"/>
                                 </svg>
-                                CSS
+                                Shell
                             </div>
                             <small>
                                 <div>2.73%</div>
@@ -118,7 +118,7 @@ span.code {
                                 Jupyter Notebook
                             </div>
                             <small>
-                                <div>22.82%</div>
+                                <div>22.3%</div>
                             </small>
                         </div>
                         <div class="field language details">
@@ -129,18 +129,18 @@ span.code {
                                 TypeScript
                             </div>
                             <small>
-                                <div>4.75%</div>
+                                <div>4.64%</div>
                             </small>
                         </div>
                         <div class="field language details">
                             <div class="field">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
-                                    <path fill="#89e051" fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"/>
+                                    <path fill="#663399" fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"/>
                                 </svg>
-                                Shell
+                                CSS
                             </div>
                             <small>
-                                <div>2.77%</div>
+                                <div>2.75%</div>
                             </small>
                         </div>
                         <div class="field language details">
@@ -151,7 +151,7 @@ span.code {
                                 Other
                             </div>
                             <small>
-                                <div>1.89%</div>
+                                <div>1.85%</div>
                             </small>
                         </div>
                     </section>
