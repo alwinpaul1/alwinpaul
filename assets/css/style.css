@@ -690,12 +690,37 @@ h4 {
   inset: 0;
   width: 100%;
   height: 100%;
+  will-change: transform;
   -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 45%, #000 45%, transparent 92%);
   mask-image: radial-gradient(ellipse 85% 75% at 50% 45%, #000 45%, transparent 92%);
 }
 
 .bg-grid-svg path {
   stroke: rgba(43, 127, 255, 0.28);
+}
+
+/* Spotlight layer — a brighter grid revealed in a circle that follows the cursor */
+.bg-grid-spotlight {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  -webkit-mask-image: radial-gradient(220px circle at var(--spot-x, -500px) var(--spot-y, -500px), #000 0%, rgba(0, 0, 0, 0.5) 50%, transparent 75%);
+  mask-image: radial-gradient(220px circle at var(--spot-x, -500px) var(--spot-y, -500px), #000 0%, rgba(0, 0, 0, 0.5) 50%, transparent 75%);
+}
+
+#hero.spot-on .bg-grid-spotlight {
+  opacity: 1;
+}
+
+.bg-grid-spotlight path {
+  stroke: rgba(43, 127, 255, 0.95);
+}
+
+[data-theme="dark"] .bg-grid-spotlight path {
+  stroke: rgba(120, 180, 255, 0.95);
 }
 
 .bg-grid-squares rect {

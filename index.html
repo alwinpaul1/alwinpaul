@@ -1140,22 +1140,29 @@
       if (!el) return;
       var NS = 'http://www.w3.org/2000/svg';
 
+      var SIZE = 40;
+
+      function gridDims() {
+        var w = el.clientWidth || window.innerWidth;
+        var h = el.clientHeight || window.innerHeight;
+        return { cols: Math.max(4, Math.ceil(w / SIZE)), rows: Math.max(4, Math.ceil(h / SIZE)) };
+      }
+
       // Grid Pattern — vanilla port of the magicui/shadcn GridPattern component
-      function buildGrid() {
-        var size = 40;
+      function makeGrid(cls, patternId, withSquares) {
         var svg = document.createElementNS(NS, 'svg');
-        svg.setAttribute('class', 'bg-grid-svg');
+        svg.setAttribute('class', cls);
         svg.setAttribute('aria-hidden', 'true');
         var defs = document.createElementNS(NS, 'defs');
         var pattern = document.createElementNS(NS, 'pattern');
-        pattern.setAttribute('id', 'heroGridPattern');
-        pattern.setAttribute('width', size);
-        pattern.setAttribute('height', size);
+        pattern.setAttribute('id', patternId);
+        pattern.setAttribute('width', SIZE);
+        pattern.setAttribute('height', SIZE);
         pattern.setAttribute('patternUnits', 'userSpaceOnUse');
         pattern.setAttribute('x', '-1');
         pattern.setAttribute('y', '-1');
         var gpath = document.createElementNS(NS, 'path');
-        gpath.setAttribute('d', 'M.5 ' + size + 'V.5H' + size);
+        gpath.setAttribute('d', 'M.5 ' + SIZE + 'V.5H' + SIZE);
         gpath.setAttribute('fill', 'none');
         pattern.appendChild(gpath);
         defs.appendChild(pattern);
@@ -1164,45 +1171,73 @@
         rect.setAttribute('width', '100%');
         rect.setAttribute('height', '100%');
         rect.setAttribute('stroke-width', '0');
-        rect.setAttribute('fill', 'url(#heroGridPattern)');
+        rect.setAttribute('fill', 'url(#' + patternId + ')');
         svg.appendChild(rect);
-        // animated highlighted squares — fade in/out and hop to random cells (magicui-style)
-        var inner = document.createElementNS(NS, 'svg');
-        inner.setAttribute('x', '-1');
-        inner.setAttribute('y', '-1');
-        inner.setAttribute('class', 'bg-grid-squares');
-
-        function gridDims() {
-          var w = el.clientWidth || window.innerWidth;
-          var h = el.clientHeight || window.innerHeight;
-          return { cols: Math.max(4, Math.ceil(w / size)), rows: Math.max(4, Math.ceil(h / size)) };
+        if (withSquares) {
+          // animated highlighted squares — fade in/out and hop to random cells
+          var inner = document.createElementNS(NS, 'svg');
+          inner.setAttribute('x', '-1');
+          inner.setAttribute('y', '-1');
+          inner.setAttribute('class', 'bg-grid-squares');
+          var placeRandom = function (r) {
+            var d = gridDims();
+            r.setAttribute('x', Math.floor(Math.random() * d.cols) * SIZE + 1);
+            r.setAttribute('y', Math.floor(Math.random() * d.rows) * SIZE + 1);
+          };
+          for (var s = 0; s < 16; s++) {
+            var r = document.createElementNS(NS, 'rect');
+            r.setAttribute('stroke-width', '0');
+            r.setAttribute('width', SIZE - 1);
+            r.setAttribute('height', SIZE - 1);
+            placeRandom(r);
+            r.style.animationDuration = (3 + (s % 5)) + 's';
+            r.style.animationDelay = (s * 0.35).toFixed(2) + 's';
+            (function (rectEl) {
+              rectEl.addEventListener('animationiteration', function () { placeRandom(rectEl); });
+            })(r);
+            inner.appendChild(r);
+          }
+          svg.appendChild(inner);
         }
-        function placeRandom(r) {
-          var d = gridDims();
-          r.setAttribute('x', Math.floor(Math.random() * d.cols) * size + 1);
-          r.setAttribute('y', Math.floor(Math.random() * d.rows) * size + 1);
-        }
-
-        var COUNT = 16;
-        for (var s = 0; s < COUNT; s++) {
-          var r = document.createElementNS(NS, 'rect');
-          r.setAttribute('stroke-width', '0');
-          r.setAttribute('width', size - 1);
-          r.setAttribute('height', size - 1);
-          placeRandom(r);
-          r.style.animationDuration = (3 + (s % 5)) + 's';
-          r.style.animationDelay = (s * 0.35).toFixed(2) + 's';
-          // when a fade cycle ends (square is invisible), hop to a new cell
-          (function (rectEl) {
-            rectEl.addEventListener('animationiteration', function () { placeRandom(rectEl); });
-          })(r);
-          inner.appendChild(r);
-        }
-        svg.appendChild(inner);
         return svg;
       }
 
-      el.appendChild(buildGrid());
+      var baseGrid = makeGrid('bg-grid-svg', 'heroGridPattern', true);
+      var spotGrid = makeGrid('bg-grid-spotlight', 'heroGridPatternSpot', false);
+      el.appendChild(baseGrid);
+      el.appendChild(spotGrid);
+
+      var hero = document.getElementById('hero');
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (hero && !reduce) {
+        // Cursor spotlight — the grid brightens in a circle that follows the pointer
+        var px = -400, py = -400, pRaf = null;
+        function applySpot() {
+          pRaf = null;
+          el.style.setProperty('--spot-x', px + 'px');
+          el.style.setProperty('--spot-y', py + 'px');
+        }
+        hero.addEventListener('pointermove', function (e) {
+          var rect = el.getBoundingClientRect();
+          px = e.clientX - rect.left;
+          py = e.clientY - rect.top;
+          hero.classList.add('spot-on');
+          if (!pRaf) pRaf = requestAnimationFrame(applySpot);
+        });
+        hero.addEventListener('pointerleave', function () { hero.classList.remove('spot-on'); });
+
+        // Scroll parallax — the grid drifts as you scroll
+        var sRaf = null;
+        window.addEventListener('scroll', function () {
+          if (sRaf) return;
+          sRaf = requestAnimationFrame(function () {
+            sRaf = null;
+            var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+            baseGrid.style.transform = 'translate3d(0,' + (y * 0.12).toFixed(1) + 'px,0)';
+          });
+        }, { passive: true });
+      }
     })();
   </script>
   
