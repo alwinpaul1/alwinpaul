@@ -37,17 +37,17 @@
   --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Light theme (Air, default) */
-  --body-bg: #426188;
+  --body-bg: #f3f6fc;
   --body-color: #1b1b1b;
-  --section-bg: #4a6b94;
+  --section-bg: #ffffff;
   --card-bg: rgba(255, 255, 255, 0.86);
   --card-border: rgba(255, 255, 255, 0.85);
   --card-shadow-color: rgba(15, 34, 56, 0.18);
   --heading-color: #0f2238;
   --subheading-color: #0f2238;
   --muted-text: #5a6b7d;
-  --on-canvas: #ffffff;
-  --on-canvas-muted: rgba(255, 255, 255, 0.82);
+  --on-canvas: #0f2238;
+  --on-canvas-muted: rgba(15, 34, 56, 0.66);
   /* Hero — Background Paths field */
   --hero-bg: linear-gradient(135deg, #eef3fb 0%, #dce8fb 100%);
   --hero-paths: #2b7fff;
@@ -59,7 +59,7 @@
   --filter-bg: #fff;
   --filter-btn-bg: #fff;
   --portfolio-card-bg: #fff;
-  --breadcrumb-bg: #4a6b94;
+  --breadcrumb-bg: #f3f6fc;
   --link-color: #2b7fff;
   --neo-border: #2b7fff;
   --neo-shadow: rgba(43, 127, 255, 0.25);
@@ -2014,7 +2014,6 @@ section {
   background: rgba(26, 36, 54, 0.88);
   backdrop-filter: blur(40px);
   -webkit-backdrop-filter: blur(40px);
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 #footer .copyright {
