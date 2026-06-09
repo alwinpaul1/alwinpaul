@@ -25,8 +25,8 @@
 
   --primary-gradient: linear-gradient(135deg, #426188 0%, #2b7fff 100%);
   --accent-color: #2b7fff;
-  --bg-dark: #33506f;
-  --bg-dark-secondary: #3c5a7c;
+  --bg-dark: #1a2436;
+  --bg-dark-secondary: #22304a;
   --text-light: #ffffff;
   --text-gray: #c5d2e2;
   --text-dark: #1b1b1b;
@@ -593,14 +593,19 @@ h4 {
   color: rgba(255, 255, 255, 0.55);
 }
 
-.nav-menu a:hover, .nav-menu .active > a, .nav-menu li:hover > a {
+.nav-menu a:hover, .nav-menu li:hover > a {
   text-decoration: none;
   color: #fff;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.nav-menu .active > a {
+  text-decoration: none;
+  color: #fff;
 }
 
 .nav-menu a:hover i, .nav-menu .active > a i, .nav-menu li:hover > a i {
-  color: #fff;
+  color: var(--color-action-blue);
 }
 
 /* Mobile Navigation - Glassmorphism */
@@ -2006,7 +2011,7 @@ section {
   bottom: 0;
   width: 300px;
   z-index: 9999;
-  background: rgba(40, 62, 89, 0.82);
+  background: rgba(26, 36, 54, 0.88);
   backdrop-filter: blur(40px);
   -webkit-backdrop-filter: blur(40px);
   border-top: 1px solid rgba(255, 255, 255, 0.06);
