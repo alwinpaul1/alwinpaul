@@ -38,7 +38,7 @@
   <meta name="googlebot" content="index, follow">
   <meta name="bingbot" content="index, follow">
   <link rel="canonical" href="https://alwinpaul.me/">
-  <meta name="theme-color" content="#149ddd">
+  <meta name="theme-color" content="#2b7fff">
   
   <!-- Germany Geo-Targeting -->
   <meta name="geo.region" content="DE">
@@ -110,8 +110,8 @@
   <!-- Google Fonts - Load completely asynchronously with preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&family=Dancing+Script:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&family=Dancing+Script:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"></noscript>
 
   <!-- Theme initialization - prevent FOUC -->
   <script>
@@ -124,16 +124,16 @@
 
   <!-- Inline Critical CSS for above-the-fold content -->
   <style>
-    :root{--primary-gradient:linear-gradient(135deg,#1e3c72 0%,#2a5298 100%);--accent-color:#00d4ff;--bg-dark:#0f172a;--bg-dark-secondary:#1e293b;--text-light:#f8fafc;--text-gray:#94a3b8;--text-dark:#272829;--transition-smooth:all .3s cubic-bezier(.4,0,.2,1);--font-stack:"Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;--body-bg:#fff;--body-color:#272829;--section-bg:#f5f8fd;--heading-color:#173b6c;--neo-border:#000;--neo-shadow:#000;--neo-text:#000}
-    [data-theme="dark"]{--body-bg:#0f172a;--body-color:#e2e8f0;--section-bg:#1e293b;--heading-color:#e2e8f0;--neo-border:#38bdf8;--neo-shadow:rgba(56,189,248,0.3);--neo-text:#e2e8f0}
+    :root{--primary-gradient:linear-gradient(135deg,#426188 0%,#2b7fff 100%);--accent-color:#2b7fff;--bg-dark:#33506f;--bg-dark-secondary:#3c5a7c;--text-light:#ffffff;--text-gray:#c5d2e2;--text-dark:#1b1b1b;--transition-smooth:all .3s cubic-bezier(.4,0,.2,1);--font-stack:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;--font-display:"Oswald","Inter",sans-serif;--font-cursive:"Dancing Script",cursive;--font-mono:"Space Mono",ui-monospace,monospace;--body-bg:#426188;--body-color:#1b1b1b;--section-bg:#4a6b94;--heading-color:#0f2238;--on-canvas:#ffffff;--on-canvas-muted:rgba(255,255,255,0.82);--neo-border:#2b7fff;--neo-shadow:rgba(43,127,255,0.25);--neo-text:#0f2238}
+    [data-theme="dark"]{--body-bg:#16212f;--body-color:#dbe6f2;--section-bg:#1c2b3d;--heading-color:#eaf1f8;--on-canvas:#eaf1f8;--on-canvas-muted:rgba(234,241,248,0.78);--neo-border:#2b7fff;--neo-shadow:rgba(43,127,255,0.35);--neo-text:#eaf1f8}
     body{font-family:var(--font-stack);color:var(--body-color);background:var(--body-bg);margin:0;padding:0;font-weight:400;line-height:1.7;letter-spacing:.025em;scroll-behavior:smooth;transition:background .4s ease,color .4s ease}
     h1{font-size:3.5rem;font-weight:800;background:var(--primary-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-.05em;margin-bottom:1rem;line-height:1.2;font-family:var(--font-stack)}
-    #header{position:fixed;top:0;left:0;bottom:0;width:300px;transition:all ease-in-out .5s;z-index:9997;background:#040b14;overflow-y:auto}
+    #header{position:fixed;top:0;left:0;bottom:0;width:300px;transition:all ease-in-out .5s;z-index:9997;background:var(--bg-dark);overflow-y:auto}
     #hero{width:100%;height:100vh;background:var(--body-bg);position:relative;overflow:hidden}
     #hero::before{display:none}
     #hero .hero-container{position:relative;z-index:2;text-align:center;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:0 20px;width:100%;max-width:100vw;box-sizing:border-box}
-    #hero .hero-title{margin:0;font-size:4rem;font-weight:800;color:var(--text-light);background:linear-gradient(45deg,#ff6b6b,#4ecdc4,#45b7d1,#96ceb4,#feca57,#ff9ff3);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-shadow:0 0 30px rgba(255,107,107,.3);animation:fadeInUp 1s ease-out,gradientShift 4s ease-in-out infinite;text-align:center;width:100%}
-    #hero .hero-subtitle{margin-bottom:15px;font-size:1.4rem;font-weight:500;letter-spacing:.05em;background:linear-gradient(45deg,#ff6b6b,#4ecdc4,#45b7d1,#96ceb4,#feca57,#ff9ff3);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:fadeInUp 1s ease-out .2s both,gradientShift 3s ease-in-out infinite reverse;text-align:center;width:100%}
+    #hero .hero-title{margin:0;font-family:var(--font-display);font-size:5rem;font-weight:700;text-transform:uppercase;letter-spacing:.01em;line-height:.9;color:var(--on-canvas);background:none;-webkit-text-fill-color:var(--on-canvas);text-shadow:0 4px 30px rgba(15,34,56,.35);animation:fadeInUp 1s ease-out;text-align:center;width:100%}
+    #hero .hero-subtitle{margin-bottom:15px;font-family:var(--font-mono);font-size:1.25rem;font-weight:400;letter-spacing:.04em;color:var(--on-canvas-muted);animation:fadeInUp 1s ease-out .2s both;text-align:center;width:100%}
     @keyframes fadeInUp{0%{opacity:0;transform:translateY(30px)}100%{opacity:1;transform:translateY(0)}}
     @keyframes gradientShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
     .d-flex{display:flex!important}.flex-column{flex-direction:column!important}.justify-content-center{justify-content:center!important}.align-items-center{align-items:center!important}.d-xl-none{display:block!important}.text-center{text-align:center!important}.text-light{color:#f8f9fa!important}.mt-3{margin-top:1rem!important}.img-fluid{max-width:100%;height:auto}.rounded-circle{border-radius:50%!important}
@@ -771,7 +771,7 @@
           .github-activity .section-title h2::after {
             left: 50%;
             transform: translateX(-50%);
-            background: #38bdf8;
+            background: #2b7fff;
           }
         </style>
 
@@ -786,13 +786,13 @@
 
         <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
           <div class="col-lg-8 col-md-10 text-center mb-4">
-            <img src="https://github-readme-streak-stats.herokuapp.com?user=alwinpaul1&theme=tokyonight&hide_border=true&background=0f172a&ring=38bdf8&fire=38bdf8&currStreakLabel=38bdf8" alt="Alwin Paul's GitHub Streak" style="max-width: 100%; height: auto; border-radius: 10px;" loading="lazy">
+            <img src="https://github-readme-streak-stats.herokuapp.com?user=alwinpaul1&theme=tokyonight&hide_border=true&background=2F4A6B&ring=2B7FFF&fire=2B7FFF&currStreakLabel=2B7FFF" alt="Alwin Paul's GitHub Streak" style="max-width: 100%; height: auto; border-radius: 10px;" loading="lazy">
           </div>
         </div>
 
         <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="200">
           <div class="col-lg-10 col-md-12 text-center">
-            <div style="background: #0f172a; border-radius: 10px; padding: 20px; position: relative;">
+            <div style="background: #2f4a6b; border-radius: 10px; padding: 20px; position: relative;">
               <canvas id="contributionGraph" style="width: 100%; max-height: 300px;"></canvas>
             </div>
           </div>
@@ -907,13 +907,13 @@
                       datasets: [{
                         label: 'Contributions',
                         data: data,
-                        borderColor: '#38bdf8',
-                        backgroundColor: 'rgba(56, 189, 248, 0.15)',
+                        borderColor: '#2b7fff',
+                        backgroundColor: 'rgba(43, 127, 255, 0.18)',
                         pointBackgroundColor: '#f8fafc',
-                        pointBorderColor: '#38bdf8',
+                        pointBorderColor: '#2b7fff',
                         pointRadius: 4,
                         pointHoverRadius: 7,
-                        pointHoverBackgroundColor: '#38bdf8',
+                        pointHoverBackgroundColor: '#2b7fff',
                         pointHoverBorderColor: '#f8fafc',
                         pointHoverBorderWidth: 2,
                         borderWidth: 2.5,
@@ -933,16 +933,16 @@
                         title: {
                           display: true,
                           text: "Alwin Paul's Contribution Graph",
-                          color: '#38bdf8',
+                          color: '#2b7fff',
                           font: { size: 16, weight: 'bold' },
                           padding: { bottom: 15 }
                         },
                         tooltip: {
                           enabled: true,
-                          backgroundColor: 'rgba(15, 23, 42, 0.95)',
-                          titleColor: '#38bdf8',
+                          backgroundColor: 'rgba(47, 74, 107, 0.97)',
+                          titleColor: '#2b7fff',
                           bodyColor: '#f8fafc',
-                          borderColor: '#38bdf8',
+                          borderColor: '#2b7fff',
                           borderWidth: 1,
                           cornerRadius: 8,
                           padding: 12,
@@ -1004,7 +1004,7 @@
                   console.error('Failed to fetch GitHub contributions:', err);
                   // Fallback: show the static image
                   var container = document.getElementById('contributionGraph').parentElement;
-                  container.innerHTML = '<img src="https://github-readme-activity-graph.vercel.app/graph?username=alwinpaul1&theme=tokyo-night&hide_border=true&bg_color=0f172a&color=38bdf8&line=38bdf8&point=f8fafc&area=true&area_color=38bdf8" alt="Alwin Paul\'s Contribution Graph" style="max-width: 100%; height: auto; border-radius: 10px;">';
+                  container.innerHTML = '<img src="https://github-readme-activity-graph.vercel.app/graph?username=alwinpaul1&theme=tokyo-night&hide_border=true&bg_color=2F4A6B&color=2B7FFF&line=2B7FFF&point=f8fafc&area=true&area_color=2B7FFF" alt="Alwin Paul\'s Contribution Graph" style="max-width: 100%; height: auto; border-radius: 10px;">';
                 });
             }, 200);
           });
@@ -1133,7 +1133,7 @@
 
     function getColors(dark) {
       return dark
-        ? { u_colorFront: [1.0, 0.4, 0.8, 1.0], u_colorBack: [0, 0, 0, 1] }
+        ? { u_colorFront: [0.2, 0.5, 1.0, 1.0], u_colorBack: [0.086, 0.129, 0.184, 1] }
         : { u_colorFront: [0.4, 0.6, 1.0, 1.0], u_colorBack: [0.96, 0.97, 0.99, 1] };
     }
 
