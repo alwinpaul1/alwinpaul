@@ -699,7 +699,17 @@ h4 {
 }
 
 .bg-grid-squares rect {
-  fill: rgba(43, 127, 255, 0.1);
+  fill: rgba(43, 127, 255, 0.16);
+  opacity: 0;
+  animation-name: gridSquarePulse;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: opacity;
+}
+
+@keyframes gridSquarePulse {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
 }
 
 [data-theme="dark"] .bg-grid-svg path {
@@ -707,7 +717,11 @@ h4 {
 }
 
 [data-theme="dark"] .bg-grid-squares rect {
-  fill: rgba(77, 147, 255, 0.13);
+  fill: rgba(77, 147, 255, 0.18);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-grid-squares rect { animation: none; opacity: 0.6; }
 }
 
 #hero .hero-container {

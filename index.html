@@ -801,8 +801,9 @@
         <!-- Chart.js CDN -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
         <script>
-          window.addEventListener('load', function() {
-            setTimeout(function() {
+          (function() {
+            function initContribChart() {
+              if (typeof Chart === 'undefined') { setTimeout(initContribChart, 50); return; }
               var username = 'alwinpaul1';
               
               // Fetch GitHub events to build contribution data
@@ -1006,8 +1007,15 @@
                   var container = document.getElementById('contributionGraph').parentElement;
                   container.innerHTML = '<img src="https://github-readme-activity-graph.vercel.app/graph?username=alwinpaul1&theme=tokyo-night&hide_border=true&bg_color=2F4A6B&color=2B7FFF&line=2B7FFF&point=f8fafc&area=true&area_color=2B7FFF" alt="Alwin Paul\'s Contribution Graph" style="max-width: 100%; height: auto; border-radius: 10px;">';
                 });
-            }, 200);
-          });
+            }
+            // Run as soon as the DOM is ready — do NOT wait for window.load,
+            // which would block on the slow/flaky third-party GitHub widget images.
+            if (document.readyState === 'loading') {
+              document.addEventListener('DOMContentLoaded', initContribChart);
+            } else {
+              initContribChart();
+            }
+          })();
         </script>
 
       </div>
@@ -1158,21 +1166,38 @@
         rect.setAttribute('stroke-width', '0');
         rect.setAttribute('fill', 'url(#heroGridPattern)');
         svg.appendChild(rect);
-        // a few highlighted squares for accent
-        var squares = [[4, 4], [6, 1], [9, 2], [6, 3], [7, 6], [11, 5], [3, 7], [13, 3], [10, 8]];
+        // animated highlighted squares — fade in/out and hop to random cells (magicui-style)
         var inner = document.createElementNS(NS, 'svg');
         inner.setAttribute('x', '-1');
         inner.setAttribute('y', '-1');
         inner.setAttribute('class', 'bg-grid-squares');
-        squares.forEach(function (sq) {
+
+        function gridDims() {
+          var w = el.clientWidth || window.innerWidth;
+          var h = el.clientHeight || window.innerHeight;
+          return { cols: Math.max(4, Math.ceil(w / size)), rows: Math.max(4, Math.ceil(h / size)) };
+        }
+        function placeRandom(r) {
+          var d = gridDims();
+          r.setAttribute('x', Math.floor(Math.random() * d.cols) * size + 1);
+          r.setAttribute('y', Math.floor(Math.random() * d.rows) * size + 1);
+        }
+
+        var COUNT = 16;
+        for (var s = 0; s < COUNT; s++) {
           var r = document.createElementNS(NS, 'rect');
           r.setAttribute('stroke-width', '0');
           r.setAttribute('width', size - 1);
           r.setAttribute('height', size - 1);
-          r.setAttribute('x', sq[0] * size + 1);
-          r.setAttribute('y', sq[1] * size + 1);
+          placeRandom(r);
+          r.style.animationDuration = (3 + (s % 5)) + 's';
+          r.style.animationDelay = (s * 0.35).toFixed(2) + 's';
+          // when a fade cycle ends (square is invisible), hop to a new cell
+          (function (rectEl) {
+            rectEl.addEventListener('animationiteration', function () { placeRandom(rectEl); });
+          })(r);
           inner.appendChild(r);
-        });
+        }
         svg.appendChild(inner);
         return svg;
       }
