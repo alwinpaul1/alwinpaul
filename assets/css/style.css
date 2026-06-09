@@ -672,6 +672,14 @@ h4 {
   overflow: hidden;
 }
 
+/* Offset the hero by the fixed sidebar so its content centers in the visible area */
+@media (min-width: 1200px) {
+  #hero {
+    width: calc(100% - 300px);
+    margin-left: 300px;
+  }
+}
+
 #hero::before {
   display: none;
 }
@@ -726,10 +734,14 @@ h4 {
 .bg-grid-squares rect {
   fill: rgba(43, 127, 255, 0.16);
   opacity: 0;
-  animation-name: gridSquarePulse;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
   will-change: opacity;
+}
+
+/* Squares only animate while the cursor is over the hero */
+#hero.spot-on .bg-grid-squares rect {
+  animation-name: gridSquarePulse;
 }
 
 @keyframes gridSquarePulse {
