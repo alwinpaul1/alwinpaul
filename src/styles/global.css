@@ -108,6 +108,11 @@ button {
   outline-offset: 3px;
 }
 
+/* Sections receive focus from in-page links; they are not controls, so no ring */
+[tabindex="-1"]:focus-visible {
+  outline: none;
+}
+
 /* Surfaces the browser draws itself also follow the palette, in both themes */
 :root {
   accent-color: var(--accent);
