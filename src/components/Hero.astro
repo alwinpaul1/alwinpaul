@@ -2,10 +2,10 @@
 import { siteConfig } from "../config";
 import SocialLinks from "./SocialLinks.astro";
 
-// Split the tagline the way a subword tokenizer would: leading spaces stay on
+// Split the title the way a subword tokenizer would: leading spaces stay on
 // the word, punctuation is its own token, and long words break in two
 const TOKEN_PATTERN = /\s*[\p{L}\p{N}]+|\s*[^\s\p{L}\p{N}]/gu;
-const pieces = (siteConfig.tagline.match(TOKEN_PATTERN) ?? []).flatMap((piece) => {
+const pieces = (siteConfig.title.match(TOKEN_PATTERN) ?? []).flatMap((piece) => {
   const word = piece.trimStart();
   if (word.length < 8) return [piece];
   const cut = piece.length - Math.floor(word.length * 0.45);
@@ -161,7 +161,7 @@ const streamEnd = clock;
       <p
         class="mt-4 sm:mt-6 md:mt-8 max-w-[60ch] text-pretty text-base sm:text-lg md:text-xl/8 font-medium text-body"
       >
-        <span class="sr-only">{siteConfig.tagline}</span>
+        <span class="sr-only">{siteConfig.title}</span>
         <span aria-hidden="true">
           {
             tokens.map((token, i) => (
@@ -225,7 +225,7 @@ const streamEnd = clock;
   }
 
   /*
-   * Tagline streams in token by token, like a model's response. Each token
+   * The title streams in token by token, like a model's response. Each token
    * sharpens out of a blur, and the caret rides on the newest token, then
    * blinks a few times at the end before going away.
    */

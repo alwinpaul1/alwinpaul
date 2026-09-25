@@ -1,8 +1,6 @@
 export const siteConfig = {
   name: "Alwin Paul",
   title: "AI Engineer",
-  // Streams in under the name on the hero, like an LLM response
-  tagline: "AI Engineer · LLM systems, RAG pipelines & information retrieval",
   description:
     "AI Engineer in Germany specializing in LLM systems, RAG pipelines, and intelligent information retrieval. Based in Cottbus, open to AI Engineer roles across Germany. Experienced with LangChain, PyTorch, Neo4j, and LLM evaluation.",
   url: "https://alwinpaul.me",
