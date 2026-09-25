@@ -7,12 +7,12 @@ const hasItems = (list?: unknown[]) => Boolean(list && list.length > 0);
 // list is empty, so their links do too.
 export const navLinks = [
   { href: "#about", label: "About", show: true },
+  { href: "#experience", label: "Experience", show: hasItems(siteConfig.experience) },
   {
     href: "#projects",
     label: "Projects",
     show: hasItems(siteConfig.projects) || hasItems(siteConfig.achievements),
   },
-  { href: "#experience", label: "Experience", show: hasItems(siteConfig.experience) },
 ].filter((link) => link.show);
 
 // The footer holds the contact details
