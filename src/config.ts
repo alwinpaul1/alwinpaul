@@ -122,12 +122,6 @@ export const siteConfig = {
       skills: ["Google Cloud", "BigQuery ML", "Kubernetes"],
     },
     {
-      name: "TryHackMe: Top 3%",
-      description: "103 rooms completed, 15 badges earned, and Master rank (level 0xB).",
-      link: "https://tryhackme.com/p/nu11pwn",
-      skills: ["Cybersecurity"],
-    },
-    {
       name: "Cybersecurity Engineer Internship",
       description: "Internship certificate from the Virtually Testing Foundation.",
       link: "https://verification.givemycertificate.com/v/7e4772f6-5b5e-41ea-89d9-8e171053c153",
