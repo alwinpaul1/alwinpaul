@@ -27,3 +27,34 @@ AI Engineer specializing in LLM systems, RAG pipelines, and intelligent informat
 ## Connect
 
 [LinkedIn](https://www.linkedin.com/in/alwin-paul/) | [GitHub](https://github.com/alwinpaul1) | [Website](https://alwinpaul.me/)
+
+---
+
+## About this site
+
+Built on the [DevPortfolio](https://github.com/RyanFitzgerald/devportfolio) template by Ryan Fitzgerald (MIT, see `LICENSE.md`), using Astro and Tailwind CSS v4.
+
+### Editing content
+
+All content lives in `src/config.ts`: name, title, links, about text, grouped skills, projects, achievements, experience, education, and the GitHub stat images. Empty lists hide their section and nav link.
+
+`accentColor` is the accent in light mode and `accentColorDark` in dark mode. Surface and text colours are tokens in `src/styles/global.css`, each with a light and a dark value, so use utilities like `bg-surface` and `text-body` rather than `bg-gray-*` or `bg-white`.
+
+Static files (resume PDF, favicon, CNAME, robots.txt, sitemap.xml) live in `public/`.
+
+### Theme
+
+The site follows the visitor's OS light/dark setting until they use the toggle in the header; that choice is saved in `localStorage`.
+
+### Local development
+
+```
+npm install
+npm run dev       # http://localhost:4321
+npm run build     # outputs to dist/
+npm run preview   # serve the built site
+```
+
+### Deployment
+
+`.github/workflows/deploy.yml` builds with `withastro/action` and publishes to GitHub Pages on every push to `main`. It also runs after the daily `GitHub Metrics` workflow, which refreshes `public/github/*.svg`.

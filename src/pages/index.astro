@@ -1,0 +1,160 @@
+---
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Projects from "../components/Projects.astro";
+import Experience from "../components/Experience.astro";
+import Education from "../components/Education.astro";
+import GithubStats from "../components/GithubStats.astro";
+import Footer from "../components/Footer.astro";
+import { siteConfig } from "../config";
+import "../styles/global.css";
+
+const pageTitle = `${siteConfig.name} | ${siteConfig.title}`;
+const imageUrl = new URL(siteConfig.image, siteConfig.url).href;
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: siteConfig.name,
+  jobTitle: siteConfig.title,
+  description: siteConfig.description,
+  url: siteConfig.url,
+  image: imageUrl,
+  email: siteConfig.social.email,
+  telephone: siteConfig.contact.phone,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Cottbus",
+    addressRegion: "Brandenburg",
+    addressCountry: "DE",
+  },
+  alumniOf: {
+    "@type": "EducationalOrganization",
+    name: "Brandenburg Technical University Cottbus-Senftenberg",
+  },
+  worksFor: { "@type": "Organization", name: "Perinet GmbH" },
+  sameAs: [
+    siteConfig.social.linkedin,
+    siteConfig.social.github,
+    siteConfig.social.twitter,
+    siteConfig.social.facebook,
+    siteConfig.social.instagram,
+  ].filter(Boolean),
+  knowsAbout: siteConfig.skills
+    .filter((group) => group.category !== "Languages")
+    .flatMap((group) => group.items),
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: pageTitle,
+  url: siteConfig.url,
+  inLanguage: "en",
+  author: { "@type": "Person", name: siteConfig.name },
+};
+---
+
+<html
+  lang="en"
+  style={`--accent-light: ${siteConfig.accentColor}; --accent-dark: ${siteConfig.accentColorDark}`}
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={siteConfig.description} />
+    <meta name="author" content={siteConfig.name} />
+    <link rel="canonical" href={`${siteConfig.url}/`} />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+
+    <!-- Resolve the theme before first paint: saved choice, else the OS setting -->
+    <script is:inline>
+      (() => {
+        const root = document.documentElement;
+        const media = window.matchMedia("(prefers-color-scheme: dark)");
+        const saved = () => {
+          try {
+            return localStorage.getItem("theme");
+          } catch {
+            return null;
+          }
+        };
+        const apply = () => {
+          root.dataset.theme = saved() ?? (media.matches ? "dark" : "light");
+        };
+        apply();
+        media.addEventListener("change", () => {
+          if (!saved()) apply();
+        });
+      })();
+    </script>
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#030712" media="(prefers-color-scheme: dark)" />
+
+    <link rel="icon" type="image/jpeg" href="/favicon.jpg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={`${siteConfig.url}/`} />
+    <meta property="og:site_name" content={siteConfig.name} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={siteConfig.description} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:alt" content={`${siteConfig.name}, ${siteConfig.title}`} />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:creator" content="@_alwinpaul_" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={siteConfig.description} />
+    <meta name="twitter:image" content={imageUrl} />
+
+    <meta name="google-site-verification" content="EKE7w4No1IPZE_tZ1NxO2ZVjJ_HD2ana0weOiQ9JoWs" />
+    <meta name="msvalidate.01" content="BA1193CA5F5FA89A4BAD5A50B0D23EC8" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+
+    <!-- Google Analytics -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-L0ZB5ZEZMT"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-L0ZB5ZEZMT");
+    </script>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <Hero />
+      <About />
+      <Projects />
+      <Experience />
+      <Education />
+      <GithubStats />
+    </main>
+    <Footer />
+
+    <!-- The old site registered a service worker; clear it for returning visitors -->
+    <script is:inline>
+      if ("serviceWorker" in navigator && "caches" in window) {
+        navigator.serviceWorker
+          .getRegistrations()
+          .then((registrations) => registrations.forEach((r) => r.unregister()));
+        caches.keys().then((names) => names.forEach((name) => caches.delete(name)));
+      }
+    </script>
+  </body>
+</html>

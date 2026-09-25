@@ -9,7 +9,6 @@ on:
       - main
     paths:
       - ".github/workflows/github-metrics.yml"
-      - "index.html"
 
 permissions:
   contents: write
@@ -31,7 +30,7 @@ jobs:
           committer_token: ${{ github.token }}
           user: alwinpaul1
           template: classic
-          filename: assets/img/github/github-metrics.svg
+          filename: public/github/github-metrics.svg
           output_action: commit
           committer_branch: main
           committer_message: "chore: update github metrics [skip ci]"
@@ -80,7 +79,7 @@ jobs:
           committer_token: ${{ github.token }}
           user: alwinpaul1
           template: classic
-          filename: assets/img/github/github-languages.svg
+          filename: public/github/github-languages.svg
           output_action: commit
           committer_branch: main
           committer_message: "chore: update github metrics [skip ci]"
