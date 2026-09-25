@@ -1,6 +1,7 @@
 ---
 import { siteConfig } from "../config";
 import Icon from "./Icon.astro";
+import SocialLinks from "./SocialLinks.astro";
 import { contactLink, navLinks } from "../navigation";
 ---
 
@@ -19,14 +20,28 @@ import { contactLink, navLinks } from "../navigation";
       Skip to content
     </a>
 
-    <!-- The hero already shows the name large; this one arrives once that scrolls away -->
-    <a
-      href="#hero"
-      translate="no"
-      class="col-start-1 justify-self-start whitespace-nowrap text-lg font-bold tracking-tight text-ink invisible opacity-0 translate-y-1 group-data-scrolled:visible group-data-scrolled:opacity-100 group-data-scrolled:translate-y-0 transition-[opacity,translate,visibility] duration-300 ease-out"
-    >
-      {siteConfig.name}
-    </a>
+    <div class="col-start-1 justify-self-start -ml-2 md:ml-0 flex items-center gap-1">
+      <button
+        id="menu-toggle"
+        type="button"
+        popovertarget="mobile-menu"
+        aria-label="Menu"
+        class="md:hidden grid place-items-center size-10 rounded-full text-ink-soft hover:text-ink hover:bg-chip active:scale-95 transition-[color,background-color,scale] duration-150 ease-out"
+      >
+        <span class="menu-line menu-line-top col-start-1 row-start-1 h-0.5 w-5 rounded-full bg-current"></span>
+        <span class="menu-line menu-line-bottom col-start-1 row-start-1 h-0.5 w-5 rounded-full bg-current"></span>
+      </button>
+
+      <!-- The hero already shows the name large; this one arrives once that scrolls away -->
+      <a
+        id="header-name"
+        href="#hero"
+        translate="no"
+        class="whitespace-nowrap text-lg font-bold tracking-tight text-ink invisible opacity-0 translate-y-1 group-data-scrolled:visible group-data-scrolled:opacity-100 group-data-scrolled:translate-y-0 transition-[opacity,translate,visibility] duration-300 ease-out"
+      >
+        {siteConfig.name}
+      </a>
+    </div>
 
     <div class="col-start-2 hidden md:flex items-center gap-7">
       <ul id="nav-links" class="relative flex items-center gap-7">
@@ -67,45 +82,33 @@ import { contactLink, navLinks } from "../navigation";
     </div>
 
     <!-- Pinned to the last column: on phones the centre group is hidden and would otherwise let this slide into the middle -->
-    <div class="col-start-3 justify-self-end -mr-2 flex items-center gap-1">
-      <button
-        id="theme-toggle"
-        type="button"
-        aria-label="Toggle dark mode"
-        aria-pressed="false"
-        class="grid place-items-center size-10 rounded-full text-ink-soft hover:text-ink hover:bg-chip active:scale-95 transition-[color,background-color,scale] duration-150 ease-out"
-      >
-        <Icon name="moon" class="theme-icon theme-icon-moon col-start-1 row-start-1 size-5" />
-        <Icon name="sun" class="theme-icon theme-icon-sun col-start-1 row-start-1 size-5" />
-      </button>
-
-      <button
-        id="menu-toggle"
-        type="button"
-        popovertarget="mobile-menu"
-        aria-label="Menu"
-        class="md:hidden grid place-items-center size-10 rounded-full text-ink-soft hover:text-ink hover:bg-chip active:scale-95 transition-[color,background-color,scale] duration-150 ease-out"
-      >
-        <span class="menu-line menu-line-top col-start-1 row-start-1 h-0.5 w-5 rounded-full bg-current"></span>
-        <span class="menu-line menu-line-bottom col-start-1 row-start-1 h-0.5 w-5 rounded-full bg-current"></span>
-      </button>
-    </div>
+    <button
+      id="theme-toggle"
+      type="button"
+      aria-label="Toggle dark mode"
+      aria-pressed="false"
+      class="col-start-3 justify-self-end -mr-2 grid place-items-center size-10 rounded-full text-ink-soft hover:text-ink hover:bg-chip active:scale-95 transition-[color,background-color,scale] duration-150 ease-out"
+    >
+      <Icon name="moon" class="theme-icon theme-icon-moon col-start-1 row-start-1 size-5" />
+      <Icon name="sun" class="theme-icon theme-icon-sun col-start-1 row-start-1 size-5" />
+    </button>
   </nav>
 
   <!--
-    Phone menu. A native popover renders in the top layer, so it needs no
-    z-index, and it closes on Esc or a tap outside, returning focus to the button.
+    Phone menu: a full-screen drawer below the header that slides in from the
+    left. A native popover renders in the top layer, so it needs no z-index,
+    and Esc closes it and returns focus to the button.
   -->
   <div id="mobile-menu" popover class="md:hidden">
-    <nav aria-label="Mobile">
+    <nav aria-label="Mobile" class="flex min-h-full flex-col">
       <ul>
         {
-          [...navLinks, contactLink].map((link) => (
-            <li>
+          [...navLinks, contactLink].map((link, i) => (
+            <li class="menu-item" style={`--i: ${i}`}>
               <a
                 href={link.href}
                 data-mobile-link
-                class="flex items-center rounded-xl px-4 py-3 text-lg font-medium text-ink-soft hover:bg-chip hover:text-ink aria-[current=location]:text-ink aria-[current=location]:font-semibold active:scale-[0.98] transition-[color,background-color,scale] duration-150 ease-out"
+                class="block py-3 text-3xl font-bold tracking-tight text-ink-soft hover:text-ink aria-[current=location]:text-accent active:scale-[0.98] origin-left transition-[color,scale] duration-150 ease-out"
               >
                 {link.label}
               </a>
@@ -115,16 +118,24 @@ import { contactLink, navLinks } from "../navigation";
       </ul>
       {
         siteConfig.resume && (
-          <a
-            href={siteConfig.resume}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="mt-2 flex items-center justify-center rounded-full border border-accent px-4 py-3 font-semibold text-accent hover:bg-accent hover:text-canvas active:scale-[0.98] transition-[color,background-color,scale] duration-150 ease-out"
-          >
-            Resume
-          </a>
+          <div class="menu-item mt-8" style={`--i: ${navLinks.length + 1}`}>
+            <a
+              href={siteConfig.resume}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center justify-center rounded-full border border-accent px-4 py-3.5 text-lg font-semibold text-accent hover:bg-accent hover:text-canvas active:scale-[0.98] transition-[color,background-color,scale] duration-150 ease-out"
+            >
+              Resume
+            </a>
+          </div>
         )
       }
+      <div
+        class="menu-item mt-auto pt-10 flex flex-wrap gap-x-6 gap-y-4 text-ink-soft"
+        style={`--i: ${navLinks.length + 2}`}
+      >
+        <SocialLinks iconClass="size-6" />
+      </div>
     </nav>
   </div>
 </header>
@@ -332,60 +343,74 @@ import { contactLink, navLinks } from "../navigation";
   }
 
   /*
-   * Menu panel: drops in under the header and grows from the button's corner.
-   * Opening takes 220ms; closing is quicker at 150ms.
+   * Menu drawer: fills the screen below the header and slides in from the
+   * left on the iOS drawer curve. Opening takes 320ms, closing 200ms.
    */
   #mobile-menu {
     position: fixed;
-    inset: 4.5rem 1rem auto;
-    width: auto;
+    inset: 4rem 0 0 0;
+    width: 100%;
     height: auto;
+    max-width: none;
+    max-height: none;
     margin: 0;
-    padding: 0.5rem;
-    border: 1px solid var(--line);
-    border-radius: 1.25rem;
+    padding: 1.5rem 2rem 2.5rem;
+    border: 0;
+    border-top: 1px solid var(--line);
     background: var(--canvas);
     color: var(--ink);
-    box-shadow: 0 16px 40px -12px rgb(0 0 0 / 0.25);
-    transform-origin: top right;
-    opacity: 0;
-    transform: translateY(-8px) scale(0.97);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    translate: -100% 0;
     transition:
-      opacity 150ms ease,
-      transform 150ms var(--ease-out),
-      overlay 150ms allow-discrete,
-      display 150ms allow-discrete;
-  }
-
-  #mobile-menu:popover-open {
-    opacity: 1;
-    transform: none;
-    transition-duration: 220ms;
-  }
-
-  @starting-style {
-    #mobile-menu:popover-open {
-      opacity: 0;
-      transform: translateY(-8px) scale(0.97);
-    }
-  }
-
-  #mobile-menu::backdrop {
-    background: transparent;
-    transition:
-      background-color 200ms ease,
+      translate 200ms cubic-bezier(0.32, 0.72, 0, 1),
       overlay 200ms allow-discrete,
       display 200ms allow-discrete;
   }
 
-  #mobile-menu:popover-open::backdrop {
-    background: rgb(0 0 0 / 0.2);
+  #mobile-menu:popover-open {
+    translate: 0 0;
+    transition-duration: 320ms;
   }
 
   @starting-style {
-    #mobile-menu:popover-open::backdrop {
-      background: transparent;
+    #mobile-menu:popover-open {
+      translate: -100% 0;
     }
+  }
+
+  /* The drawer covers the page, so taps above it reach the header instead */
+  #mobile-menu::backdrop {
+    background: transparent;
+    pointer-events: none;
+  }
+
+  /* Links follow the drawer in, 40ms apart */
+  #mobile-menu:popover-open .menu-item {
+    animation: menuItemIn 320ms var(--ease-out) both;
+    animation-delay: calc(var(--i) * 40ms + 80ms);
+  }
+
+  @keyframes menuItemIn {
+    from {
+      opacity: 0;
+      translate: -16px 0;
+    }
+  }
+
+  /* While the drawer is open the header is solid, shows the name, and the page stays put */
+  header:has(#mobile-menu:popover-open) {
+    background-color: var(--canvas);
+  }
+
+  header:has(#mobile-menu:popover-open) #header-name {
+    visibility: visible;
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  :global(html:has(#mobile-menu:popover-open)) {
+    overflow: hidden;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -393,15 +418,21 @@ import { contactLink, navLinks } from "../navigation";
       transition: none;
     }
 
-    #mobile-menu {
-      transform: none;
-      transition-property: opacity, overlay, display;
+    /* No slide: the drawer and its links simply appear */
+    #mobile-menu,
+    #mobile-menu:popover-open {
+      translate: 0 0;
+      transition-property: overlay, display;
     }
 
     @starting-style {
       #mobile-menu:popover-open {
-        transform: none;
+        translate: 0 0;
       }
+    }
+
+    #mobile-menu:popover-open .menu-item {
+      animation: none;
     }
   }
 </style>
