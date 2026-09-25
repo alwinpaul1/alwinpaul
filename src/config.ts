@@ -122,9 +122,9 @@ export const siteConfig = {
       skills: ["Google Cloud", "BigQuery ML", "Kubernetes"],
     },
     {
-      name: "TryHackMe: Top 1%",
-      description: "112 rooms completed and 15 badges earned.",
-      link: "https://tryhackme.com/p/nullpwn",
+      name: "TryHackMe: Top 3%",
+      description: "103 rooms completed, 15 badges earned, and Master rank (level 0xB).",
+      link: "https://tryhackme.com/p/nu11pwn",
       skills: ["Cybersecurity"],
     },
     {
