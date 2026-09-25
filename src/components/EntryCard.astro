@@ -11,7 +11,7 @@ const { title, organization, dateRange, items } = Astro.props;
 ---
 
 <div class="bg-raised rounded-lg shadow-sm border border-line-soft p-4 sm:p-5 md:p-6 hover:shadow-md transition-shadow duration-200">
-  <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between sm:gap-4 mb-4">
+  <div class={`flex flex-col sm:flex-row sm:items-start sm:justify-between sm:gap-4 ${items.length > 0 ? "mb-4" : ""}`}>
     <div class="min-w-0">
       <h3 class="text-lg sm:text-xl font-semibold text-ink text-balance">
         {title}
@@ -25,14 +25,16 @@ const { title, organization, dateRange, items } = Astro.props;
     </span>
   </div>
 
-  <ul class="space-y-2">
-    {
-      items.map((item) => (
-        <li class="flex items-start">
-          <span class="inline-block w-1.5 h-1.5 rounded-full bg-dot mt-2 mr-3 shrink-0" />
-          <span class="text-sm sm:text-base text-body text-pretty">{item}</span>
-        </li>
-      ))
-    }
-  </ul>
+  {
+    items.length > 0 && (
+      <ul class="space-y-2">
+        {items.map((item) => (
+          <li class="flex items-start">
+            <span class="inline-block w-1.5 h-1.5 rounded-full bg-dot mt-2 mr-3 shrink-0" />
+            <span class="text-sm sm:text-base text-body text-pretty">{item}</span>
+          </li>
+        ))}
+      </ul>
+    )
+  }
 </div>

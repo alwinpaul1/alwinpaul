@@ -136,9 +136,15 @@ export const siteConfig = {
   ],
   experience: [
     {
+      company: "NexDash",
+      title: "Working Student – AI",
+      dateRange: "Jul 2026 – Present",
+      bullets: [],
+    },
+    {
       company: "Perinet GmbH · Cottbus, Germany",
       title: "Working Student – AI & Systems Engineer",
-      dateRange: "Jul 2024 – Present",
+      dateRange: "Jul 2024 – Jun 2026",
       bullets: [
         "Architected an end-to-end Graph RAG pipeline with Neo4j knowledge graphs, combining adaptive PDF chunking with entity-relationship modeling for context-aware document retrieval.",
         "Built a hybrid retrieval system integrating ChromaDB vector search, cross-encoder reranking, and semantic caching (0.85 similarity threshold) to reduce latency and retrieval noise.",

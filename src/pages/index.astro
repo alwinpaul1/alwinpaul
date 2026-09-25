@@ -37,7 +37,7 @@ const personSchema = {
     "@type": "EducationalOrganization",
     name: "Brandenburg Technical University Cottbus-Senftenberg",
   },
-  worksFor: { "@type": "Organization", name: "Perinet GmbH" },
+  worksFor: { "@type": "Organization", name: siteConfig.experience[0].company.split(" · ")[0] },
   sameAs: [
     siteConfig.social.linkedin,
     siteConfig.social.github,
