@@ -1,0 +1,46 @@
+---
+import { siteConfig } from "../config";
+const hasGithubStats =
+  siteConfig.githubStats && siteConfig.githubStats.length > 0;
+---
+
+{
+  hasGithubStats && (
+    <section id="github" class="p-8 sm:p-12 md:p-16 lg:p-24">
+      <div>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+          <div class="lg:col-span-4">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-ink">
+              GitHub
+            </h2>
+            <div class="w-[75px] h-[5px] mt-2 rounded-full bg-accent" />
+            {siteConfig.social.github && (
+              <a
+                href={siteConfig.social.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-block mt-6 text-base sm:text-lg text-accent hover:underline"
+              >
+                {siteConfig.social.github.replace("https://", "")}
+              </a>
+            )}
+          </div>
+
+          <div class="lg:col-span-8">
+            <div class="grid grid-cols-1 2xl:grid-cols-2 gap-6">
+              {siteConfig.githubStats.map((stat) => (
+                <img
+                  src={stat.src}
+                  alt={stat.alt}
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-auto rounded-lg border border-line-soft shadow-sm"
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

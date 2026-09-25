@@ -1,0 +1,37 @@
+---
+import { siteConfig } from "../config";
+import Icon, { type IconName } from "./Icon.astro";
+
+interface Props {
+  iconClass: string;
+}
+
+const { iconClass } = Astro.props;
+const { social, resume } = siteConfig;
+
+const links: { href?: string; label: string; icon: IconName; external: boolean }[] = [
+  { href: social.email && `mailto:${social.email}`, label: "Email", icon: "mail", external: false },
+  { href: social.linkedin, label: "LinkedIn", icon: "linkedin", external: true },
+  { href: social.github, label: "GitHub", icon: "github", external: true },
+  { href: social.twitter, label: "X (Twitter)", icon: "x", external: true },
+  { href: social.facebook, label: "Facebook", icon: "facebook", external: true },
+  { href: social.instagram, label: "Instagram", icon: "instagram", external: true },
+  { href: resume, label: "Resume (PDF)", icon: "cv", external: true },
+];
+---
+
+{
+  links
+    .filter((link) => link.href)
+    .map((link) => (
+      <a
+        href={link.href}
+        aria-label={link.label}
+        title={link.label}
+        class="transition-colors duration-300 hover:text-accent"
+        {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      >
+        <Icon name={link.icon} class={iconClass} />
+      </a>
+    ))
+}

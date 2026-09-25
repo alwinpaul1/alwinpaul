@@ -1,0 +1,85 @@
+---
+import { siteConfig } from "../config";
+import Icon from "./Icon.astro";
+import { navLinks } from "../navigation";
+---
+
+<header
+  id="header"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+>
+  <nav class="relative max-w-7xl mx-auto px-8 py-4 min-h-14">
+    <ul class="hidden md:flex items-center gap-8 justify-center">
+      {
+        navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="text-ink-soft hover:text-ink transition-colors font-medium"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+      {
+        siteConfig.resume && (
+          <li>
+            <a
+              href={siteConfig.resume}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-accent hover:text-ink transition-colors font-medium"
+            >
+              Resume
+            </a>
+          </li>
+        )
+      }
+    </ul>
+    <button
+      id="theme-toggle"
+      type="button"
+      aria-label="Toggle dark mode"
+      aria-pressed="false"
+      class="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full text-ink-soft hover:text-ink hover:bg-chip transition-colors"
+    >
+      <Icon name="moon" class="h-5 w-5 dark:hidden" />
+      <Icon name="sun" class="h-5 w-5 hidden dark:block" />
+    </button>
+  </nav>
+</header>
+
+<script>
+  const header = document.getElementById("header");
+  const toggle = document.getElementById("theme-toggle");
+  const root = document.documentElement;
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 100) {
+      header?.classList.add("bg-canvas/80", "backdrop-blur-sm");
+    } else {
+      header?.classList.remove("bg-canvas/80", "backdrop-blur-sm");
+    }
+  });
+
+  const syncPressed = () =>
+    toggle?.setAttribute("aria-pressed", String(root.dataset.theme === "dark"));
+  syncPressed();
+
+  toggle?.addEventListener("click", () => {
+    const next = root.dataset.theme === "dark" ? "light" : "dark";
+    root.dataset.theme = next;
+    try {
+      localStorage.setItem("theme", next);
+    } catch {
+      // Storage can be blocked (private mode); the toggle still works for this visit
+    }
+    syncPressed();
+  });
+
+  new MutationObserver(syncPressed).observe(root, {
+    attributes: true,
+    attributeFilter: ["data-theme"],
+  });
+</script>

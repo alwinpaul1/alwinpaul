@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+/*
+ * Every surface and text colour comes from these tokens, never from a literal
+ * gray-* or white utility, so each one has a light and a dark value.
+ * The values mirror Tailwind's gray scale. --accent-light and --accent-dark
+ * are set on <html> from siteConfig.
+ */
+:root {
+  color-scheme: light;
+  --accent: var(--accent-light);
+  --canvas: oklch(100% 0 0); /* white */
+  --surface: oklch(98.5% 0.002 247.839); /* gray-50 */
+  --raised: oklch(100% 0 0); /* white */
+  --lift: oklch(100% 0 0); /* white */
+  --chip: oklch(96.7% 0.003 264.542); /* gray-100 */
+  --chip-hover: oklch(92.8% 0.006 264.531); /* gray-200 */
+  --ink: oklch(21% 0.034 264.665); /* gray-900 */
+  --ink-soft: oklch(37.3% 0.034 259.733); /* gray-700 */
+  --body: oklch(44.6% 0.03 256.802); /* gray-600 */
+  --faint: oklch(55.1% 0.027 264.364); /* gray-500 */
+  --dot: oklch(70.7% 0.022 261.325); /* gray-400 */
+  --line: oklch(92.8% 0.006 264.531); /* gray-200 */
+  --line-soft: oklch(96.7% 0.003 264.542); /* gray-100 */
+  --line-strong: oklch(87.2% 0.01 258.338); /* gray-300 */
+  --solid: oklch(21% 0.034 264.665); /* gray-900 */
+  --solid-hover: oklch(37.3% 0.034 259.733); /* gray-700 */
+  --solid-fg: oklch(100% 0 0); /* white */
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --accent: var(--accent-dark);
+  --canvas: oklch(13% 0.028 261.692); /* gray-950 */
+  --surface: oklch(21% 0.034 264.665); /* gray-900 */
+  --raised: oklch(21% 0.034 264.665); /* gray-900 */
+  --lift: oklch(27.8% 0.033 256.848); /* gray-800 */
+  --chip: oklch(27.8% 0.033 256.848); /* gray-800 */
+  --chip-hover: oklch(37.3% 0.034 259.733); /* gray-700 */
+  --ink: oklch(96.7% 0.003 264.542); /* gray-100 */
+  --ink-soft: oklch(87.2% 0.01 258.338); /* gray-300 */
+  --body: oklch(70.7% 0.022 261.325); /* gray-400 */
+  --faint: oklch(70.7% 0.022 261.325); /* gray-400 */
+  --dot: oklch(55.1% 0.027 264.364); /* gray-500 */
+  --line: oklch(27.8% 0.033 256.848); /* gray-800 */
+  --line-soft: oklch(27.8% 0.033 256.848); /* gray-800 */
+  --line-strong: oklch(37.3% 0.034 259.733); /* gray-700 */
+  --solid: oklch(92.8% 0.006 264.531); /* gray-200 */
+  --solid-hover: oklch(100% 0 0); /* white */
+  --solid-fg: oklch(21% 0.034 264.665); /* gray-900 */
+}
+
+@theme inline {
+  --color-accent: var(--accent);
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-raised: var(--raised);
+  --color-lift: var(--lift);
+  --color-chip: var(--chip);
+  --color-chip-hover: var(--chip-hover);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-body: var(--body);
+  --color-faint: var(--faint);
+  --color-dot: var(--dot);
+  --color-line: var(--line);
+  --color-line-soft: var(--line-soft);
+  --color-line-strong: var(--line-strong);
+  --color-solid: var(--solid);
+  --color-solid-hover: var(--solid-hover);
+  --color-solid-fg: var(--solid-fg);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "IBM Plex Mono", monospace;
+  background-color: var(--canvas);
+  color: var(--ink);
+}
