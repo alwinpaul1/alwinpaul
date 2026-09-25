@@ -140,10 +140,10 @@ export const siteConfig = {
       title: "Working Student – AI",
       dateRange: "Jul 2026 – Present",
       bullets: [
-        "Build AI features for an electric-truck fleet platform, including a YOLO computer-vision pipeline on AWS Lambda that flags vehicle damage in pre-trip inspection photos, and the rollout of the energy-consumption model behind battery and route planning.",
-        "Develop full-stack features across web and mobile (FastAPI, React, React Native): live fleet tracking with H3 map clustering, a drag-and-drop depot charging scheduler, and battery health monitoring.",
-        "Turn vehicle telematics and tachograph data into driver tools, including EU 561 driving-hours compliance with live break alerts in the driver app.",
-        "Ship usage analytics, automated tests, and CI/CD, and run multi-agent AI workflows for code review and security triage.",
+        "Develop AI and machine-learning features for an electric-truck fleet platform, from computer vision for vehicle inspections to energy-consumption models that feed battery and route planning.",
+        "Build and maintain features across the web app, the mobile driver app, and the backend (FastAPI, React, React Native).",
+        "Integrate vehicle telematics and fleet data into the platform, turning live signals into planning, tracking, and compliance tools.",
+        "Take features from requirements to release: design, implementation, code review, testing, and deployment, using AI-assisted development and review workflows.",
       ],
     },
     {
