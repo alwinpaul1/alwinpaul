@@ -14,6 +14,8 @@ import "../styles/global.css";
 
 const pageTitle = `${siteConfig.name} | ${siteConfig.title}`;
 const imageUrl = new URL(siteConfig.image, siteConfig.url).href;
+// Generated at build time by src/pages/og.png.ts
+const previewUrl = new URL("/og.png", siteConfig.url).href;
 
 const personSchema = {
   "@context": "https://schema.org",
@@ -117,14 +119,17 @@ const websiteSchema = {
     <meta property="og:site_name" content={siteConfig.name} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={siteConfig.description} />
-    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image" content={previewUrl} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={`${siteConfig.name}, ${siteConfig.title}`} />
     <meta property="og:locale" content="en_US" />
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@_alwinpaul_" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={siteConfig.description} />
-    <meta name="twitter:image" content={imageUrl} />
+    <meta name="twitter:image" content={previewUrl} />
 
     <meta name="google-site-verification" content="EKE7w4No1IPZE_tZ1NxO2ZVjJ_HD2ana0weOiQ9JoWs" />
     <meta name="msvalidate.01" content="BA1193CA5F5FA89A4BAD5A50B0D23EC8" />

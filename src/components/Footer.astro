@@ -8,7 +8,7 @@ const { contact, social } = siteConfig;
 ---
 
 <footer id="contact" class="bg-surface border-t border-line">
-  <div class="mx-auto max-w-6xl px-6 py-12 lg:px-8">
+  <div class="px-8 sm:px-12 md:px-16 lg:px-24 py-12">
     <div
       class="flex flex-col md:flex-row md:items-center md:justify-between gap-8"
     >
@@ -35,6 +35,18 @@ const { contact, social } = siteConfig;
                 <a href={`mailto:${social.email}`} class="hover:text-accent transition-colors">
                   {social.email}
                 </a>
+                <button
+                  id="copy-email"
+                  type="button"
+                  data-email={social.email}
+                  aria-label="Copy email address"
+                  title="Copy email address"
+                  class="-my-2 grid place-items-center size-9 rounded-full text-faint hover:text-ink hover:bg-chip active:scale-95 transition-[color,background-color,scale] duration-150 ease-out"
+                >
+                  <Icon name="copy" class="copy-icon col-start-1 row-start-1 size-4" />
+                  <Icon name="check" class="check-icon col-start-1 row-start-1 size-4 text-accent" />
+                </button>
+                <span id="copy-email-status" role="status" class="copy-status text-xs font-medium text-accent"></span>
               </li>
             )
           }
@@ -74,3 +86,89 @@ const { contact, social } = siteConfig;
     </div>
   </div>
 </footer>
+
+<script>
+  const copyButton = document.getElementById("copy-email");
+  const copyStatus = document.getElementById("copy-email-status");
+  let resetTimer: number | undefined;
+
+  copyButton?.addEventListener("click", async () => {
+    const email = copyButton.dataset.email ?? "";
+    let copied = false;
+    try {
+      await navigator.clipboard.writeText(email);
+      copied = true;
+    } catch {
+      // Clipboard blocked: select the address so it can be copied by hand
+      const link = copyButton.previousElementSibling;
+      const selection = window.getSelection();
+      if (link && selection) {
+        const range = document.createRange();
+        range.selectNodeContents(link);
+        selection.removeAllRanges();
+        selection.addRange(range);
+      }
+    }
+
+    copyButton.toggleAttribute("data-copied", copied);
+    if (copyStatus) {
+      copyStatus.textContent = copied ? "Copied" : "Selected, press ⌘C or Ctrl+C";
+      copyStatus.setAttribute("data-visible", "");
+    }
+
+    window.clearTimeout(resetTimer);
+    resetTimer = window.setTimeout(() => {
+      copyButton.removeAttribute("data-copied");
+      copyStatus?.removeAttribute("data-visible");
+      // Clear after the fade so the next copy is announced again
+      window.setTimeout(() => {
+        if (copyStatus && !copyStatus.hasAttribute("data-visible")) copyStatus.textContent = "";
+      }, 200);
+    }, 2000);
+  });
+</script>
+
+<style>
+  /* Copy icon crossfades to a check, like the theme toggle's icons */
+  #copy-email :global(svg) {
+    transition:
+      opacity 200ms var(--ease-out),
+      transform 200ms var(--ease-out),
+      filter 200ms var(--ease-out);
+  }
+
+  #copy-email :global(.check-icon),
+  #copy-email[data-copied] :global(.copy-icon) {
+    opacity: 0;
+    transform: scale(0.6);
+    filter: blur(2px);
+  }
+
+  #copy-email[data-copied] :global(.check-icon) {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  .copy-status {
+    opacity: 0;
+    transform: translateX(-4px);
+    transition:
+      opacity 150ms ease,
+      transform 200ms var(--ease-out);
+  }
+
+  .copy-status[data-visible] {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #copy-email :global(svg),
+    .copy-status {
+      transform: none;
+      filter: none;
+      transition: opacity 150ms ease;
+    }
+  }
+</style>

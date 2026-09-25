@@ -108,6 +108,18 @@ button {
   outline-offset: 3px;
 }
 
+/* Surfaces the browser draws itself also follow the palette, in both themes */
+:root {
+  accent-color: var(--accent);
+  caret-color: var(--accent);
+  scrollbar-color: var(--line-strong) transparent;
+}
+
+::selection {
+  background-color: color-mix(in srgb, var(--accent) 22%, transparent);
+  color: var(--ink);
+}
+
 /* The theme switch animates its own clip-path reveal (see Header) */
 ::view-transition-old(root),
 ::view-transition-new(root) {
