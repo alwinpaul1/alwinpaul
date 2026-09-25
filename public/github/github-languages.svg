@@ -4,37 +4,37 @@
     </defs>
     <style>@keyframes animation-gauge{0%{stroke-dasharray:0 329}}@keyframes animation-rainbow{0%,to{color:#7f00ff;fill:#7f00ff}14%{color:#a933ff;fill:#a933ff}29%{color:#007fff;fill:#007fff}43%{color:#00ff7f;fill:#00ff7f}57%{color:#ff0;fill:#ff0}71%{color:#ff7f00;fill:#ff7f00}86%{color:red;fill:red}}svg{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:14px;color:#777}h1,h2,h3{margin:8px 0 2px;padding:0;color:#0366d6}h1{font-size:20px;font-weight:700}h2,h3{font-weight:400}h1 svg,h2 svg,h3 svg{fill:currentColor}h2{font-size:16px}h3{font-size:14px}section&gt;.field{margin-left:5px;margin-right:5px}.field{display:flex;align-items:center;margin-bottom:2px;white-space:nowrap}.field svg{margin:0 8px;fill:#959da5;flex-shrink:0}.row{display:flex;flex-wrap:wrap}.row section{flex:1 1 0}.column{display:flex;flex-direction:column;align-items:center}#metrics-end,.fill-width{width:100%}svg.bar{margin:4px 0}.field.language{margin:0 8px;flex-grow:0}.field.language.details,.field.language.details small{display:flex;justify-content:space-between}.field.language.details small{color:#666;text-align:right}.field.language.details small&gt;*,.field.language.details&gt;*{flex:1 1 0}.field.language.details small&gt;:not(:last-child){margin-right:6px}.label{background-color:#58a6ff30;color:#0366d6;padding:0 10px;font-weight:500;line-height:22px;margin:2px 5px;white-space:nowrap;border-radius:32px;font-size:12px}footer{margin-top:8px;font-size:10px;font-style:italic;color:#666;text-align:right;display:flex;flex-direction:column;justify-content:flex-end;padding:0 4px}code,span.code{background-color:#7777771f;padding:1px 5px;font-size:80%;border-radius:6px;color:#777;font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace}code{display:inline-block}span.code{margin:0 4px -3px}.blue{color:#58a6ff}:root{--color-calendar-graph-day-bg:#ebedf0;--color-calendar-graph-day-border:rgba(27,31,35,0.06);--color-calendar-graph-day-L1-bg:#9be9a8;--color-calendar-graph-day-L2-bg:#40c463;--color-calendar-graph-day-L3-bg:#30a14e;--color-calendar-graph-day-L4-bg:#216e39;--color-calendar-halloween-graph-day-L1-bg:#ffee4a;--color-calendar-halloween-graph-day-L2-bg:#ffc501;--color-calendar-halloween-graph-day-L3-bg:#fe9600;--color-calendar-halloween-graph-day-L4-bg:#03001c;--color-calendar-winter-graph-day-L1-bg:#0a3069;--color-calendar-winter-graph-day-L2-bg:#0969da;--color-calendar-winter-graph-day-L3-bg:#54aeff;--color-calendar-winter-graph-day-L4-bg:#b6e3ff;--color-calendar-graph-day-L4-border:rgba(27,31,35,0.06);--color-calendar-graph-day-L3-border:rgba(27,31,35,0.06);--color-calendar-graph-day-L2-border:rgba(27,31,35,0.06);--color-calendar-graph-day-L1-border:rgba(27,31,35,0.06)}</style>
     <style>svg {
-  background: #111827;
-  color: #9ca3af;
+ background: #111827;
+ color: #9ca3af;
 }
 h1, h2, h3 {
-  color: #60a5fa;
+ color: #60a5fa;
 }
 a, .blue {
-  color: #60a5fa;
+ color: #60a5fa;
 }
 .field svg {
-  fill: #60a5fa;
+ fill: #60a5fa;
 }
 .field.language.details small,
 footer {
-  color: #9ca3af;
+ color: #9ca3af;
 }
 .label {
-  background-color: rgba(96, 165, 250, 0.16);
-  color: #60a5fa;
+ background-color: rgba(96, 165, 250, 0.16);
+ color: #60a5fa;
 }
 code,
 span.code {
-  background-color: rgba(156, 163, 175, 0.12);
-  color: #f3f4f6;
+ background-color: rgba(156, 163, 175, 0.12);
+ color: #f3f4f6;
 }
 :root {
-  --color-calendar-graph-day-bg: #1f2937;
-  --color-calendar-graph-day-L1-bg: #1e3a8a;
-  --color-calendar-graph-day-L2-bg: #1d4ed8;
-  --color-calendar-graph-day-L3-bg: #3b82f6;
-  --color-calendar-graph-day-L4-bg: #93c5fd;
+ --color-calendar-graph-day-bg: #1f2937;
+ --color-calendar-graph-day-L1-bg: #1e3a8a;
+ --color-calendar-graph-day-L2-bg: #1d4ed8;
+ --color-calendar-graph-day-L3-bg: #3b82f6;
+ --color-calendar-graph-day-L4-bg: #93c5fd;
 }</style>
     <foreignObject x="0" y="0" width="100%" height="100%">
         <div xmlns="http://www.w3.org/1999/xhtml" xmlns:xlink="http://www.w3.org/1999/xlink" class="items-wrapper">
@@ -53,14 +53,14 @@ span.code {
                         <rect x="0" y="0" width="460" height="8" fill="white" rx="5"/>
                     </mask>
                     <rect mask="url(#languages-bar)" x="0" y="0" width="0" height="8" fill="#d1d5da"/>
-                    <rect mask="url(#languages-bar)" x="0" y="0" width="265.06775887647694" height="8" fill="#3178c6"/>
-                    <rect mask="url(#languages-bar)" x="265.06775887647694" y="0" width="104.72389250541228" height="8" fill="#3572A5"/>
-                    <rect mask="url(#languages-bar)" x="369.7916513818892" y="0" width="32.388934818349504" height="8" fill="#00B4AB"/>
-                    <rect mask="url(#languages-bar)" x="402.18058620023874" y="0" width="17.36671223305824" height="8" fill="#DA5B0B"/>
-                    <rect mask="url(#languages-bar)" x="419.547298433297" y="0" width="13.205637927458143" height="8" fill="#f1e05a"/>
-                    <rect mask="url(#languages-bar)" x="432.75293636075514" y="0" width="8.699397708933754" height="8" fill="#89e051"/>
-                    <rect mask="url(#languages-bar)" x="441.4523340696889" y="0" width="8.547888702607484" height="8" fill="#3D6117"/>
-                    <rect mask="url(#languages-bar)" x="450.00022277229635" y="0" width="9.999777227703644" height="8" fill="#ededed"/>
+                    <rect mask="url(#languages-bar)" x="0" y="0" width="265.0407195241455" height="8" fill="#3178c6"/>
+                    <rect mask="url(#languages-bar)" x="265.0407195241455" y="0" width="104.71195392984805" height="8" fill="#3572A5"/>
+                    <rect mask="url(#languages-bar)" x="369.75267345399357" y="0" width="32.38524246375379" height="8" fill="#00B4AB"/>
+                    <rect mask="url(#languages-bar)" x="402.13791591774736" y="0" width="17.364732419270418" height="8" fill="#DA5B0B"/>
+                    <rect mask="url(#languages-bar)" x="419.5026483370178" y="0" width="13.20413247820011" height="8" fill="#f1e05a"/>
+                    <rect mask="url(#languages-bar)" x="432.7067808152179" y="0" width="8.698405973290372" height="8" fill="#89e051"/>
+                    <rect mask="url(#languages-bar)" x="441.4051867885083" y="0" width="8.546914239065792" height="8" fill="#3D6117"/>
+                    <rect mask="url(#languages-bar)" x="449.95210102757403" y="0" width="10.047898972425942" height="8" fill="#ededed"/>
                 </svg>
                 <div class="row fill-width">
                     <section>
@@ -118,7 +118,7 @@ span.code {
                                 Python
                             </div>
                             <small>
-                                <div>22.77%</div>
+                                <div>22.76%</div>
                             </small>
                         </div>
                         <div class="field language details">
@@ -129,7 +129,7 @@ span.code {
                                 Jupyter Notebook
                             </div>
                             <small>
-                                <div>3.78%</div>
+                                <div>3.77%</div>
                             </small>
                         </div>
                         <div class="field language details">
@@ -151,7 +151,7 @@ span.code {
                                 Other
                             </div>
                             <small>
-                                <div>2.17%</div>
+                                <div>2.18%</div>
                             </small>
                         </div>
                     </section>
