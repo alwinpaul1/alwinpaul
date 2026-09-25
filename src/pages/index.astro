@@ -8,6 +8,7 @@ import Experience from "../components/Experience.astro";
 import Education from "../components/Education.astro";
 import GithubStats from "../components/GithubStats.astro";
 import Footer from "../components/Footer.astro";
+import { Font } from "astro:assets";
 import { siteConfig } from "../config";
 import "../styles/global.css";
 
@@ -72,9 +73,11 @@ const websiteSchema = {
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
     <!-- Resolve the theme before first paint: saved choice, else the OS setting -->
+    <meta name="theme-color" content="#ffffff" />
     <script is:inline>
       (() => {
         const root = document.documentElement;
+        const themeColor = document.querySelector('meta[name="theme-color"]');
         const media = window.matchMedia("(prefers-color-scheme: dark)");
         const saved = () => {
           try {
@@ -86,24 +89,28 @@ const websiteSchema = {
         const apply = () => {
           root.dataset.theme = saved() ?? (media.matches ? "dark" : "light");
         };
+        // Browser chrome follows the page, including after the header toggle
+        const syncThemeColor = () =>
+          themeColor?.setAttribute(
+            "content",
+            root.dataset.theme === "dark" ? "#030712" : "#ffffff",
+          );
         apply();
+        syncThemeColor();
+        new MutationObserver(syncThemeColor).observe(root, {
+          attributes: true,
+          attributeFilter: ["data-theme"],
+        });
         media.addEventListener("change", () => {
           if (!saved()) apply();
         });
       })();
     </script>
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#030712" media="(prefers-color-scheme: dark)" />
 
     <link rel="icon" type="image/jpeg" href="/favicon.jpg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
-      rel="stylesheet"
-    />
+    <Font cssVariable="--font-plex-mono" preload={[{ weight: "400" }, { weight: "700" }]} />
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content={`${siteConfig.url}/`} />
@@ -125,20 +132,10 @@ const websiteSchema = {
     <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
 
-    <!-- Google Analytics -->
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-L0ZB5ZEZMT"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-L0ZB5ZEZMT");
-    </script>
   </head>
   <body>
     <Header />
-    <main>
+    <main id="main">
       <Hero />
       <About />
       <Skills />
@@ -157,6 +154,25 @@ const websiteSchema = {
           .then((registrations) => registrations.forEach((r) => r.unregister()));
         caches.keys().then((names) => names.forEach((name) => caches.delete(name)));
       }
+    </script>
+    <!-- Google Analytics, loaded once the page is idle so it never competes with first paint -->
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-L0ZB5ZEZMT");
+      window.addEventListener("load", () => {
+        const loadAnalytics = () => {
+          const script = document.createElement("script");
+          script.async = true;
+          script.src = "https://www.googletagmanager.com/gtag/js?id=G-L0ZB5ZEZMT";
+          document.head.append(script);
+        };
+        if ("requestIdleCallback" in window) requestIdleCallback(loadAnalytics);
+        else setTimeout(loadAnalytics, 1);
+      });
     </script>
   </body>
 </html>

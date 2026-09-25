@@ -71,14 +71,63 @@
   --color-solid: var(--solid);
   --color-solid-hover: var(--solid-hover);
   --color-solid-fg: var(--solid-fg);
+  --font-sans: var(--font-plex-mono);
+  --font-mono: var(--font-plex-mono);
+}
+
+@theme {
+  /* Stronger than the CSS keyword: moves immediately, settles gently */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 html {
-  scroll-behavior: smooth;
+  /* Keeps anchor targets and focused elements clear of the fixed header */
+  scroll-padding-top: 5rem;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
-  font-family: "IBM Plex Mono", monospace;
+  font-family: var(--font-plex-mono);
   background-color: var(--canvas);
   color: var(--ink);
+}
+
+a,
+button {
+  touch-action: manipulation;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/*
+ * Scroll reveal: cards fade and rise as they enter the viewport. Driven by the
+ * scroll position itself, so it costs no JavaScript and reverses naturally.
+ * Browsers without scroll timelines, and visitors who reduce motion, get the
+ * content in place with no animation.
+ */
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal both var(--ease-out);
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+  }
 }

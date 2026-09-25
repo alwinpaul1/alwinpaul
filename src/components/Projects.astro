@@ -1,46 +1,32 @@
 ---
 import { siteConfig } from "../config";
 import ProjectCard from "./ProjectCard.astro";
+import Section from "./Section.astro";
 
-const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
-const hasAchievements =
-  siteConfig.achievements && siteConfig.achievements.length > 0;
+const { projects, achievements } = siteConfig;
 ---
 
 {
-  (hasProjects || hasAchievements) && (
-    <section id="projects" class="p-8 sm:p-12 md:p-16 lg:p-24">
-      <div>
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-          <div class="lg:col-span-4">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-ink">
-              Projects
-            </h2>
-            <div class="w-[75px] h-[5px] mt-2 rounded-full bg-accent" />
+  (projects.length > 0 || achievements.length > 0) && (
+    <Section id="projects" title="Projects">
+      <div class="space-y-16">
+        {projects.length > 0 && (
+          <div class="space-y-8">
+            {projects.map((project, index) => (
+              <ProjectCard project={project} index={index} />
+            ))}
           </div>
+        )}
 
-          <div class="lg:col-span-8 space-y-16">
-            {hasProjects && (
-              <div class="space-y-8">
-                {siteConfig.projects.map((project, index) => (
-                  <ProjectCard project={project} index={index} />
-                ))}
-              </div>
-            )}
-
-            {hasAchievements && (
-              <div id="achievements" class="scroll-mt-24 space-y-8">
-                <h3 class="text-2xl sm:text-3xl font-bold text-ink">
-                  Achievements
-                </h3>
-                {siteConfig.achievements.map((achievement, index) => (
-                  <ProjectCard project={achievement} index={index} />
-                ))}
-              </div>
-            )}
+        {achievements.length > 0 && (
+          <div id="achievements" class="space-y-8">
+            <h3 class="text-2xl sm:text-3xl font-bold text-ink">Achievements</h3>
+            {achievements.map((achievement, index) => (
+              <ProjectCard project={achievement} index={index} headingTag="h4" />
+            ))}
           </div>
-        </div>
+        )}
       </div>
-    </section>
+    </Section>
   )
 }

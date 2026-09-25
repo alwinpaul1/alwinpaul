@@ -13,9 +13,9 @@ const { contact, social } = siteConfig;
       class="flex flex-col md:flex-row md:items-center md:justify-between gap-8"
     >
       <div class="flex flex-col gap-4">
-        <h3 class="text-2xl font-bold text-ink">
+        <p class="text-2xl font-bold text-ink" translate="no">
           {siteConfig.name}
-        </h3>
+        </p>
         <p class="text-base text-body">
           {siteConfig.title}
         </p>
@@ -55,7 +55,7 @@ const { contact, social } = siteConfig;
       </div>
 
       <div class="flex flex-col md:items-end gap-4">
-        <nav class="hidden md:flex gap-x-8">
+        <nav aria-label="Footer" class="hidden md:flex gap-x-8">
           {
             navLinks.map((link) => (
               <a

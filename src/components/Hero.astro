@@ -127,25 +127,25 @@ import SocialLinks from "./SocialLinks.astro";
   </svg>
   <div class="h-full mx-auto p-8 sm:p-12 md:p-24 flex items-center">
     <div>
-      <h2
+      <p
         class="text-pretty text-xl sm:text-2xl md:text-5xl font-bold tracking-tight text-ink-soft animate-fade-in"
       >
-        Hello! 👋
-      </h2>
+        Hello! <span aria-hidden="true">👋</span>
+      </p>
       <h1
-        class="mt-6 sm:mt-8 md:mt-10 text-pretty text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold tracking-tight text-ink animate-fade-in animation-delay-200"
+        class="mt-6 sm:mt-8 md:mt-10 text-balance text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold tracking-tight text-ink animate-fade-in animation-delay-1"
       >
-        I'm <span class="text-accent">{siteConfig.name}</span>
+        I’m <span class="text-accent" translate="no">{siteConfig.name}</span>
       </h1>
       <p
-        class="mt-4 sm:mt-6 md:mt-8 text-pretty text-base sm:text-lg md:text-xl/8 font-medium text-body animate-fade-in animation-delay-400"
+        class="mt-4 sm:mt-6 md:mt-8 text-pretty text-base sm:text-lg md:text-xl/8 font-medium text-body animate-fade-in animation-delay-2"
       >
         {siteConfig.title}
       </p>
     </div>
   </div>
   <div
-    class="absolute bottom-0 left-0 right-0 p-8 sm:p-12 md:p-24 flex flex-wrap gap-x-4 sm:gap-x-6 md:gap-x-8 gap-y-4 text-ink-soft animate-fade-in animation-delay-600"
+    class="absolute bottom-0 left-0 right-0 p-8 sm:p-12 md:p-24 flex flex-wrap gap-x-4 sm:gap-x-6 md:gap-x-8 gap-y-4 text-ink-soft animate-fade-in animation-delay-3"
   >
     <SocialLinks iconClass="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />
   </div>
@@ -164,38 +164,45 @@ import SocialLinks from "./SocialLinks.astro";
     );
   }
 
+  /*
+   * Entrance: each line fades and rises into place with a slight blur-in,
+   * staggered 80ms apart. Plays once per visit, so it can afford some delight.
+   */
   @keyframes fadeIn {
     from {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(12px);
+      filter: blur(4px);
     }
-    to {
-      opacity: 1;
-      transform: translateY(0);
+  }
+
+  @keyframes fadeOnly {
+    from {
+      opacity: 0;
     }
   }
 
   .animate-fade-in {
-    animation: fadeIn 0.8s ease-out forwards;
-    opacity: 0;
+    animation: fadeIn 600ms var(--ease-out) both;
   }
 
-  .animation-delay-200 {
-    animation-delay: 0.2s;
+  .animation-delay-1 {
+    animation-delay: 80ms;
   }
 
-  .animation-delay-400 {
-    animation-delay: 0.4s;
+  .animation-delay-2 {
+    animation-delay: 160ms;
   }
 
-  .animation-delay-600 {
-    animation-delay: 0.6s;
+  .animation-delay-3 {
+    animation-delay: 240ms;
   }
 
+  /* Reduced motion keeps the fade but drops the movement and blur */
   @media (prefers-reduced-motion: reduce) {
     .animate-fade-in {
-      animation: none;
-      opacity: 1;
+      animation-name: fadeOnly;
+      animation-duration: 200ms;
     }
   }
 </style>

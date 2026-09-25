@@ -6,9 +6,15 @@ import { navLinks } from "../navigation";
 
 <header
   id="header"
-  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+  class="fixed top-0 left-0 right-0 z-50 transition-[background-color,backdrop-filter] duration-200 data-scrolled:bg-canvas/80 data-scrolled:backdrop-blur-sm"
 >
-  <nav class="relative max-w-7xl mx-auto px-8 py-4 min-h-14">
+  <nav aria-label="Main" class="relative max-w-7xl mx-auto px-8 py-4 min-h-14">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-1/2 focus:-translate-y-1/2 focus:px-3 focus:py-2 focus:rounded-md focus:bg-canvas focus:text-ink focus:shadow-md"
+    >
+      Skip to content
+    </a>
     <ul class="hidden md:flex items-center gap-8 justify-center">
       {
         navLinks.map((link) => (
@@ -42,10 +48,10 @@ import { navLinks } from "../navigation";
       type="button"
       aria-label="Toggle dark mode"
       aria-pressed="false"
-      class="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full text-ink-soft hover:text-ink hover:bg-chip transition-colors"
+      class="absolute right-4 top-1/2 -translate-y-1/2 grid place-items-center size-9 rounded-full text-ink-soft hover:text-ink hover:bg-chip active:scale-95 transition-[color,background-color,scale] duration-150 ease-out"
     >
-      <Icon name="moon" class="h-5 w-5 dark:hidden" />
-      <Icon name="sun" class="h-5 w-5 hidden dark:block" />
+      <Icon name="moon" class="theme-icon theme-icon-moon col-start-1 row-start-1 size-5" />
+      <Icon name="sun" class="theme-icon theme-icon-sun col-start-1 row-start-1 size-5" />
     </button>
   </nav>
 </header>
@@ -55,13 +61,16 @@ import { navLinks } from "../navigation";
   const toggle = document.getElementById("theme-toggle");
   const root = document.documentElement;
 
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 100) {
-      header?.classList.add("bg-canvas/80", "backdrop-blur-sm");
-    } else {
-      header?.classList.remove("bg-canvas/80", "backdrop-blur-sm");
-    }
-  });
+  // Only touch the DOM when the state flips, not on every scroll event
+  let scrolled: boolean | undefined;
+  const syncScrolled = () => {
+    const next = window.scrollY > 100;
+    if (next === scrolled) return;
+    scrolled = next;
+    header?.toggleAttribute("data-scrolled", next);
+  };
+  syncScrolled();
+  window.addEventListener("scroll", syncScrolled, { passive: true });
 
   const syncPressed = () =>
     toggle?.setAttribute("aria-pressed", String(root.dataset.theme === "dark"));
@@ -75,7 +84,6 @@ import { navLinks } from "../navigation";
     } catch {
       // Storage can be blocked (private mode); the toggle still works for this visit
     }
-    syncPressed();
   });
 
   new MutationObserver(syncPressed).observe(root, {
@@ -83,3 +91,35 @@ import { navLinks } from "../navigation";
     attributeFilter: ["data-theme"],
   });
 </script>
+
+<style>
+  /*
+   * Sun and moon share one grid cell and crossfade; the blur hides the overlap.
+   * The icons render inside <Icon>, so reach them through the scoped button.
+   */
+  #theme-toggle :global(.theme-icon) {
+    transition:
+      opacity 200ms var(--ease-out),
+      transform 200ms var(--ease-out),
+      filter 200ms var(--ease-out);
+  }
+
+  #theme-toggle :global(.theme-icon-sun),
+  :global([data-theme="dark"]) #theme-toggle :global(.theme-icon-moon) {
+    opacity: 0;
+    transform: scale(0.6) rotate(-45deg);
+    filter: blur(2px);
+  }
+
+  :global([data-theme="dark"]) #theme-toggle :global(.theme-icon-sun) {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #theme-toggle :global(.theme-icon) {
+      transition: opacity 150ms ease;
+    }
+  }
+</style>

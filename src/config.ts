@@ -166,7 +166,7 @@ export const siteConfig = {
     },
   ],
   githubStats: [
-    { src: "/github/github-metrics.svg", alt: "Alwin Paul's GitHub stats" },
-    { src: "/github/github-languages.svg", alt: "Alwin Paul's most used languages" },
+    { src: "/github/github-metrics.svg", alt: "Alwin Paul's GitHub stats", width: 480, height: 223 },
+    { src: "/github/github-languages.svg", alt: "Alwin Paul's most used languages", width: 480, height: 166 },
   ],
 };

@@ -1,0 +1,38 @@
+---
+// One role or degree: title, organisation, date range, and bullet points
+interface Props {
+  title: string;
+  organization: string;
+  dateRange: string;
+  items: string[];
+}
+
+const { title, organization, dateRange, items } = Astro.props;
+---
+
+<div class="bg-raised rounded-lg shadow-sm border border-line-soft p-4 sm:p-5 md:p-6 hover:shadow-md transition-shadow duration-200">
+  <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between sm:gap-4 mb-4">
+    <div class="min-w-0">
+      <h3 class="text-lg sm:text-xl font-semibold text-ink text-balance">
+        {title}
+      </h3>
+      <p class="text-base sm:text-lg text-accent">
+        {organization}
+      </p>
+    </div>
+    <span class="text-xs sm:text-sm text-faint whitespace-nowrap tabular-nums mt-2 sm:mt-1">
+      {dateRange}
+    </span>
+  </div>
+
+  <ul class="space-y-2">
+    {
+      items.map((item) => (
+        <li class="flex items-start">
+          <span class="inline-block w-1.5 h-1.5 rounded-full bg-dot mt-2 mr-3 shrink-0" />
+          <span class="text-sm sm:text-base text-body text-pretty">{item}</span>
+        </li>
+      ))
+    }
+  </ul>
+</div>
