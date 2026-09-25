@@ -1,0 +1,45 @@
+---
+import StreamText from "../components/StreamText.astro";
+import Base from "../layouts/Base.astro";
+import { siteConfig } from "../config";
+---
+
+<Base
+  title={`Page not found | ${siteConfig.name}`}
+  description="This page does not exist."
+  noindex
+>
+  <main id="main" class="relative isolate min-h-svh flex items-center px-8 sm:px-12 md:px-16 lg:px-24 py-24 overflow-hidden">
+    <div class="glow absolute inset-0 -z-10" aria-hidden="true"></div>
+    <div>
+      <h1 class="text-7xl sm:text-8xl font-bold tracking-tight text-accent tabular-nums">
+        <span aria-hidden="true">404</span>
+        <span class="sr-only">Page not found</span>
+      </h1>
+      <!-- A retrieval joke, streamed like a model's reply -->
+      <p class="mt-6 sm:mt-8 text-2xl sm:text-3xl md:text-4xl font-bold text-ink text-balance max-w-[30ch]">
+        <StreamText text="No relevant documents retrieved." start={300} />
+      </p>
+      <p class="mt-6 text-base sm:text-lg text-body text-pretty max-w-[48ch]">
+        This page doesn’t exist, or it has moved. Everything else is on the homepage.
+      </p>
+      <a
+        href="/"
+        class="mt-10 inline-flex items-center rounded-full border border-accent px-6 py-3 font-semibold text-accent hover:bg-accent hover:text-canvas active:scale-[0.97] transition-[color,background-color,scale] duration-150 ease-out"
+      >
+        Back to the homepage
+      </a>
+    </div>
+  </main>
+</Base>
+
+<style>
+  .glow {
+    background: radial-gradient(
+      ellipse 800px 1000px at 0% 0%,
+      color-mix(in srgb, var(--accent) 22%, transparent) 0%,
+      color-mix(in srgb, var(--accent) 8%, transparent) 40%,
+      transparent 75%
+    );
+  }
+</style>

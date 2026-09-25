@@ -1,27 +1,15 @@
 ---
 import { siteConfig } from "../config";
+import { streamTokens } from "../lib/stream";
 import SocialLinks from "./SocialLinks.astro";
+import StreamText from "./StreamText.astro";
 
-// Split the title the way a subword tokenizer would: leading spaces stay on
-// the word, punctuation is its own token, and long words break in two
-const TOKEN_PATTERN = /\s*[\p{L}\p{N}]+|\s*[^\s\p{L}\p{N}]/gu;
-const pieces = (siteConfig.title.match(TOKEN_PATTERN) ?? []).flatMap((piece) => {
-  const word = piece.trimStart();
-  if (word.length < 8) return [piece];
-  const cut = piece.length - Math.floor(word.length * 0.45);
-  return [piece.slice(0, cut), piece.slice(cut)];
-});
-
-// Real streams arrive in uneven bursts, so the gaps between tokens vary
-const STREAM_START = 420; // ms, once the name has landed
-const GAPS = [48, 36, 70, 42, 55, 38, 92, 44, 51, 35, 66, 40, 58, 47, 83, 39];
-let clock = STREAM_START;
-const tokens = pieces.map((text, i) => {
-  const start = clock;
-  clock += GAPS[i % GAPS.length];
-  return { text, start, end: clock };
-});
-const streamEnd = clock;
+// The title starts streaming once the name has landed; the role line and
+// social links arrive as it finishes
+const STREAM_START = 420;
+const { end: streamEnd } = streamTokens(siteConfig.title, STREAM_START);
+const current = siteConfig.experience[0];
+const currentCompany = current?.company.split(" · ")[0];
 ---
 
 <div
@@ -162,20 +150,21 @@ const streamEnd = clock;
       <p
         class="mt-4 sm:mt-6 md:mt-8 max-w-[60ch] text-pretty text-[clamp(1rem,4.5vw,1.125rem)] sm:text-lg md:text-xl/8 font-medium text-body"
       >
-        <span class="sr-only">{siteConfig.title}</span>
-        <span aria-hidden="true">
-          {
-            tokens.map((token, i) => (
-              <span
-                class:list={["token", { "token-last": i === tokens.length - 1 }]}
-                style={`--start: ${token.start}ms; --end: ${token.end}ms`}
-              >
-                {token.text}
-              </span>
-            ))
-          }
-        </span>
+        <StreamText text={siteConfig.title} start={STREAM_START} />
       </p>
+      {
+        current && (
+          <p
+            class="mt-3 sm:mt-4 flex items-center gap-2.5 text-sm sm:text-base text-faint animate-fade-in"
+            style={`animation-delay: ${streamEnd}ms`}
+          >
+            <span class="size-2 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+            <span>
+              {current.title} at <span translate="no">{currentCompany}</span>
+            </span>
+          </p>
+        )
+      }
     </div>
   </div>
   <div
@@ -225,69 +214,11 @@ const streamEnd = clock;
     animation-delay: 80ms;
   }
 
-  /*
-   * The title streams in token by token, like a model's response. Each token
-   * sharpens out of a blur, and the caret rides on the newest token, then
-   * blinks a few times at the end before going away.
-   */
-  .token {
-    position: relative;
-    animation: tokenIn 280ms var(--ease-out) var(--start) both;
-  }
-
-  .token::after {
-    content: "";
-    position: absolute;
-    left: calc(100% + 0.1em);
-    top: 50%;
-    width: 0.55em;
-    height: 1.15em;
-    translate: 0 -50%;
-    background: var(--accent);
-    opacity: 0;
-    animation: caretOn calc(var(--end) - var(--start)) var(--start);
-  }
-
-  .token-last::after {
-    animation: caretBlink 530ms step-end var(--start) 3;
-  }
-
-  @keyframes tokenIn {
-    from {
-      opacity: 0;
-      filter: blur(3px);
-    }
-  }
-
-  @keyframes caretOn {
-    from,
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes caretBlink {
-    0% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0;
-    }
-  }
-
-  /* Reduced motion keeps the fades but drops movement, blur, and the caret */
+  /* Reduced motion keeps the fades but drops movement and blur */
   @media (prefers-reduced-motion: reduce) {
     .animate-fade-in {
       animation-name: fadeOnly;
       animation-duration: 200ms;
-    }
-
-    .token {
-      animation-name: fadeOnly;
-    }
-
-    .token::after {
-      display: none;
     }
   }
 </style>

@@ -1,0 +1,95 @@
+---
+import { streamTokens } from "../lib/stream";
+
+interface Props {
+  text: string;
+  // When the first token appears, in ms after page load
+  start: number;
+}
+
+const { text, start } = Astro.props;
+const { tokens } = streamTokens(text, start);
+---
+
+<span class="sr-only">{text}</span>
+<span aria-hidden="true">
+  {
+    tokens.map((token, i) => (
+      <span
+        class:list={["token", { "token-last": i === tokens.length - 1 }]}
+        style={`--start: ${token.start}ms; --end: ${token.end}ms`}
+      >
+        {token.text}
+      </span>
+    ))
+  }
+</span>
+
+<style>
+  /*
+   * Text streams in token by token, like a model's response. Each token
+   * sharpens out of a blur, and the caret rides on the newest token, then
+   * blinks a few times at the end before going away.
+   */
+  .token {
+    position: relative;
+    animation: tokenIn 280ms var(--ease-out) var(--start) both;
+  }
+
+  .token::after {
+    content: "";
+    position: absolute;
+    left: calc(100% + 0.1em);
+    top: 50%;
+    width: 0.55em;
+    height: 1.15em;
+    translate: 0 -50%;
+    background: var(--accent);
+    opacity: 0;
+    animation: caretOn calc(var(--end) - var(--start)) var(--start);
+  }
+
+  .token-last::after {
+    animation: caretBlink 530ms step-end var(--start) 3;
+  }
+
+  @keyframes tokenIn {
+    from {
+      opacity: 0;
+      filter: blur(3px);
+    }
+  }
+
+  @keyframes caretOn {
+    from,
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes caretBlink {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes fadeOnly {
+    from {
+      opacity: 0;
+    }
+  }
+
+  /* Reduced motion: a plain fade, no blur and no caret */
+  @media (prefers-reduced-motion: reduce) {
+    .token {
+      animation-name: fadeOnly;
+    }
+
+    .token::after {
+      display: none;
+    }
+  }
+</style>
