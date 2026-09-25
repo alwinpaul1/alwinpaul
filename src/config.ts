@@ -25,15 +25,18 @@ export const siteConfig = {
     "AI Engineer specializing in LLM systems, RAG pipelines, and intelligent information retrieval. Experienced in LangChain orchestration, prompt optimization, and vector database architecture. Passionate about building production-grade AI systems with measurable performance and real-world impact. Open to AI Engineer roles in Germany, remote friendly across EU time zones.",
   skills: [
     {
-      category: "LLM Development",
+      category: "LLM Engineering",
       items: [
         "LangChain",
         "Prompt Engineering",
         "RAG Design",
         "Chunk Optimization",
-        "Context Evaluation",
         "LLM Monitoring",
       ],
+    },
+    {
+      category: "LLM Evaluation",
+      items: ["RAGAS", "Context Evaluation", "Synthetic Data Generation"],
     },
     {
       category: "AI Frameworks",
@@ -48,14 +51,16 @@ export const siteConfig = {
       ],
     },
     {
-      category: "Vector & Graph Databases",
+      category: "Vector & Graph DBs",
+      items: ["ChromaDB", "Pinecone", "Neo4j", "FAISS"],
+    },
+    {
+      category: "Machine Learning",
       items: [
-        "ChromaDB",
-        "Pinecone",
-        "Neo4j",
-        "FAISS",
-        "RAGAS",
-        "Synthetic Data Generation",
+        "Supervised Learning",
+        "Reinforcement Learning",
+        "Model Fine-tuning",
+        "Explainable AI",
       ],
     },
     {
@@ -71,15 +76,6 @@ export const siteConfig = {
         "NumPy",
         "Scikit-learn",
         "Matplotlib",
-      ],
-    },
-    {
-      category: "Machine Learning",
-      items: [
-        "Supervised Learning",
-        "Reinforcement Learning",
-        "Model Fine-tuning",
-        "Explainable AI",
       ],
     },
     {

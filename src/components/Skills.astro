@@ -1,0 +1,48 @@
+---
+import { siteConfig } from "../config";
+const hasSkills = siteConfig.skills && siteConfig.skills.length > 0;
+
+// "German (A2, improving)" renders the part in brackets as a quieter note
+const splitNote = (item: string) => {
+  const match = item.match(/^(.*?)\s*\((.+)\)$/);
+  return match ? { name: match[1], note: match[2] } : { name: item, note: "" };
+};
+---
+
+{
+  hasSkills && (
+    <section id="skills" class="p-8 sm:p-12 md:p-16 lg:p-24">
+      <div>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+          <div class="lg:col-span-4">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-ink">
+              Skills
+            </h2>
+            <div class="w-[75px] h-[5px] mt-2 rounded-full bg-accent" />
+          </div>
+
+          <dl class="lg:col-span-8 divide-y divide-line border-y border-line">
+            {siteConfig.skills.map((group) => (
+              <div class="grid grid-cols-1 sm:grid-cols-[12rem_1fr] gap-3 sm:gap-8 py-5 sm:py-6">
+                <dt class="text-sm font-semibold text-ink sm:pt-1">
+                  {group.category}
+                </dt>
+                <dd class="flex flex-wrap gap-2">
+                  {group.items.map((item) => {
+                    const { name, note } = splitNote(item);
+                    return (
+                      <span class="px-2.5 py-1 rounded-md border border-line text-sm text-ink-soft">
+                        {name}
+                        {note && <span class="text-faint"> · {note}</span>}
+                      </span>
+                    );
+                  })}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+    </section>
+  )
+}
