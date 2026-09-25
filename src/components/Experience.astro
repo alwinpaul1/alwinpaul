@@ -4,6 +4,8 @@ import EntryCard from "./EntryCard.astro";
 import Section from "./Section.astro";
 
 const { experience } = siteConfig;
+// A timeline needs at least two stops; a lone dot above one card reads as noise
+const showTimeline = experience.length > 1;
 ---
 
 {
@@ -11,12 +13,12 @@ const { experience } = siteConfig;
     <Section id="experience" title="Experience">
       <div class="relative">
         {experience.map((exp, index) => (
-          <div class="reveal relative mb-12 last:mb-0">
-            {/* Timeline dot at top of card */}
-            <div class="absolute left-1/2 -top-2 w-4 h-4 bg-accent rounded-full -translate-x-1/2 z-20" />
+          <div class="relative mb-12 last:mb-0">
+            {showTimeline && (
+              <div class="absolute left-1/2 -top-2 w-4 h-4 bg-accent rounded-full -translate-x-1/2 z-20" />
+            )}
 
-            {/* Connecting line below card */}
-            {index < experience.length - 1 && (
+            {showTimeline && index < experience.length - 1 && (
               <div class="absolute left-1/2 bottom-0 w-0.5 h-12 bg-line-strong -translate-x-1/2 translate-y-full z-10" />
             )}
 

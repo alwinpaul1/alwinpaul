@@ -1,6 +1,27 @@
 ---
 import { siteConfig } from "../config";
 import SocialLinks from "./SocialLinks.astro";
+
+// Split the tagline the way a subword tokenizer would: leading spaces stay on
+// the word, punctuation is its own token, and long words break in two
+const TOKEN_PATTERN = /\s*[\p{L}\p{N}]+|\s*[^\s\p{L}\p{N}]/gu;
+const pieces = (siteConfig.tagline.match(TOKEN_PATTERN) ?? []).flatMap((piece) => {
+  const word = piece.trimStart();
+  if (word.length < 8) return [piece];
+  const cut = piece.length - Math.floor(word.length * 0.45);
+  return [piece.slice(0, cut), piece.slice(cut)];
+});
+
+// Real streams arrive in uneven bursts, so the gaps between tokens vary
+const STREAM_START = 420; // ms, once the name has landed
+const GAPS = [48, 36, 70, 42, 55, 38, 92, 44, 51, 35, 66, 40, 58, 47, 83, 39];
+let clock = STREAM_START;
+const tokens = pieces.map((text, i) => {
+  const start = clock;
+  clock += GAPS[i % GAPS.length];
+  return { text, start, end: clock };
+});
+const streamEnd = clock;
 ---
 
 <div
@@ -138,14 +159,27 @@ import SocialLinks from "./SocialLinks.astro";
         I’m <span class="text-accent" translate="no">{siteConfig.name}</span>
       </h1>
       <p
-        class="mt-4 sm:mt-6 md:mt-8 text-pretty text-base sm:text-lg md:text-xl/8 font-medium text-body animate-fade-in animation-delay-2"
+        class="mt-4 sm:mt-6 md:mt-8 max-w-[60ch] text-pretty text-base sm:text-lg md:text-xl/8 font-medium text-body"
       >
-        {siteConfig.title}
+        <span class="sr-only">{siteConfig.tagline}</span>
+        <span aria-hidden="true">
+          {
+            tokens.map((token, i) => (
+              <span
+                class:list={["token", { "token-last": i === tokens.length - 1 }]}
+                style={`--start: ${token.start}ms; --end: ${token.end}ms`}
+              >
+                {token.text}
+              </span>
+            ))
+          }
+        </span>
       </p>
     </div>
   </div>
   <div
-    class="absolute bottom-0 left-0 right-0 p-8 sm:p-12 md:p-24 flex flex-wrap gap-x-4 sm:gap-x-6 md:gap-x-8 gap-y-4 text-ink-soft animate-fade-in animation-delay-3"
+    class="absolute bottom-0 left-0 right-0 p-8 sm:p-12 md:p-24 flex flex-wrap gap-x-4 sm:gap-x-6 md:gap-x-8 gap-y-4 text-ink-soft animate-fade-in"
+    style={`animation-delay: ${streamEnd}ms`}
   >
     <SocialLinks iconClass="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />
   </div>
@@ -190,19 +224,69 @@ import SocialLinks from "./SocialLinks.astro";
     animation-delay: 80ms;
   }
 
-  .animation-delay-2 {
-    animation-delay: 160ms;
+  /*
+   * Tagline streams in token by token, like a model's response. Each token
+   * sharpens out of a blur, and the caret rides on the newest token, then
+   * blinks a few times at the end before going away.
+   */
+  .token {
+    position: relative;
+    animation: tokenIn 280ms var(--ease-out) var(--start) both;
   }
 
-  .animation-delay-3 {
-    animation-delay: 240ms;
+  .token::after {
+    content: "";
+    position: absolute;
+    left: calc(100% + 0.1em);
+    top: 50%;
+    width: 0.55em;
+    height: 1.15em;
+    translate: 0 -50%;
+    background: var(--accent);
+    opacity: 0;
+    animation: caretOn calc(var(--end) - var(--start)) var(--start);
   }
 
-  /* Reduced motion keeps the fade but drops the movement and blur */
+  .token-last::after {
+    animation: caretBlink 530ms step-end var(--start) 3;
+  }
+
+  @keyframes tokenIn {
+    from {
+      opacity: 0;
+      filter: blur(3px);
+    }
+  }
+
+  @keyframes caretOn {
+    from,
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes caretBlink {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+
+  /* Reduced motion keeps the fades but drops movement, blur, and the caret */
   @media (prefers-reduced-motion: reduce) {
     .animate-fade-in {
       animation-name: fadeOnly;
       animation-duration: 200ms;
+    }
+
+    .token {
+      animation-name: fadeOnly;
+    }
+
+    .token::after {
+      display: none;
     }
   }
 </style>

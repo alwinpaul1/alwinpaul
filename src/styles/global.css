@@ -106,28 +106,11 @@ button {
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
-  border-radius: 4px;
 }
 
-/*
- * Scroll reveal: cards fade and rise as they enter the viewport. Driven by the
- * scroll position itself, so it costs no JavaScript and reverses naturally.
- * Browsers without scroll timelines, and visitors who reduce motion, get the
- * content in place with no animation.
- */
-@keyframes reveal {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-}
-
-@media screen and (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: view()) {
-    .reveal {
-      animation: reveal both var(--ease-out);
-      animation-timeline: view();
-      animation-range: entry 0% entry 35%;
-    }
-  }
+/* The theme switch animates its own clip-path reveal (see Header) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
 }

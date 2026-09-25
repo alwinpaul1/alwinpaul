@@ -23,15 +23,27 @@ const { githubStats, social } = siteConfig;
 
       <div class="grid grid-cols-1 2xl:grid-cols-2 gap-6">
         {githubStats.map((stat) => (
-          <img
-            src={stat.src}
-            alt={stat.alt}
-            width={stat.width}
-            height={stat.height}
-            loading="lazy"
-            decoding="async"
-            class="reveal w-full h-auto rounded-lg border border-line-soft shadow-sm"
-          />
+          <div>
+            {/* One variant per theme; the hidden one is display:none, so lazy loading skips it */}
+            <img
+              src={stat.light}
+              alt={stat.alt}
+              width={stat.width}
+              height={stat.height}
+              loading="lazy"
+              decoding="async"
+              class="dark:hidden w-full h-auto rounded-lg border border-line shadow-sm"
+            />
+            <img
+              src={stat.dark}
+              alt={stat.alt}
+              width={stat.width}
+              height={stat.height}
+              loading="lazy"
+              decoding="async"
+              class="hidden dark:block w-full h-auto rounded-lg border border-line shadow-sm"
+            />
+          </div>
         ))}
       </div>
     </Section>

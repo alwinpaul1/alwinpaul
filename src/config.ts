@@ -1,6 +1,8 @@
 export const siteConfig = {
   name: "Alwin Paul",
   title: "AI Engineer",
+  // Streams in under the name on the hero, like an LLM response
+  tagline: "AI Engineer · LLM systems, RAG pipelines & information retrieval",
   description:
     "AI Engineer in Germany specializing in LLM systems, RAG pipelines, and intelligent information retrieval. Based in Cottbus, open to AI Engineer roles across Germany. Experienced with LangChain, PyTorch, Neo4j, and LLM evaluation.",
   url: "https://alwinpaul.me",
@@ -87,7 +89,7 @@ export const siteConfig = {
     {
       name: "SmartTuner: GRPO Reinforcement Learning System",
       description:
-        "Implemented Group Relative Policy Optimization (GRPO) for training small language models (135M-600M parameters), improving accuracy from 46% to over 60%.",
+        "Implemented Group Relative Policy Optimization (GRPO) for training small language models (135M–600M parameters), improving accuracy from 46% to over 60%.",
       link: "https://github.com/alwinpaul1/SmartTuner",
       skills: ["Python", "GRPO", "Reinforcement Learning", "Small LMs"],
     },
@@ -138,7 +140,7 @@ export const siteConfig = {
     {
       company: "Perinet GmbH · Cottbus, Germany",
       title: "Working Student – AI & Systems Engineer",
-      dateRange: "Jul 2024 - Present",
+      dateRange: "Jul 2024 – Present",
       bullets: [
         "Architected an end-to-end Graph RAG pipeline with Neo4j knowledge graphs, combining adaptive PDF chunking with entity-relationship modeling for context-aware document retrieval.",
         "Built a hybrid retrieval system integrating ChromaDB vector search, cross-encoder reranking, and semantic caching (0.85 similarity threshold) to reduce latency and retrieval noise.",
@@ -151,7 +153,7 @@ export const siteConfig = {
     {
       school: "Brandenburg Technical University · Cottbus, Germany",
       degree: "Master of Science in Artificial Intelligence",
-      dateRange: "2022 - Present",
+      dateRange: "2022 – Present",
       achievements: [
         "Key subjects: Machine Learning, Deep Learning, Data Mining, Information Retrieval, Explainable ML, Computer Vision",
       ],
@@ -159,14 +161,26 @@ export const siteConfig = {
     {
       school: "Mahatma Gandhi University · Kottayam, India",
       degree: "Bachelor of Computer Applications",
-      dateRange: "2018 - 2021",
+      dateRange: "2018 – 2021",
       achievements: [
         "Key subjects: Data Structures, Database Management Systems, Design and Analysis of Algorithms, Software Engineering, Computer Networks",
       ],
     },
   ],
   githubStats: [
-    { src: "/github/github-metrics.svg", alt: "Alwin Paul's GitHub stats", width: 480, height: 223 },
-    { src: "/github/github-languages.svg", alt: "Alwin Paul's most used languages", width: 480, height: 166 },
+    {
+      alt: "Alwin Paul's GitHub stats",
+      light: "/github/github-metrics-light.svg",
+      dark: "/github/github-metrics.svg",
+      width: 480,
+      height: 223,
+    },
+    {
+      alt: "Alwin Paul's most used languages",
+      light: "/github/github-languages-light.svg",
+      dark: "/github/github-languages.svg",
+      width: 480,
+      height: 166,
+    },
   ],
 };

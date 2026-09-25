@@ -15,13 +15,14 @@ import { navLinks } from "../navigation";
     >
       Skip to content
     </a>
-    <ul class="hidden md:flex items-center gap-8 justify-center">
+    <ul id="nav-links" class="relative hidden md:flex items-center gap-8 justify-center">
       {
         navLinks.map((link) => (
           <li>
             <a
               href={link.href}
-              class="text-ink-soft hover:text-ink transition-colors font-medium"
+              data-section-link
+              class="text-ink-soft hover:text-ink aria-[current=location]:text-ink transition-colors font-medium"
             >
               {link.label}
             </a>
@@ -42,13 +43,20 @@ import { navLinks } from "../navigation";
           </li>
         )
       }
+      <!-- Slides under the link for the section in view -->
+      <li
+        id="nav-indicator"
+        aria-hidden="true"
+        class="absolute left-0 -bottom-1.5 h-0.5 w-px origin-left bg-accent opacity-0 pointer-events-none"
+      >
+      </li>
     </ul>
     <button
       id="theme-toggle"
       type="button"
       aria-label="Toggle dark mode"
       aria-pressed="false"
-      class="absolute right-4 top-1/2 -translate-y-1/2 grid place-items-center size-9 rounded-full text-ink-soft hover:text-ink hover:bg-chip active:scale-95 transition-[color,background-color,scale] duration-150 ease-out"
+      class="absolute right-4 top-1/2 -translate-y-1/2 grid place-items-center size-10 rounded-full text-ink-soft hover:text-ink hover:bg-chip active:scale-95 transition-[color,background-color,scale] duration-150 ease-out"
     >
       <Icon name="moon" class="theme-icon theme-icon-moon col-start-1 row-start-1 size-5" />
       <Icon name="sun" class="theme-icon theme-icon-sun col-start-1 row-start-1 size-5" />
@@ -76,15 +84,91 @@ import { navLinks } from "../navigation";
     toggle?.setAttribute("aria-pressed", String(root.dataset.theme === "dark"));
   syncPressed();
 
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  // The new theme grows out of the toggle in a circle, so the change visibly
+  // starts where the click happened. Falls back to an instant swap.
   toggle?.addEventListener("click", () => {
     const next = root.dataset.theme === "dark" ? "light" : "dark";
-    root.dataset.theme = next;
-    try {
-      localStorage.setItem("theme", next);
-    } catch {
-      // Storage can be blocked (private mode); the toggle still works for this visit
+    const commit = () => {
+      root.dataset.theme = next;
+      try {
+        localStorage.setItem("theme", next);
+      } catch {
+        // Storage can be blocked (private mode); the toggle still works for this visit
+      }
+    };
+
+    if (!document.startViewTransition || reduceMotion.matches) {
+      commit();
+      return;
     }
+
+    const { left, top, width, height } = toggle.getBoundingClientRect();
+    const x = left + width / 2;
+    const y = top + height / 2;
+    const radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+
+    document.startViewTransition(commit).ready.then(() => {
+      root.animate(
+        {
+          clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`],
+        },
+        {
+          duration: 450,
+          easing: "cubic-bezier(0.16, 1, 0.3, 1)",
+          pseudoElement: "::view-transition-new(root)",
+        },
+      );
+    });
   });
+
+  // Scroll spy: mark the nav link for the section crossing the upper-middle of
+  // the viewport. Nested targets (Achievements inside Projects) win because
+  // the last matching link in nav order is chosen.
+  const list = document.getElementById("nav-links");
+  const indicator = document.getElementById("nav-indicator");
+  const links = [...document.querySelectorAll<HTMLAnchorElement>("[data-section-link]")];
+  const inView = new Set<string>();
+  let active: HTMLAnchorElement | undefined;
+
+  const placeIndicator = (instant: boolean) => {
+    if (!indicator) return;
+    if (!active) {
+      indicator.style.opacity = "0";
+      return;
+    }
+    // Arriving from hidden should not sweep in from the far left
+    indicator.style.transition = instant
+      ? "opacity 200ms ease"
+      : "transform 350ms var(--ease-out), opacity 200ms ease";
+    indicator.style.transform = `translateX(${active.offsetLeft}px) scaleX(${active.offsetWidth})`;
+    indicator.style.opacity = "1";
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) inView.add(entry.target.id);
+        else inView.delete(entry.target.id);
+      }
+      const next = links.findLast((link) => inView.has(link.hash.slice(1)));
+      if (next === active) return;
+      const wasHidden = !active;
+      active?.removeAttribute("aria-current");
+      next?.setAttribute("aria-current", "location");
+      active = next;
+      placeIndicator(wasHidden);
+    },
+    { rootMargin: "-40% 0px -55% 0px" },
+  );
+
+  for (const link of links) {
+    const target = document.getElementById(link.hash.slice(1));
+    if (target) observer.observe(target);
+  }
+
+  if (list) new ResizeObserver(() => placeIndicator(true)).observe(list);
 
   new MutationObserver(syncPressed).observe(root, {
     attributes: true,

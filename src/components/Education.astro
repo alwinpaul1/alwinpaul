@@ -11,14 +11,12 @@ const { education } = siteConfig;
     <Section id="education" title="Education">
       <div class="space-y-8">
         {education.map((edu) => (
-          <div class="reveal">
-            <EntryCard
-              title={edu.degree}
-              organization={edu.school}
-              dateRange={edu.dateRange}
-              items={edu.achievements}
-            />
-          </div>
+          <EntryCard
+            title={edu.degree}
+            organization={edu.school}
+            dateRange={edu.dateRange}
+            items={edu.achievements}
+          />
         ))}
       </div>
     </Section>

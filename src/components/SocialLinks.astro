@@ -28,7 +28,7 @@ const links: { href?: string; label: string; icon: IconName; external: boolean }
         href={link.href}
         aria-label={link.label}
         title={link.label}
-        class="inline-block hover:text-accent active:scale-90 transition-[color,scale] duration-150 ease-out"
+        class="inline-flex p-2 -m-2 hover:text-accent active:scale-90 transition-[color,scale] duration-150 ease-out"
         {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       >
         <Icon name={link.icon} class={iconClass} />
