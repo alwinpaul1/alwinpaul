@@ -53,14 +53,14 @@ span.code {
                         <rect x="0" y="0" width="460" height="8" fill="white" rx="5"/>
                     </mask>
                     <rect mask="url(#languages-bar)" x="0" y="0" width="0" height="8" fill="#d1d5da"/>
-                    <rect mask="url(#languages-bar)" x="0" y="0" width="289.79439400659027" height="8" fill="#3178c6"/>
-                    <rect mask="url(#languages-bar)" x="289.79439400659027" y="0" width="93.61464992992619" height="8" fill="#3572A5"/>
-                    <rect mask="url(#languages-bar)" x="383.4090439365164" y="0" width="23.995288305901347" height="8" fill="#00B4AB"/>
-                    <rect mask="url(#languages-bar)" x="407.40433224241775" y="0" width="12.848461419986785" height="8" fill="#DA5B0B"/>
-                    <rect mask="url(#languages-bar)" x="420.25279366240454" y="0" width="11.019099290085176" height="8" fill="#3D6117"/>
-                    <rect mask="url(#languages-bar)" x="431.2718929524897" y="0" width="9.962203965103617" height="8" fill="#f1e05a"/>
-                    <rect mask="url(#languages-bar)" x="441.2340969175933" y="0" width="8.7317842505648" height="8" fill="#89e051"/>
-                    <rect mask="url(#languages-bar)" x="449.9658811681581" y="0" width="10.034118831841841" height="8" fill="#ededed"/>
+                    <rect mask="url(#languages-bar)" x="0" y="0" width="295.3159957636148" height="8" fill="#3178c6"/>
+                    <rect mask="url(#languages-bar)" x="295.3159957636148" y="0" width="90.30500860668373" height="8" fill="#3572A5"/>
+                    <rect mask="url(#languages-bar)" x="385.6210043702986" y="0" width="23.14614985167027" height="8" fill="#00B4AB"/>
+                    <rect mask="url(#languages-bar)" x="408.76715422196884" y="0" width="12.393783712833251" height="8" fill="#DA5B0B"/>
+                    <rect mask="url(#languages-bar)" x="421.1609379348021" y="0" width="10.787388149626889" height="8" fill="#3D6117"/>
+                    <rect mask="url(#languages-bar)" x="431.94832608442897" y="0" width="9.618361837062912" height="8" fill="#f1e05a"/>
+                    <rect mask="url(#languages-bar)" x="441.5666879214919" y="0" width="8.427120610783918" height="8" fill="#89e051"/>
+                    <rect mask="url(#languages-bar)" x="449.99380853227586" y="0" width="10.006191467724175" height="8" fill="#ededed"/>
                 </svg>
                 <div class="row fill-width">
                     <section>
@@ -72,7 +72,7 @@ span.code {
                                 TypeScript
                             </div>
                             <small>
-                                <div>63%</div>
+                                <div>64.2%</div>
                             </small>
                         </div>
                         <div class="field language details">
@@ -83,7 +83,7 @@ span.code {
                                 Dart
                             </div>
                             <small>
-                                <div>5.22%</div>
+                                <div>5.03%</div>
                             </small>
                         </div>
                         <div class="field language details">
@@ -94,7 +94,7 @@ span.code {
                                 TeX
                             </div>
                             <small>
-                                <div>2.4%</div>
+                                <div>2.35%</div>
                             </small>
                         </div>
                         <div class="field language details">
@@ -105,7 +105,7 @@ span.code {
                                 Shell
                             </div>
                             <small>
-                                <div>1.9%</div>
+                                <div>1.83%</div>
                             </small>
                         </div>
                     </section>
@@ -118,7 +118,7 @@ span.code {
                                 Python
                             </div>
                             <small>
-                                <div>20.35%</div>
+                                <div>19.63%</div>
                             </small>
                         </div>
                         <div class="field language details">
@@ -129,7 +129,7 @@ span.code {
                                 Jupyter Notebook
                             </div>
                             <small>
-                                <div>2.79%</div>
+                                <div>2.69%</div>
                             </small>
                         </div>
                         <div class="field language details">
@@ -140,7 +140,7 @@ span.code {
                                 JavaScript
                             </div>
                             <small>
-                                <div>2.17%</div>
+                                <div>2.09%</div>
                             </small>
                         </div>
                         <div class="field language details">
